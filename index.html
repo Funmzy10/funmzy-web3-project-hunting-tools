@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funmzy Tools</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#080808;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .wrap{max-width:560px;width:100%;text-align:center}
+  .logo{font-size:2.4rem;font-weight:900;color:#F59E0B;letter-spacing:-.02em;margin-bottom:6px}
+  .sub{color:#555;font-size:0.9rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:48px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left}
+  .tool-card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:22px;text-decoration:none;color:#fff;transition:.2s;display:block}
+  .tool-card:hover{border-color:#F59E0B;background:rgba(245,158,11,0.04);transform:translateY(-2px)}
+  .tool-icon{font-size:1.6rem;margin-bottom:10px}
+  .tool-name{font-weight:700;font-size:1rem;margin-bottom:4px}
+  .tool-desc{font-size:0.78rem;color:#555;line-height:1.5}
+  .footer{margin-top:40px;color:#333;font-size:0.78rem}
+  .footer span{color:#F59E0B}
+  @media(max-width:480px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">⚡ FUNMZY</div>
+  <div class="sub">Web3 Growth Tools</div>
+  <div class="grid">
+    <a href="web3-hunter.html" class="tool-card">
+      <div class="tool-icon">🔍</div>
+      <div class="tool-name">Web3 Hunter</div>
+      <div class="tool-desc">Generate your morning alpha hunt prompt for Solana, Base, or BSC</div>
+    </a>
+    <a href="dm-generator.html" class="tool-card">
+      <div class="tool-icon">💬</div>
+      <div class="tool-name">DM Generator</div>
+      <div class="tool-desc">Twitter DM, Telegram DM & group intro — all under 120 words</div>
+    </a>
+    <a href="kols3-diagnostic.html" class="tool-card">
+      <div class="tool-icon">📊</div>
+      <div class="tool-name">KOLS3 Diagnostic</div>
+      <div class="tool-desc">Top 3 services to pitch + ready message from all 16 KOLS3 services</div>
+    </a>
+    <a href="content-generator.html" class="tool-card">
+      <div class="tool-icon">✍️</div>
+      <div class="tool-name">Content Generator</div>
+      <div class="tool-desc">3 ready-to-post X threads for @Lionrage10 — daily content engine</div>
+    </a>
+    <a href="proposal-generator.html" class="tool-card" style="grid-column:1/-1">
+      <div class="tool-icon">📄</div>
+      <div class="tool-name">Proposal Generator</div>
+      <div class="tool-desc">Professional client proposals with PDF download — 50/50 payment terms baked in</div>
+    </a>
+  </div>
+  <div class="footer">Built by <span>Funmzy</span> · Works offline forever · No backend needed</div>
+</div>
+</body>
+</html>
