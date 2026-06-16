@@ -124,6 +124,24 @@ textarea{resize:vertical;min-height:65px}
 .inote{background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.15);border-radius:7px;padding:10px 13px;font-size:0.76rem;color:#8B5CF6;line-height:1.55;margin-top:10px}
 .inote strong{color:var(--pur)}
 
+/* ── INTEL REPORT ── */
+.ir-section{margin-bottom:18px}
+.ir-sec-title{font-size:0.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pur);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid rgba(139,92,246,.18)}
+.ir-row{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #0f0f0f;font-size:0.82rem}
+.ir-row:last-child{border-bottom:none}
+.ir-key{color:var(--mu);min-width:110px;flex-shrink:0;font-size:0.74rem}
+.ir-val{color:var(--wh);line-height:1.45;word-break:break-all;flex:1}
+.ir-val a{color:var(--cy);text-decoration:none}.ir-val a:hover{text-decoration:underline}
+.ir-badge{display:inline-block;border-radius:4px;padding:1px 7px;font-size:0.65rem;font-weight:700;margin-right:3px;margin-bottom:2px}
+.ir-b-ok{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.25);color:var(--gr)}
+.ir-b-warn{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2);color:var(--gold)}
+.ir-b-bad{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);color:var(--rd)}
+.ir-b-pur{background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.22);color:var(--pur)}
+.ir-gap-item{display:flex;align-items:center;gap:7px;padding:6px 9px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12);border-radius:6px;margin-bottom:5px;font-size:0.78rem;color:#ddd}
+.ir-gap-item::before{content:"⚠";color:var(--rd);flex-shrink:0}
+.ir-keyword{display:inline-block;background:#111;border:1px solid #1e1e1e;color:#888;border-radius:4px;padding:2px 8px;font-size:0.68rem;margin:2px 2px 0 0}
+@media(max-width:820px){#intel-cards{grid-template-columns:1fr}}
+
 /* ── MOBILE ── */
 #sb-toggle{display:none}
 @media(max-width:820px){
@@ -150,6 +168,7 @@ textarea{resize:vertical;min-height:65px}
     <button class="ntab" onclick="switchTab('long',this)">LONG TERM</button>
     <button class="ntab" onclick="switchTab('local',this)">LOCAL BIZ</button>
     <button class="ntab" onclick="switchTab('collab',this)">COLLABS</button>
+    <button class="ntab" onclick="switchTab('intel',this)" style="border:1px solid rgba(139,92,246,.4);color:#8B5CF6">🔬 INTEL</button>
   </div>
   <div class="nav-links">
     <button class="nlink" id="nl-site" onclick="flashCopy('https://funmzy-site.vercel.app/','nl-site')">🌐 Site</button>
@@ -317,6 +336,56 @@ textarea{resize:vertical;min-height:65px}
     </div>
     <div class="pbox" id="out-collab"><span class="pbox-ph">Click Generate Hunt Prompt to build your collab search.</span></div>
     <div class="inote" style="margin-top:10px"><strong>Next step:</strong> Copy prompt → Paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → Get results → Paste into DM Generator below ↓</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 6 — PROJECT INTEL
+══════════════════════════════════════════════════════ -->
+<div class="panel" id="p-intel">
+  <div class="card">
+    <div class="stag">PROJECT INTELLIGENCE — Instant Site Scanner</div>
+    <div class="fg">
+      <span class="fl">Project / Company Website URL</span>
+      <div style="display:flex;gap:8px">
+        <input type="url" id="intel-url" placeholder="https://project.xyz or https://company.com" oninput="save('intel-url')" style="flex:1">
+        <button class="btn bp" id="intel-btn" onclick="runIntel()" style="white-space:nowrap;padding:9px 18px">🔬 Scan Site</button>
+      </div>
+    </div>
+    <div class="inote">Drop any website URL — I'll scan it and pull out every social link, email, team info, token details, marketing gaps, and everything else automatically. No copy-paste needed.</div>
+  </div>
+
+  <!-- Loading state -->
+  <div id="intel-loading" style="display:none" class="card">
+    <div style="text-align:center;padding:28px 0;color:var(--mu);font-size:0.85rem">
+      <div id="intel-pulse" style="font-size:1.5rem;margin-bottom:10px">🔬</div>
+      <div id="intel-status">Fetching website...</div>
+      <div style="margin-top:8px;height:3px;background:#111;border-radius:3px;overflow:hidden"><div id="intel-bar" style="height:100%;width:0%;background:var(--pur);transition:width 0.4s ease;border-radius:3px"></div></div>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div id="intel-out-wrap" style="display:none">
+    <div class="card" style="border-color:rgba(139,92,246,.3)">
+      <div class="pbox-hdr" style="margin-bottom:14px">
+        <span class="fl" style="margin-bottom:0;color:var(--pur)">🔬 SITE INTEL REPORT</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="cb" id="cb-intel" onclick="copyIntelReport()">Copy Report</button>
+          <button class="cb bsm" id="intel-fill-btn" onclick="fillDMEngine()" style="background:var(--gold);color:#080808;border-color:var(--gold)">⚡ Auto-Fill DM Engine</button>
+        </div>
+      </div>
+      <div id="intel-report"></div>
+    </div>
+
+    <!-- Structured data cards -->
+    <div id="intel-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px"></div>
+
+    <div class="inote"><strong>Next:</strong> Click <strong>⚡ Auto-Fill DM Engine</strong> to push all found data into the outreach engine below ↓ — one click and everything is pre-loaded.</div>
+  </div>
+
+  <!-- Error state -->
+  <div id="intel-err" style="display:none" class="card">
+    <div style="color:var(--rd);font-size:0.85rem;padding:8px 0" id="intel-err-msg"></div>
   </div>
 </div>
 
@@ -958,6 +1027,419 @@ function buildKOLS3() {
       <div class="kol-line">${k.line}</div>
     </div>`).join('');
 }
+
+// ══ PROJECT INTEL SCANNER ════════════════════════════
+
+let _intelData = {};
+
+async function runIntel() {
+  const rawUrl = document.getElementById('intel-url').value.trim();
+  if (!rawUrl) { alert('Paste a website URL first.'); return; }
+  let url = rawUrl;
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+
+  // UI: show loading, hide others
+  document.getElementById('intel-loading').style.display = 'block';
+  document.getElementById('intel-out-wrap').style.display = 'none';
+  document.getElementById('intel-err').style.display = 'none';
+  document.getElementById('intel-btn').disabled = true;
+  document.getElementById('intel-btn').textContent = '⏳ Scanning...';
+  _intelData = {};
+
+  setBar(10); setStatus('Connecting to site...');
+
+  try {
+    // Use allorigins CORS proxy
+    const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+    const resp = await fetch(proxyUrl, {signal: AbortSignal.timeout(18000)});
+    if (!resp.ok) throw new Error('Proxy error: ' + resp.status);
+    const data = await resp.json();
+    const html = data.contents || '';
+    if (!html) throw new Error('Empty response — site may be blocking scrapers.');
+
+    setBar(45); setStatus('Parsing page content...');
+
+    const parsed = parseIntelHTML(html, url);
+    _intelData = parsed;
+
+    setBar(80); setStatus('Detecting gaps...');
+
+    const gaps = detectGaps(parsed);
+    parsed.gaps = gaps;
+
+    setBar(100); setStatus('Done!');
+    await sleep(300);
+
+    renderIntelReport(parsed, url);
+
+  } catch(e) {
+    document.getElementById('intel-loading').style.display = 'none';
+    document.getElementById('intel-err').style.display = 'block';
+    document.getElementById('intel-err-msg').innerHTML =
+      `<strong>Scan failed:</strong> ${escH(e.message)}<br><br>` +
+      `<span style="color:#666;font-size:0.76rem">This can happen if the site blocks external fetches. Try a different URL or check your internet connection.</span>`;
+  } finally {
+    document.getElementById('intel-btn').disabled = false;
+    document.getElementById('intel-btn').textContent = '🔬 Scan Site';
+    document.getElementById('intel-loading').style.display = 'none';
+  }
+}
+
+function setBar(pct) {
+  const b = document.getElementById('intel-bar');
+  if (b) b.style.width = pct + '%';
+}
+function setStatus(msg) {
+  const s = document.getElementById('intel-status');
+  if (s) s.textContent = msg;
+}
+function sleep(ms){ return new Promise(r => setTimeout(r,ms)) }
+
+function parseIntelHTML(html, siteUrl) {
+  const p = {};
+
+  // Strip scripts/styles for text extraction
+  const clean = html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'');
+  const textOnly = clean.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+
+  // Title
+  const titleM = html.match(/<title[^>]*>([^<]{1,200})<\/title>/i);
+  p.title = titleM ? decodeHTML(titleM[1].trim()) : '';
+
+  // Meta description
+  const descM = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']{1,400})/i)
+             || html.match(/<meta[^>]+content=["']([^"']{1,400})[^>]+name=["']description/i);
+  p.description = descM ? decodeHTML(descM[1].trim()) : '';
+
+  // OG title / description fallback
+  if (!p.title) {
+    const ogT = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{1,200})/i);
+    p.title = ogT ? decodeHTML(ogT[1].trim()) : new URL(siteUrl).hostname;
+  }
+  if (!p.description) {
+    const ogD = html.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']{1,400})/i);
+    p.description = ogD ? decodeHTML(ogD[1].trim()) : '';
+  }
+
+  // Project name (first word of title, cleaned)
+  p.projectName = p.title.replace(/[-–|·:].*$/,'').trim().slice(0,60);
+
+  // Domain
+  try { p.domain = new URL(siteUrl).hostname.replace(/^www\./,''); } catch{ p.domain = siteUrl; }
+
+  // ── SOCIAL LINKS ──
+  const allHrefs = [...html.matchAll(/href=["']([^"']{4,}?)["']/gi)].map(m => m[1]);
+
+  p.twitter  = findSocial(allHrefs, /(?:twitter\.com|x\.com)\/(@?[A-Za-z0-9_]{1,50})\/?(?:\s|"|'|>|$)/i, 'twitter.com/', 'x.com/');
+  p.telegram = findSocialDirect(allHrefs, /t\.me\/[A-Za-z0-9_]{2,50}/i);
+  p.discord  = findSocialDirect(allHrefs, /discord(?:\.gg|\.com\/invite)\/[A-Za-z0-9_-]{2,50}/i);
+  p.github   = findSocialDirect(allHrefs, /github\.com\/[A-Za-z0-9_-]{1,100}/i);
+  p.linkedin = findSocialDirect(allHrefs, /linkedin\.com\/(?:company|in)\/[A-Za-z0-9_-]{1,100}/i);
+  p.medium   = findSocialDirect(allHrefs, /medium\.com\/@?[A-Za-z0-9_-]{1,80}/i);
+  p.youtube  = findSocialDirect(allHrefs, /youtube\.com\/(?:c\/|channel\/|@)[A-Za-z0-9_-]{1,100}/i);
+  p.instagram= findSocialDirect(allHrefs, /instagram\.com\/[A-Za-z0-9_.]{1,60}/i);
+  p.reddit   = findSocialDirect(allHrefs, /reddit\.com\/r\/[A-Za-z0-9_]{1,50}/i);
+
+  // ── EMAILS ──
+  const emailRx = /\b([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})\b/g;
+  const emails = [...new Set([...html.matchAll(emailRx)].map(m=>m[1]).filter(e =>
+    !e.includes('example') && !e.includes('domain') && !e.includes('.png') && !e.includes('.jpg')
+  ))].slice(0,5);
+  p.emails = emails;
+
+  // ── WHITEPAPER / DOCS ──
+  p.whitepaper = findHrefMatch(allHrefs, /(?:whitepaper|litepaper|paper|docs\.)/i);
+  p.gitbook    = findHrefMatch(allHrefs, /gitbook\.io|docs\./i);
+  p.audit      = findHrefMatch(allHrefs, /audit/i);
+
+  // ── TOKEN / CHAIN INFO ──
+  const tokenRx = /(?:token|ticker|symbol)[^:]*:?\s*["']?\$?([A-Z]{2,10})\b/;
+  const tokenM = textOnly.match(tokenRx);
+  p.token = tokenM ? tokenM[1] : '';
+
+  const chains = ['Solana','Ethereum','Base','BSC','Binance','Polygon','Arbitrum','Avalanche','Optimism','Sui','Aptos'];
+  p.chain = chains.find(c => new RegExp('\\b'+c+'\\b','i').test(textOnly)) || '';
+
+  // ── TEAM ──
+  const founderRx = /(?:founder|co-founder|ceo|cto|coo|builder|creator)[^<]{0,80}/gi;
+  const teamMatches = [...textOnly.matchAll(founderRx)].map(m => m[0].replace(/\s+/g,' ').trim()).slice(0,4);
+  p.teamMentions = teamMatches;
+
+  // ── FUNDRAISE ──
+  const fundRx = /\$[\d,.]+\s*(?:M|B|K|million|billion|thousand)?(?:\s+(?:raised|seed|round|funding))?/gi;
+  const fundMatch = textOnly.match(fundRx);
+  p.funding = fundMatch ? [...new Set(fundMatch)].slice(0,3).join(', ') : '';
+
+  // ── VIDEO / MEDIA ──
+  p.hasVideo  = /(?:youtube|youtu\.be|vimeo|loom|video|watch\?v=)/i.test(html);
+  p.hasAudit  = /audit/i.test(html);
+  p.hasDocs   = /(?:docs\.|gitbook|whitepaper|documentation)/i.test(html);
+  p.hasRoadmap= /roadmap/i.test(html);
+  p.hasBlog   = /(?:blog|medium\.com|substack)/i.test(html);
+  p.hasPricing= /(?:pricing|price|plan|subscribe|payment)/i.test(html);
+  p.hasTeam   = /(?:team|founder|about us|our team)/i.test(html);
+  p.hasPartners=/(?:partner|backed by|investor|supported by)/i.test(html);
+
+  // ── KEYWORDS ──
+  const kws = extractKeywords(textOnly);
+  p.keywords = kws;
+
+  // ── CTA / CALL TO ACTION ──
+  const ctaRx = /(?:join|get started|launch app|connect wallet|buy|whitelist|apply|sign up)[^<]{0,40}/gi;
+  const ctaMatches = [...textOnly.matchAll(ctaRx)].map(m=>m[0].replace(/\s+/g,' ').trim()).slice(0,3);
+  p.ctas = [...new Set(ctaMatches)];
+
+  return p;
+}
+
+function findSocial(hrefs, rx, ...stripPrefixes) {
+  const found = hrefs.find(h => rx.test(h));
+  if (!found) return '';
+  try {
+    const u = new URL(found.startsWith('http') ? found : 'https:'+found);
+    let path = u.pathname.replace(/^\/+/,'').split('/')[0];
+    if (['home','explore','search','intent','share','hashtag'].includes(path.toLowerCase())) return '';
+    return 'https://' + (u.hostname.includes('twitter') ? 'x.com' : u.hostname) + '/' + path;
+  } catch { return found.slice(0,80); }
+}
+
+function findSocialDirect(hrefs, rx) {
+  const f = hrefs.find(h => rx.test(h));
+  if (!f) return '';
+  const m = f.match(rx);
+  return m ? (f.startsWith('http') ? f.split('?')[0] : 'https://'+m[0]) : '';
+}
+
+function findHrefMatch(hrefs, rx) {
+  const f = hrefs.find(h => rx.test(h));
+  return f || '';
+}
+
+function decodeHTML(s) {
+  return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>')
+          .replace(/&quot;/g,'"').replace(/&#039;/g,"'").replace(/&nbsp;/g,' ');
+}
+
+function extractKeywords(text) {
+  const stopWords = new Set(['the','a','an','in','on','at','to','of','and','or','for','is','are',
+    'was','were','be','been','being','have','has','had','do','does','did','will','would','could',
+    'should','may','might','shall','can','this','that','these','those','with','from','by','as',
+    'its','our','their','we','you','your','it','not','no','but','so','if','up','out','what',
+    'all','any','more','also','when','how','now','just','into','than','then','over','about']);
+
+  const freq = {};
+  text.toLowerCase().match(/\b[a-z]{4,}\b/g)?.forEach(w => {
+    if (!stopWords.has(w)) freq[w] = (freq[w]||0) + 1;
+  });
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,20).map(e=>e[0]);
+}
+
+function detectGaps(p) {
+  const gaps = [];
+  if (!p.hasVideo && !p.youtube)          gaps.push({label:'No video content',svc:'vid',gap:'novid'});
+  if (!p.twitter)                          gaps.push({label:'No Twitter/X presence found',svc:'web3',gap:'weaksocial'});
+  if (!p.telegram && !p.discord)          gaps.push({label:'No community hub (no Telegram/Discord)',svc:'web3',gap:'deadcomm'});
+  if (!p.hasDocs && !p.whitepaper)        gaps.push({label:'No whitepaper or documentation',svc:'web3',gap:'noweb3'});
+  if (!p.hasTeam)                          gaps.push({label:'No visible team page',svc:'lp',gap:'nolp'});
+  if (!p.hasRoadmap)                       gaps.push({label:'No roadmap found',svc:'lp',gap:'nolp'});
+  if (!p.hasBlog)                          gaps.push({label:'No blog or content marketing',svc:'vid',gap:'novid'});
+  if (!p.hasAudit && p.chain)             gaps.push({label:'No visible security audit',svc:'web3',gap:'noweb3'});
+  if (!p.hasPricing && !p.chain)          gaps.push({label:'No clear pricing / offer visible',svc:'lp',gap:'nolp'});
+  if (!p.hasPartners)                      gaps.push({label:'No partners or backers highlighted',svc:'web3',gap:'nokol'});
+  if (p.description.length < 40)          gaps.push({label:'Weak or missing meta description (bad SEO)',svc:'lp',gap:'badweb'});
+  return gaps.slice(0,6);
+}
+
+function renderIntelReport(p, siteUrl) {
+  document.getElementById('intel-loading').style.display = 'none';
+  document.getElementById('intel-out-wrap').style.display = 'block';
+
+  // Build text report for copy
+  window._intelReportText = buildIntelText(p, siteUrl);
+
+  // Build HTML report
+  let html = '';
+
+  // Header
+  html += `<div class="ir-section">
+    <div class="ir-sec-title">Project Overview</div>
+    <div class="ir-row"><span class="ir-key">Name</span><span class="ir-val"><strong>${escH(p.projectName || p.title)}</strong></span></div>
+    <div class="ir-row"><span class="ir-key">Domain</span><span class="ir-val"><a href="${escH(siteUrl)}" target="_blank">${escH(p.domain)}</a></span></div>
+    ${p.title?`<div class="ir-row"><span class="ir-key">Page Title</span><span class="ir-val">${escH(p.title)}</span></div>`:''}
+    ${p.description?`<div class="ir-row"><span class="ir-key">Description</span><span class="ir-val">${escH(p.description)}</span></div>`:''}
+    ${p.chain?`<div class="ir-row"><span class="ir-key">Chain</span><span class="ir-val"><span class="ir-badge ir-b-pur">${escH(p.chain)}</span></span></div>`:''}
+    ${p.token?`<div class="ir-row"><span class="ir-key">Token</span><span class="ir-val"><span class="ir-badge ir-b-ok">$${escH(p.token)}</span></span></div>`:''}
+    ${p.funding?`<div class="ir-row"><span class="ir-key">Funding</span><span class="ir-val"><span class="ir-badge ir-b-ok">${escH(p.funding)}</span></span></div>`:''}
+  </div>`;
+
+  // Social links
+  const socials = [
+    {label:'Twitter / X', val:p.twitter, icon:'🐦'},
+    {label:'Telegram',    val:p.telegram, icon:'✈️'},
+    {label:'Discord',     val:p.discord,  icon:'💬'},
+    {label:'GitHub',      val:p.github,   icon:'💻'},
+    {label:'LinkedIn',    val:p.linkedin, icon:'🔗'},
+    {label:'Medium',      val:p.medium,   icon:'📝'},
+    {label:'YouTube',     val:p.youtube,  icon:'▶️'},
+    {label:'Instagram',   val:p.instagram,icon:'📸'},
+    {label:'Reddit',      val:p.reddit,   icon:'🤖'},
+  ];
+  html += `<div class="ir-section"><div class="ir-sec-title">Social Links Found</div>`;
+  socials.forEach(s => {
+    if (s.val) {
+      html += `<div class="ir-row"><span class="ir-key">${s.icon} ${s.label}</span><span class="ir-val"><a href="${escH(s.val)}" target="_blank">${escH(s.val)}</a></span></div>`;
+    } else {
+      html += `<div class="ir-row"><span class="ir-key">${s.icon} ${s.label}</span><span class="ir-val" style="color:#333">Not found</span></div>`;
+    }
+  });
+  html += `</div>`;
+
+  // Contact
+  if (p.emails.length || p.whitepaper || p.gitbook || p.audit) {
+    html += `<div class="ir-section"><div class="ir-sec-title">Contact & Docs</div>`;
+    p.emails.forEach(e => {
+      html += `<div class="ir-row"><span class="ir-key">📧 Email</span><span class="ir-val"><a href="mailto:${escH(e)}">${escH(e)}</a></span></div>`;
+    });
+    if (p.whitepaper) html += `<div class="ir-row"><span class="ir-key">📄 Whitepaper</span><span class="ir-val"><a href="${escH(p.whitepaper)}" target="_blank">${escH(p.whitepaper.slice(0,70))}</a></span></div>`;
+    if (p.gitbook)    html += `<div class="ir-row"><span class="ir-key">📚 Docs</span><span class="ir-val"><a href="${escH(p.gitbook)}" target="_blank">${escH(p.gitbook.slice(0,70))}</a></span></div>`;
+    if (p.audit)      html += `<div class="ir-row"><span class="ir-key">🔒 Audit</span><span class="ir-val"><a href="${escH(p.audit)}" target="_blank">${escH(p.audit.slice(0,70))}</a></span></div>`;
+    html += `</div>`;
+  }
+
+  // Team
+  if (p.teamMentions.length) {
+    html += `<div class="ir-section"><div class="ir-sec-title">Team Mentions</div>`;
+    p.teamMentions.forEach(t => {
+      html += `<div class="ir-row"><span class="ir-key">👤</span><span class="ir-val">${escH(t)}</span></div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Site features checklist
+  const checks = [
+    {label:'Video Content',   ok:p.hasVideo},
+    {label:'Documentation',   ok:p.hasDocs},
+    {label:'Roadmap',         ok:p.hasRoadmap},
+    {label:'Team Page',       ok:p.hasTeam},
+    {label:'Blog / Content',  ok:p.hasBlog},
+    {label:'Security Audit',  ok:p.hasAudit},
+    {label:'Pricing / Plans', ok:p.hasPricing},
+    {label:'Partners',        ok:p.hasPartners},
+  ];
+  html += `<div class="ir-section"><div class="ir-sec-title">Site Health Checklist</div><div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">`;
+  checks.forEach(c => {
+    html += `<span class="ir-badge ${c.ok?'ir-b-ok':'ir-b-bad'}">${c.ok?'✓':'✗'} ${c.label}</span>`;
+  });
+  html += `</div></div>`;
+
+  // CTAs found
+  if (p.ctas.length) {
+    html += `<div class="ir-section"><div class="ir-sec-title">CTAs Found on Page</div><div style="display:flex;flex-wrap:wrap;gap:5px;padding-top:4px">`;
+    p.ctas.forEach(c => html += `<span class="ir-badge ir-b-warn">${escH(c)}</span>`);
+    html += `</div></div>`;
+  }
+
+  // Keywords
+  if (p.keywords.length) {
+    html += `<div class="ir-section"><div class="ir-sec-title">Top Keywords</div><div style="padding-top:4px">`;
+    p.keywords.slice(0,15).forEach(k => html += `<span class="ir-keyword">${escH(k)}</span>`);
+    html += `</div></div>`;
+  }
+
+  // Gaps
+  if (p.gaps && p.gaps.length) {
+    html += `<div class="ir-section"><div class="ir-sec-title" style="color:var(--rd)">⚠ Marketing Gaps Detected (${p.gaps.length})</div>`;
+    p.gaps.forEach(g => html += `<div class="ir-gap-item">${escH(g.label)}</div>`);
+    html += `</div>`;
+  }
+
+  document.getElementById('intel-report').innerHTML = html;
+
+  // Scroll into view
+  document.getElementById('intel-out-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function buildIntelText(p, siteUrl) {
+  const nl = '\n';
+  const div = '====================================================================';
+  let t = div + nl;
+  t += `🔬 PROJECT INTEL // ${p.projectName || p.title}` + nl;
+  t += div + nl;
+  t += `URL: ${siteUrl}` + nl;
+  t += `Title: ${p.title}` + nl;
+  t += `Description: ${p.description}` + nl;
+  if (p.chain)   t += `Chain: ${p.chain}` + nl;
+  if (p.token)   t += `Token: $${p.token}` + nl;
+  if (p.funding) t += `Funding: ${p.funding}` + nl;
+  t += nl + `SOCIAL LINKS:` + nl;
+  if (p.twitter)   t += `→ Twitter/X: ${p.twitter}` + nl;
+  if (p.telegram)  t += `→ Telegram: ${p.telegram}` + nl;
+  if (p.discord)   t += `→ Discord: ${p.discord}` + nl;
+  if (p.github)    t += `→ GitHub: ${p.github}` + nl;
+  if (p.linkedin)  t += `→ LinkedIn: ${p.linkedin}` + nl;
+  if (p.medium)    t += `→ Medium: ${p.medium}` + nl;
+  if (p.youtube)   t += `→ YouTube: ${p.youtube}` + nl;
+  if (p.emails.length) t += nl + `EMAILS: ${p.emails.join(', ')}` + nl;
+  if (p.whitepaper) t += `Whitepaper: ${p.whitepaper}` + nl;
+  if (p.audit)      t += `Audit: ${p.audit}` + nl;
+  if (p.teamMentions.length) t += nl + `TEAM: ${p.teamMentions.join(' | ')}` + nl;
+  if (p.gaps && p.gaps.length) {
+    t += nl + `GAPS DETECTED:` + nl;
+    p.gaps.forEach(g => t += `⚠ ${g.label}` + nl);
+  }
+  t += nl + div;
+  return t;
+}
+
+function copyIntelReport() {
+  if (!window._intelReportText) return;
+  navigator.clipboard.writeText(window._intelReportText).then(() => flash('cb-intel'));
+}
+
+function fillDMEngine() {
+  const p = _intelData;
+  if (!p || !p.projectName) return;
+
+  // Fill DM engine fields
+  const setVal = (id, val) => { const el = document.getElementById(id); if (el && val) { el.value = val; save(id); } };
+
+  setVal('dm-proj', p.projectName || p.title);
+
+  // Twitter handle
+  if (p.twitter) {
+    const hm = p.twitter.match(/(?:x|twitter)\.com\/(@?[A-Za-z0-9_]+)/i);
+    if (hm) setVal('dm-handle', '@' + hm[1].replace('@',''));
+  }
+
+  // Telegram
+  if (p.telegram) setVal('dm-tg', p.telegram);
+
+  // Email
+  if (p.emails.length) setVal('dm-email', p.emails[0]);
+
+  // Auto-select best gap
+  if (p.gaps && p.gaps.length) {
+    const topGap = p.gaps[0];
+    const gapSel = document.getElementById('dm-gap');
+    if (gapSel && topGap.gap) {
+      gapSel.value = topGap.gap;
+      toggleCustomGap();
+      save('dm-gap');
+    }
+  }
+
+  // Scroll to DM engine
+  document.querySelector('.eng-title').scrollIntoView({behavior:'smooth', block:'start'});
+
+  // Flash confirm
+  const btn = document.getElementById('intel-fill-btn');
+  const orig = btn.textContent;
+  btn.textContent = '✓ DM Engine Filled!';
+  setTimeout(() => { btn.textContent = orig; }, 2200);
+}
+
+// Generate intel prompt (legacy fallback — not used by new tab)
+function genIntel() { runIntel(); }
 
 // ══ INIT ══════════════════════════════════════════════
 (function init() {
