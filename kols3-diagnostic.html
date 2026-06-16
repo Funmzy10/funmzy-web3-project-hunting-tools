@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOLS3 Diagnostic | Funmzy Tools</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#080808;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+  nav{background:#0f0f0f;border-bottom:1px solid #1a1a1a;padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  nav .logo{color:#F59E0B;font-weight:700;font-size:1rem;margin-right:10px;text-decoration:none}
+  nav a{color:#888;font-size:0.78rem;text-decoration:none;padding:5px 10px;border-radius:6px;transition:.2s;border:1px solid #1a1a1a}
+  nav a:hover,nav a.active{color:#F59E0B;border-color:#F59E0B;background:rgba(245,158,11,0.07)}
+  .container{max-width:860px;margin:0 auto;padding:40px 20px}
+  h1{font-size:1.7rem;font-weight:700;margin-bottom:6px}
+  h1 span{color:#F59E0B}
+  .subtitle{color:#666;font-size:0.9rem;margin-bottom:36px}
+  .card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:28px;margin-bottom:24px}
+  label{display:block;font-size:0.8rem;color:#F59E0B;font-weight:600;letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase}
+  select,input,textarea{width:100%;background:#080808;border:1px solid #1a1a1a;color:#fff;border-radius:8px;padding:12px 14px;font-size:0.95rem;outline:none;transition:.2s;font-family:inherit}
+  select:focus,input:focus,textarea:focus{border-color:#F59E0B;box-shadow:0 0 0 2px rgba(245,158,11,0.12)}
+  select option{background:#0f0f0f}
+  textarea{resize:vertical;min-height:80px}
+  .form-group{margin-bottom:18px}
+  .form-group:last-child{margin-bottom:0}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:13px 26px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:.2s;width:100%;justify-content:center;margin-top:4px}
+  .btn:hover{background:#d97706}
+  .tag{display:inline-block;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6;border-radius:5px;padding:3px 10px;font-size:0.75rem;font-weight:600;margin-bottom:16px}
+  .output-card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;padding:24px;margin-top:24px;position:relative}
+  .output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .output-label{font-size:0.78rem;color:#F59E0B;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+  .copy-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:6px 16px;font-size:0.78rem;cursor:pointer;transition:.2s;font-weight:600}
+  .copy-btn:hover{background:#F59E0B;color:#080808;border-color:#F59E0B}
+  .copy-btn.copied{background:#22c55e;color:#fff;border-color:#22c55e}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+  .service-result{background:#080808;border:1px solid #1a1a1a;border-radius:10px;padding:14px;margin-bottom:12px}
+  .service-rank{color:#F59E0B;font-weight:800;font-size:1.1rem;margin-bottom:4px}
+  .service-name{font-weight:700;font-size:0.95rem;margin-bottom:4px;color:#fff}
+  .service-code{color:#8B5CF6;font-size:0.75rem;font-weight:600;margin-bottom:8px}
+  .service-reason{color:#999;font-size:0.83rem;line-height:1.5}
+  .pitch-output{color:#e0e0e0;font-size:0.93rem;line-height:1.75;white-space:pre-wrap;font-family:'Segoe UI',sans-serif;margin-top:18px;padding-top:18px;border-top:1px solid #1a1a1a}
+  .services-ref{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+  .svc-item{background:#080808;border:1px solid #1a1a1a;border-radius:6px;padding:8px 12px;font-size:0.78rem;color:#666;display:flex;gap:8px}
+  .svc-item .code{color:#8B5CF6;font-weight:700;min-width:36px}
+  .svc-item .name{color:#999}
+  .section-divider{border:none;border-top:1px solid #1a1a1a;margin:20px 0}
+  @media(max-width:700px){.form-row,.form-row-3{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr}.services-ref{grid-template-columns:1fr}.container{padding:20px 14px}h1{font-size:1.3rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="web3-hunter.html" class="logo">⚡ Funmzy Tools</a>
+  <a href="web3-hunter.html">🔍 Web3 Hunter</a>
+  <a href="dm-generator.html">💬 DM Gen</a>
+  <a href="kols3-diagnostic.html" class="active">📊 KOLS3</a>
+  <a href="content-generator.html">✍️ Content</a>
+  <a href="proposal-generator.html">📄 Proposal</a>
+</nav>
+<div class="container">
+  <h1>KOLS3 <span>Diagnostic</span></h1>
+  <p class="subtitle">Fill in the project fields — get the top 3 services to pitch + a ready message.</p>
+
+  <div class="card">
+    <div class="tag">PROJECT BASICS</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" id="projName" placeholder="e.g. AstroMoon">
+      </div>
+      <div class="form-group">
+        <label>Project Type</label>
+        <select id="projType">
+          <option value="memecoin">Memecoin</option>
+          <option value="DeFi protocol">DeFi Protocol</option>
+          <option value="NFT project">NFT Project</option>
+          <option value="L1/L2 chain">L1/L2 Chain</option>
+          <option value="GameFi project">GameFi</option>
+          <option value="launchpad">Launchpad</option>
+          <option value="DEX/AMM">DEX / AMM</option>
+          <option value="Web3 infrastructure">Web3 Infrastructure</option>
+          <option value="AI x crypto project">AI x Crypto</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Chain / Ecosystem</label>
+        <select id="chain">
+          <option value="Solana">Solana</option>
+          <option value="Base">Base</option>
+          <option value="BSC">BSC</option>
+          <option value="Ethereum">Ethereum</option>
+          <option value="Arbitrum">Arbitrum</option>
+          <option value="Polygon">Polygon</option>
+          <option value="TON">TON</option>
+          <option value="Multi-chain">Multi-chain</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Project Stage</label>
+        <select id="stage">
+          <option value="pre-launch">Pre-Launch</option>
+          <option value="just launched">Just Launched (0–30 days)</option>
+          <option value="early growth">Early Growth (1–6 months)</option>
+          <option value="scaling">Scaling (6+ months)</option>
+          <option value="relaunching">Relaunching / Rebranding</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tag">CURRENT METRICS</div>
+    <div class="form-row-3">
+      <div class="form-group">
+        <label>Twitter Followers</label>
+        <select id="twitter">
+          <option value="none">0 (not started)</option>
+          <option value="small">Under 1K</option>
+          <option value="mid">1K–10K</option>
+          <option value="large">10K–100K</option>
+          <option value="massive">100K+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Telegram Members</label>
+        <select id="telegram">
+          <option value="none">0 (not started)</option>
+          <option value="small">Under 500</option>
+          <option value="mid">500–5K</option>
+          <option value="large">5K–50K</option>
+          <option value="massive">50K+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Current Market Cap</label>
+        <select id="mcap">
+          <option value="none">Not launched yet</option>
+          <option value="micro">Under $500K</option>
+          <option value="small">$500K–$5M</option>
+          <option value="mid">$5M–$50M</option>
+          <option value="large">$50M+</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Do they have KOLs?</label>
+        <select id="kols">
+          <option value="none">No KOLs yet</option>
+          <option value="few">A few micro-KOLs</option>
+          <option value="some">Some mid-tier KOLs</option>
+          <option value="yes">Active KOL campaign running</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Content Output</label>
+        <select id="content">
+          <option value="none">No content / ghost</option>
+          <option value="low">Occasional posts</option>
+          <option value="mid">Regular but not strategic</option>
+          <option value="high">High-frequency strategic content</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tag">GOALS & GAPS</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Primary Goal</label>
+        <select id="goal">
+          <option value="community growth">Community Growth</option>
+          <option value="token launch">Token Launch</option>
+          <option value="volume / trading">Volume / Trading Activity</option>
+          <option value="brand awareness">Brand Awareness</option>
+          <option value="exchange listing">Exchange Listing</option>
+          <option value="holder acquisition">Holder Acquisition</option>
+          <option value="global expansion">Global / Continent Expansion</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Biggest Weakness Spotted</label>
+        <select id="weakness">
+          <option value="no community">No real community</option>
+          <option value="no content">No content strategy</option>
+          <option value="no KOLs">No KOL coverage</option>
+          <option value="low volume">Low trading volume</option>
+          <option value="no global reach">No global/regional presence</option>
+          <option value="no UGC">No organic UGC or ambassadors</option>
+          <option value="weak listing">Missing key exchange listings</option>
+          <option value="no meme culture">No meme / viral culture</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom:0">
+      <label>Budget Range</label>
+      <select id="budget">
+        <option value="tight">Tight (under $5K)</option>
+        <option value="moderate">Moderate ($5K–$20K)</option>
+        <option value="comfortable">Comfortable ($20K–$100K)</option>
+        <option value="enterprise">Enterprise ($100K+)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card" style="padding:20px 28px">
+    <div class="tag">ALL 16 KOLS3 SERVICES</div>
+    <div class="services-ref">
+      <div class="svc-item"><span class="code">001</span><span class="name">KOL Campaign</span></div>
+      <div class="svc-item"><span class="code">002</span><span class="name">Meme Coin Marketing</span></div>
+      <div class="svc-item"><span class="code">003</span><span class="name">Clippers Campaign</span></div>
+      <div class="svc-item"><span class="code">004</span><span class="name">Continent Growth Lead</span></div>
+      <div class="svc-item"><span class="code">005</span><span class="name">Ambassador Campaign</span></div>
+      <div class="svc-item"><span class="code">006</span><span class="name">AMA</span></div>
+      <div class="svc-item"><span class="code">007</span><span class="name">Activity Campaign</span></div>
+      <div class="svc-item"><span class="code">008</span><span class="name">Community Shilling & Growth</span></div>
+      <div class="svc-item"><span class="code">009</span><span class="name">Growth Lead Campaign</span></div>
+      <div class="svc-item"><span class="code">010</span><span class="name">Trade Contest & Volume KOLs</span></div>
+      <div class="svc-item"><span class="code">011</span><span class="name">Social Growth Campaign</span></div>
+      <div class="svc-item"><span class="code">012</span><span class="name">Content & Social Lead</span></div>
+      <div class="svc-item"><span class="code">013</span><span class="name">UGC Creators & AI Influencers</span></div>
+      <div class="svc-item"><span class="code">014</span><span class="name">Listing Campaign</span></div>
+      <div class="svc-item"><span class="code">015</span><span class="name">Full Marketing Package</span></div>
+      <div class="svc-item"><span class="code">016</span><span class="name">Technical Niche</span></div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="diagnose()">📊 Run Diagnostic & Generate Pitch</button>
+
+  <div id="output" style="display:none">
+    <div class="output-card">
+      <div class="output-header">
+        <div class="output-label">📊 Diagnostic Results</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyAll()">Copy Full Pitch</button>
+      </div>
+      <div id="top3"></div>
+      <hr class="section-divider">
+      <div class="output-label" style="margin-bottom:12px">💬 PITCH MESSAGE</div>
+      <div class="pitch-output" id="pitchText"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SERVICES = {
+  '001': 'KOL Campaign',
+  '002': 'Meme Coin Marketing',
+  '003': 'Clippers Campaign',
+  '004': 'Continent Growth Lead',
+  '005': 'Ambassador Campaign',
+  '006': 'AMA',
+  '007': 'Activity Campaign',
+  '008': 'Community Shilling & Growth',
+  '009': 'Growth Lead Campaign',
+  '010': 'Trade Contest & Volume KOLs',
+  '011': 'Social Growth Campaign',
+  '012': 'Content & Social Lead',
+  '013': 'UGC Creators & AI Influencers',
+  '014': 'Listing Campaign',
+  '015': 'Full Marketing Package',
+  '016': 'Technical Niche'
+};
+
+function score(inputs) {
+  const scores = {};
+  Object.keys(SERVICES).forEach(k => scores[k] = 0);
+
+  const {projType, stage, twitter, telegram, mcap, kols, content, goal, weakness, budget} = inputs;
+
+  // KOL Campaign 001
+  if(kols==='none'||kols==='few') scores['001']+=3;
+  if(projType==='memecoin'||projType==='DeFi protocol') scores['001']+=2;
+  if(stage==='just launched'||stage==='pre-launch') scores['001']+=2;
+  if(goal==='brand awareness'||goal==='holder acquisition') scores['001']+=2;
+
+  // Meme Coin Marketing 002
+  if(projType==='memecoin') scores['002']+=5;
+  if(weakness==='no meme culture') scores['002']+=4;
+  if(twitter==='small'||twitter==='none') scores['002']+=2;
+  if(stage==='just launched'||stage==='pre-launch') scores['002']+=2;
+
+  // Clippers Campaign 003
+  if(content==='none'||content==='low') scores['003']+=3;
+  if(projType==='memecoin'||projType==='AI x crypto project') scores['003']+=2;
+  if(weakness==='no content') scores['003']+=3;
+
+  // Continent Growth Lead 004
+  if(goal==='global expansion') scores['004']+=5;
+  if(weakness==='no global reach') scores['004']+=5;
+  if(stage==='scaling') scores['004']+=2;
+  if(budget==='comfortable'||budget==='enterprise') scores['004']+=2;
+
+  // Ambassador Campaign 005
+  if(weakness==='no UGC') scores['005']+=4;
+  if(goal==='community growth') scores['005']+=3;
+  if(stage==='early growth'||stage==='scaling') scores['005']+=2;
+  if(telegram==='none'||telegram==='small') scores['005']+=2;
+
+  // AMA 006
+  if(stage==='pre-launch'||stage==='just launched') scores['006']+=3;
+  if(goal==='brand awareness') scores['006']+=3;
+  if(kols==='none') scores['006']+=2;
+  if(twitter==='small'||twitter==='none') scores['006']+=1;
+
+  // Activity Campaign 007
+  if(goal==='community growth') scores['007']+=3;
+  if(telegram==='none'||telegram==='small') scores['007']+=3;
+  if(weakness==='no community') scores['007']+=4;
+
+  // Community Shilling & Growth 008
+  if(weakness==='no community') scores['008']+=5;
+  if(goal==='community growth') scores['008']+=3;
+  if(projType==='memecoin') scores['008']+=2;
+  if(telegram==='none'||telegram==='small') scores['008']+=2;
+
+  // Growth Lead Campaign 009
+  if(goal==='holder acquisition') scores['009']+=4;
+  if(stage==='early growth') scores['009']+=3;
+  if(weakness==='no KOLs') scores['009']+=2;
+  if(mcap==='micro'||mcap==='small') scores['009']+=2;
+
+  // Trade Contest & Volume KOLs 010
+  if(goal==='volume / trading') scores['010']+=6;
+  if(weakness==='low volume') scores['010']+=6;
+  if(mcap==='micro'||mcap==='small') scores['010']+=2;
+
+  // Social Growth Campaign 011
+  if(twitter==='none'||twitter==='small') scores['011']+=4;
+  if(goal==='brand awareness') scores['011']+=3;
+  if(weakness==='no content') scores['011']+=2;
+  if(content==='none') scores['011']+=3;
+
+  // Content & Social Lead 012
+  if(content==='none'||content==='low') scores['012']+=4;
+  if(weakness==='no content') scores['012']+=4;
+  if(goal==='brand awareness') scores['012']+=2;
+  if(projType==='Web3 infrastructure'||projType==='L1/L2 chain') scores['012']+=2;
+
+  // UGC Creators & AI Influencers 013
+  if(weakness==='no UGC') scores['013']+=4;
+  if(projType==='memecoin'||projType==='GameFi project') scores['013']+=3;
+  if(content==='none'||content==='low') scores['013']+=3;
+  if(budget==='moderate'||budget==='comfortable') scores['013']+=1;
+
+  // Listing Campaign 014
+  if(goal==='exchange listing') scores['014']+=7;
+  if(weakness==='weak listing') scores['014']+=7;
+  if(stage==='scaling'||stage==='early growth') scores['014']+=2;
+
+  // Full Marketing Package 015
+  if(budget==='comfortable'||budget==='enterprise') scores['015']+=3;
+  if(stage==='pre-launch'||stage==='relaunching') scores['015']+=4;
+  if(weakness==='no community'&&content==='none') scores['015']+=3;
+  if(goal==='token launch') scores['015']+=4;
+
+  // Technical Niche 016
+  if(projType==='Web3 infrastructure'||projType==='L1/L2 chain'||projType==='DeFi protocol') scores['016']+=4;
+  if(projType==='AI x crypto project') scores['016']+=3;
+  if(budget==='enterprise') scores['016']+=2;
+
+  return scores;
+}
+
+const REASONS = {
+  '001': 'Project needs credible KOL voices to build trust and reach new audiences fast.',
+  '002': 'Memecoin traction is built on viral culture — meme marketing is the core growth engine here.',
+  '003': 'Short-form video clips of key content will multiply reach without extra production cost.',
+  '004': 'Expanding into new regions with dedicated leads will unlock untapped community pools.',
+  '005': 'An ambassador program creates organic, peer-driven growth that compounds over time.',
+  '006': 'AMAs build trust and answer the questions holding potential holders back.',
+  '007': 'Activity campaigns create on-chain engagement spikes that attract attention algorithmically.',
+  '008': 'Community shilling drives word-of-mouth and creates the social proof needed to hold price.',
+  '009': 'A structured growth campaign converts awareness into committed holders systematically.',
+  '010': 'Volume KOLs and trading contests directly stimulate on-chain activity and chart movement.',
+  '011': 'A social growth campaign will accelerate follower counts and establish a credible presence.',
+  '012': 'Consistent, strategic content output is the foundation all other growth efforts depend on.',
+  '013': 'UGC and AI influencers create authentic, scalable content that outperforms branded posts.',
+  '014': 'A listing campaign on key exchanges dramatically improves accessibility and credibility.',
+  '015': 'A full package ensures all channels fire together — maximum leverage, minimum gaps.',
+  '016': 'Technical audiences require depth-first content — technical niche positioning builds credibility with builders.'
+};
+
+function diagnose() {
+  const inputs = {
+    projName: document.getElementById('projName').value.trim() || 'the project',
+    projType: document.getElementById('projType').value,
+    chain:    document.getElementById('chain').value,
+    stage:    document.getElementById('stage').value,
+    twitter:  document.getElementById('twitter').value,
+    telegram: document.getElementById('telegram').value,
+    mcap:     document.getElementById('mcap').value,
+    kols:     document.getElementById('kols').value,
+    content:  document.getElementById('content').value,
+    goal:     document.getElementById('goal').value,
+    weakness: document.getElementById('weakness').value,
+    budget:   document.getElementById('budget').value
+  };
+
+  const scores = score(inputs);
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,3);
+
+  const medals = ['🥇','🥈','🥉'];
+  let top3Html = '';
+  sorted.forEach(([code, sc], i) => {
+    top3Html += `<div class="service-result">
+      <div class="service-rank">${medals[i]} Rank #${i+1}</div>
+      <div class="service-code">SERVICE ${code}</div>
+      <div class="service-name">${SERVICES[code]}</div>
+      <div class="service-reason">${REASONS[code]}</div>
+    </div>`;
+  });
+  document.getElementById('top3').innerHTML = top3Html;
+
+  const s1 = SERVICES[sorted[0][0]];
+  const s2 = SERVICES[sorted[1][0]];
+  const s3 = SERVICES[sorted[2][0]];
+  const c1 = sorted[0][0];
+  const c2 = sorted[1][0];
+  const c3 = sorted[2][0];
+
+  const pitch = `Hey — I ran a quick diagnostic on ${inputs.projName} and I think I see exactly where the growth lever is.
+
+Based on where you're at (${inputs.stage}, ${inputs.projType} on ${inputs.chain}), the top 3 services that would move the needle most are:
+
+▸ [${c1}] ${s1} — ${REASONS[c1]}
+▸ [${c2}] ${s2} — ${REASONS[c2]}
+▸ [${c3}] ${s3} — ${REASONS[c3]}
+
+These aren't random recommendations — they map directly to your current stage and the gap between where you are and where you're trying to go.
+
+I've put together campaigns across all three of these for projects at similar inflection points. Happy to share what's worked and what we'd build for ${inputs.projName} specifically.
+
+Worth a 20-minute call to walk through the strategy?`;
+
+  document.getElementById('pitchText').textContent = pitch;
+  document.getElementById('output').style.display = 'block';
+  document.getElementById('output').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function copyAll() {
+  const top3Text = Array.from(document.querySelectorAll('.service-result')).map((el,i) => {
+    const medals = ['#1','#2','#3'];
+    const code = el.querySelector('.service-code').textContent;
+    const name = el.querySelector('.service-name').textContent;
+    const reason = el.querySelector('.service-reason').textContent;
+    return `RANK ${medals[i]} — ${code}: ${name}\n${reason}`;
+  }).join('\n\n');
+  const pitch = document.getElementById('pitchText').textContent;
+  const full = `TOP 3 SERVICES\n\n${top3Text}\n\n---\n\nPITCH MESSAGE\n\n${pitch}`;
+  navigator.clipboard.writeText(full).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Full Pitch'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>

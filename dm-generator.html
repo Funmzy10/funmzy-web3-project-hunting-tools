@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DM Generator | Funmzy Tools</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#080808;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+  nav{background:#0f0f0f;border-bottom:1px solid #1a1a1a;padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  nav .logo{color:#F59E0B;font-weight:700;font-size:1rem;margin-right:10px;text-decoration:none}
+  nav a{color:#888;font-size:0.78rem;text-decoration:none;padding:5px 10px;border-radius:6px;transition:.2s;border:1px solid #1a1a1a}
+  nav a:hover,nav a.active{color:#F59E0B;border-color:#F59E0B;background:rgba(245,158,11,0.07)}
+  .container{max-width:820px;margin:0 auto;padding:40px 20px}
+  h1{font-size:1.7rem;font-weight:700;margin-bottom:6px}
+  h1 span{color:#F59E0B}
+  .subtitle{color:#666;font-size:0.9rem;margin-bottom:36px}
+  .card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:28px;margin-bottom:24px}
+  label{display:block;font-size:0.8rem;color:#F59E0B;font-weight:600;letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase}
+  select,input,textarea{width:100%;background:#080808;border:1px solid #1a1a1a;color:#fff;border-radius:8px;padding:12px 14px;font-size:0.95rem;outline:none;transition:.2s;font-family:inherit}
+  select:focus,input:focus,textarea:focus{border-color:#F59E0B;box-shadow:0 0 0 2px rgba(245,158,11,0.12)}
+  select option{background:#0f0f0f}
+  textarea{resize:vertical;min-height:90px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:13px 26px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:.2s;width:100%;justify-content:center;margin-top:4px}
+  .btn:hover{background:#d97706}
+  .form-group{margin-bottom:20px}
+  .form-group:last-child{margin-bottom:0}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .output-section{margin-top:28px;display:flex;flex-direction:column;gap:18px}
+  .output-card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;padding:22px;position:relative}
+  .output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .output-label{font-size:0.78rem;color:#F59E0B;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .platform-badge{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6;border-radius:20px;padding:3px 12px;font-size:0.72rem;font-weight:700;letter-spacing:.05em}
+  .platform-badge.tg{background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.3);color:#06b6d4}
+  .platform-badge.group{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#22c55e}
+  .output-text{color:#e0e0e0;font-size:0.93rem;line-height:1.75;white-space:pre-wrap;font-family:'Segoe UI',sans-serif}
+  .copy-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:6px 16px;font-size:0.78rem;cursor:pointer;transition:.2s;font-weight:600;white-space:nowrap}
+  .copy-btn:hover{background:#F59E0B;color:#080808;border-color:#F59E0B}
+  .copy-btn.copied{background:#22c55e;color:#fff;border-color:#22c55e}
+  .word-count{font-size:0.72rem;color:#555;margin-top:10px;text-align:right}
+  .word-count span{color:#F59E0B}
+  .tag{display:inline-block;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6;border-radius:5px;padding:3px 10px;font-size:0.75rem;font-weight:600;margin-bottom:16px}
+  .rule-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .rule{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:6px;padding:5px 12px;font-size:0.75rem;color:#666;display:flex;align-items:center;gap:5px}
+  .rule::before{content:"✓";color:#22c55e}
+  @media(max-width:600px){.form-row{grid-template-columns:1fr}.container{padding:20px 14px}h1{font-size:1.3rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="web3-hunter.html" class="logo">⚡ Funmzy Tools</a>
+  <a href="web3-hunter.html">🔍 Web3 Hunter</a>
+  <a href="dm-generator.html" class="active">💬 DM Gen</a>
+  <a href="kols3-diagnostic.html">📊 KOLS3</a>
+  <a href="content-generator.html">✍️ Content</a>
+  <a href="proposal-generator.html">📄 Proposal</a>
+</nav>
+<div class="container">
+  <h1>DM <span>Generator</span></h1>
+  <p class="subtitle">Generate Twitter DMs, Telegram DMs & group intros that convert.</p>
+
+  <div class="card">
+    <div class="tag">BAKED-IN RULES</div>
+    <div class="rule-list">
+      <div class="rule">Under 120 words</div>
+      <div class="rule">Value-first opening</div>
+      <div class="rule">Funmzy identity baked in</div>
+      <div class="rule">Web3-native tone</div>
+      <div class="rule">Peer-to-peer, not salesy</div>
+      <div class="rule">Ends with one question</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tag">INPUT DETAILS</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" id="project" placeholder="e.g. HyperMoon">
+      </div>
+      <div class="form-group">
+        <label>Their Twitter Handle</label>
+        <input type="text" id="handle" placeholder="e.g. @HyperMoonXYZ">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Gap / Pain Point You Spotted</label>
+      <textarea id="gap" placeholder="e.g. Your socials are solid but your landing page doesn't convert — no clear CTA, no proof points above the fold"></textarea>
+    </div>
+    <div class="form-group" style="margin-bottom:0">
+      <label>Service to Lead With</label>
+      <select id="service">
+        <option value="landing page">Landing Page</option>
+        <option value="AI video content">AI Video Content</option>
+        <option value="memecoin marketing">Memecoin Marketing</option>
+        <option value="full growth strategy">Full Growth Strategy</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="btn" onclick="generate()">💬 Generate All 3 DMs</button>
+
+  <div id="output" class="output-section" style="display:none">
+
+    <div class="output-card">
+      <div class="output-header">
+        <div class="output-label">🐦 Twitter DM <span class="platform-badge">X / Twitter</span></div>
+        <button class="copy-btn" id="copy1" onclick="copyText('dm1','copy1')">Copy</button>
+      </div>
+      <div class="output-text" id="dm1"></div>
+      <div class="word-count">Word count: <span id="wc1">0</span> / 120</div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-header">
+        <div class="output-label">✈️ Telegram DM <span class="platform-badge tg">Telegram</span></div>
+        <button class="copy-btn" id="copy2" onclick="copyText('dm2','copy2')">Copy</button>
+      </div>
+      <div class="output-text" id="dm2"></div>
+      <div class="word-count">Word count: <span id="wc2">0</span> / 120</div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-header">
+        <div class="output-label">👥 Group Intro <span class="platform-badge group">Community Drop</span></div>
+        <button class="copy-btn" id="copy3" onclick="copyText('dm3','copy3')">Copy</button>
+      </div>
+      <div class="output-text" id="dm3"></div>
+      <div class="word-count">Word count: <span id="wc3">0</span> / 120</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function wc(text){ return text.trim().split(/\s+/).filter(Boolean).length }
+
+function generate() {
+  const project = document.getElementById('project').value.trim() || 'your project';
+  const handle  = document.getElementById('handle').value.trim() || 'your team';
+  const gap     = document.getElementById('gap').value.trim() || 'your growth could be stronger';
+  const service = document.getElementById('service').value;
+
+  const dm1 = `Yo ${handle} — noticed ${project} has good traction but ${gap}.
+
+I'm Funmzy, Web3 growth strategist. I help projects convert attention into holders — through ${service}, AI videos, and memecoin marketing that actually moves numbers.
+
+Seen too many solid projects lose momentum because the execution doesn't match the vision.
+
+Worth a quick convo to see if I can add value — open to it?`;
+
+  const dm2 = `Hey — saw ${project} building in the space.
+
+Quick observation: ${gap}. That's usually what kills momentum before it compounds.
+
+I'm Funmzy — I do Web3 growth: ${service}, AI-driven content, memecoin marketing. Worked with projects at different stages, always focused on what actually moves the needle.
+
+Not pitching you. Just think there's a real opportunity here.
+
+Would it make sense to hop on a quick call?`;
+
+  const dm3 = `👋 Yo everyone — dropping in as Funmzy, Web3 growth strategist.
+
+I specialize in: ✦ Landing pages that convert ✦ AI video content ✦ Memecoin marketing
+
+Noticed a few projects here could use tighter execution on the growth side — specifically ${gap}.
+
+If you're a founder or team working on something real and want to talk strategy or collab — hit me up. DMs open.
+
+What's the most underrated growth lever you've seen actually work in Web3?`;
+
+  document.getElementById('dm1').textContent = dm1;
+  document.getElementById('dm2').textContent = dm2;
+  document.getElementById('dm3').textContent = dm3;
+  document.getElementById('wc1').textContent = wc(dm1);
+  document.getElementById('wc2').textContent = wc(dm2);
+  document.getElementById('wc3').textContent = wc(dm3);
+
+  ['wc1','wc2','wc3'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.color = parseInt(el.textContent) > 120 ? '#ef4444' : '#F59E0B';
+  });
+
+  document.getElementById('output').style.display = 'flex';
+  document.getElementById('output').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function copyText(textId, btnId) {
+  const text = document.getElementById(textId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById(btnId);
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
