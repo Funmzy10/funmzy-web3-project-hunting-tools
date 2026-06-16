@@ -5,105 +5,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Web3 Hunter | Funmzy Tools</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#080808;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
-  nav{background:#0f0f0f;border-bottom:1px solid #1a1a1a;padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  nav .logo{color:#F59E0B;font-weight:700;font-size:1rem;margin-right:10px;text-decoration:none}
-  nav a{color:#888;font-size:0.78rem;text-decoration:none;padding:5px 10px;border-radius:6px;transition:.2s;border:1px solid #1a1a1a}
-  nav a:hover,nav a.active{color:#F59E0B;border-color:#F59E0B;background:rgba(245,158,11,0.07)}
-  .container{max-width:800px;margin:0 auto;padding:40px 20px}
-  h1{font-size:1.7rem;font-weight:700;margin-bottom:6px}
-  h1 span{color:#F59E0B}
-  .subtitle{color:#666;font-size:0.9rem;margin-bottom:36px}
-  .card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:28px;margin-bottom:20px}
-  label{display:block;font-size:0.8rem;color:#F59E0B;font-weight:600;letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase}
-  select,input,textarea{width:100%;background:#080808;border:1px solid #1a1a1a;color:#fff;border-radius:8px;padding:12px 14px;font-size:0.95rem;outline:none;transition:.2s;font-family:inherit}
-  select:focus,input:focus,textarea:focus{border-color:#F59E0B;box-shadow:0 0 0 2px rgba(245,158,11,0.12)}
-  select option{background:#0f0f0f}
-  .chain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .chain-btn{background:#080808;border:2px solid #1a1a1a;color:#888;border-radius:10px;padding:16px 10px;text-align:center;cursor:pointer;transition:.2s;font-size:0.9rem;font-weight:600}
-  .chain-btn:hover{border-color:#8B5CF6;color:#8B5CF6}
-  .chain-btn.selected{border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,0.07)}
-  .chain-icon{font-size:1.6rem;display:block;margin-bottom:6px}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:13px 26px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:.2s;width:100%}
-  .btn:hover{background:#d97706}
-  .btn:disabled{background:#333;color:#666;cursor:not-allowed}
-  .btn.purple{background:#8B5CF6;color:#fff}
-  .btn.purple:hover{background:#7c3aed}
-  .btn.ghost{background:#1a1a1a;color:#fff;border:1px solid #333}
-  .btn.ghost:hover{background:#222;border-color:#555}
-  .btn.sm{padding:9px 18px;font-size:0.83rem;width:auto}
-  .form-group{margin-bottom:18px}
-  .form-group:last-child{margin-bottom:0}
-  .tag{display:inline-block;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6;border-radius:5px;padding:3px 10px;font-size:0.75rem;font-weight:600;margin-bottom:16px}
-  .tag.gold{background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:#F59E0B}
-  .tag.green{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#22c55e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+nav{background:#0f0f0f;border-bottom:1px solid #1a1a1a;padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+nav .logo{color:#F59E0B;font-weight:700;font-size:1rem;text-decoration:none;margin-right:6px}
+nav a{color:#888;font-size:0.78rem;text-decoration:none;padding:5px 10px;border-radius:6px;transition:.2s;border:1px solid #1a1a1a}
+nav a:hover,nav a.active{color:#F59E0B;border-color:#F59E0B;background:rgba(245,158,11,0.07)}
+.container{max-width:860px;margin:0 auto;padding:32px 20px}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:4px}
+h1 span{color:#F59E0B}
+.subtitle{color:#555;font-size:0.88rem;margin-bottom:28px}
 
-  /* API KEY SECTION */
-  .api-row{display:flex;gap:10px;align-items:flex-end}
-  .api-row .form-group{flex:1;margin-bottom:0}
-  .key-status{font-size:0.75rem;margin-top:8px;display:flex;align-items:center;gap:6px}
-  .key-status.ok{color:#22c55e}
-  .key-status.none{color:#555}
-  .eye-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:0.85rem;flex-shrink:0;height:44px}
-  .eye-btn:hover{color:#F59E0B;border-color:#F59E0B}
-  .provider-tabs{display:flex;gap:8px;margin-bottom:16px}
-  .ptab{background:#080808;border:1px solid #1a1a1a;color:#666;border-radius:7px;padding:7px 16px;cursor:pointer;font-size:0.8rem;font-weight:600;transition:.2s}
-  .ptab.active{border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,0.07)}
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:24px;background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;padding:6px}
+.tab{flex:1;text-align:center;padding:11px 8px;border-radius:8px;cursor:pointer;font-size:0.82rem;font-weight:600;color:#555;transition:.2s;border:1px solid transparent}
+.tab:hover{color:#888;background:#1a1a1a}
+.tab.active{background:#F59E0B;color:#080808;border-color:#F59E0B}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
 
-  /* FLOW STEPS */
-  .flow{display:flex;align-items:center;gap:0;margin-bottom:28px;overflow-x:auto;padding-bottom:4px}
-  .step{display:flex;align-items:center;gap:8px;font-size:0.78rem;white-space:nowrap}
-  .step-num{width:24px;height:24px;border-radius:50%;background:#1a1a1a;border:1px solid #333;color:#555;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.72rem;flex-shrink:0}
-  .step-num.active{background:#F59E0B;color:#080808;border-color:#F59E0B}
-  .step-num.done{background:#22c55e;color:#fff;border-color:#22c55e}
-  .step-label{color:#555}
-  .step-label.active{color:#fff}
-  .step-label.done{color:#22c55e}
-  .step-arrow{color:#333;margin:0 8px;font-size:0.8rem}
+/* CARDS */
+.card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;padding:22px;margin-bottom:16px}
+label{display:block;font-size:0.75rem;color:#F59E0B;font-weight:700;letter-spacing:.06em;margin-bottom:7px;text-transform:uppercase}
+input,select,textarea{width:100%;background:#080808;border:1px solid #1a1a1a;color:#fff;border-radius:8px;padding:11px 13px;font-size:0.92rem;outline:none;transition:.2s;font-family:inherit}
+input:focus,select:focus,textarea:focus{border-color:#F59E0B;box-shadow:0 0 0 2px rgba(245,158,11,0.1)}
+select option{background:#0f0f0f}
+textarea{resize:vertical;min-height:80px}
+.form-group{margin-bottom:16px}
+.form-group:last-child{margin-bottom:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 
-  /* LOADER */
-  .loader{display:none;text-align:center;padding:40px}
-  .spinner{width:36px;height:36px;border:3px solid #1a1a1a;border-top-color:#F59E0B;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .loader-text{color:#666;font-size:0.9rem}
-  .loader-sub{color:#444;font-size:0.8rem;margin-top:6px}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:12px 22px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:.2s;text-decoration:none}
+.btn:hover{background:#d97706}
+.btn:disabled{background:#222;color:#555;cursor:not-allowed}
+.btn.full{width:100%}
+.btn.purple{background:#8B5CF6;color:#fff}
+.btn.purple:hover{background:#7c3aed}
+.btn.cyan{background:#06b6d4;color:#fff}
+.btn.cyan:hover{background:#0891b2}
+.btn.ghost{background:#1a1a1a;color:#aaa;border:1px solid #333}
+.btn.ghost:hover{border-color:#555;color:#fff}
+.btn.sm{padding:8px 14px;font-size:0.8rem}
+.btn.green{background:#22c55e;color:#fff}
+.btn.green:hover{background:#16a34a}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
 
-  /* RESULTS */
-  .results-grid{display:flex;flex-direction:column;gap:16px;margin-top:4px}
-  .project-card{background:#080808;border:1px solid #1a1a1a;border-radius:12px;padding:20px;transition:.2s}
-  .project-card:hover{border-color:#333}
-  .project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
-  .project-info{}
-  .project-name{font-weight:700;font-size:1rem;color:#fff;margin-bottom:3px}
-  .project-handle{font-size:0.82rem;color:#8B5CF6;font-weight:600}
-  .project-chain-badge{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:#F59E0B;border-radius:20px;padding:3px 12px;font-size:0.72rem;font-weight:700;white-space:nowrap}
-  .project-gap{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:8px;padding:12px 14px;font-size:0.85rem;color:#999;line-height:1.55;margin-bottom:14px}
-  .project-gap strong{color:#F59E0B;font-size:0.72rem;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:4px}
-  .project-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-  .meta-pill{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:20px;padding:3px 10px;font-size:0.72rem;color:#666}
-  .meta-pill span{color:#fff;font-weight:600}
-  .project-actions{display:flex;gap:8px}
-  .hunt-btn{flex:1;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:10px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:.2s}
-  .hunt-btn:hover{background:#d97706}
-  .view-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:8px;padding:10px 14px;font-weight:600;font-size:0.82rem;cursor:pointer;transition:.2s;text-decoration:none;display:flex;align-items:center;gap:5px}
-  .view-btn:hover{border-color:#8B5CF6;color:#8B5CF6}
-  .error-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:18px;color:#ef4444;font-size:0.88rem;line-height:1.6;margin-top:16px}
-  .error-box strong{display:block;margin-bottom:6px}
+/* CHAIN BUTTONS */
+.chain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.chain-btn{background:#080808;border:2px solid #1a1a1a;color:#666;border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;transition:.2s;font-size:0.85rem;font-weight:600}
+.chain-btn:hover{border-color:#8B5CF6;color:#8B5CF6}
+.chain-btn.selected{border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,0.06)}
+.chain-icon{font-size:1.4rem;display:block;margin-bottom:5px}
 
-  /* MANUAL FALLBACK */
-  .prompt-box{background:#080808;border:1px solid #1a1a1a;border-radius:10px;padding:18px;margin-top:16px;position:relative}
-  .prompt-text{color:#ccc;font-size:0.85rem;line-height:1.7;white-space:pre-wrap;font-family:'Segoe UI',sans-serif}
-  .copy-btn{position:absolute;top:12px;right:12px;background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:5px 12px;font-size:0.75rem;cursor:pointer;transition:.2s;font-weight:600}
-  .copy-btn:hover{background:#F59E0B;color:#080808;border-color:#F59E0B}
-  .copy-btn.copied{background:#22c55e;color:#fff;border-color:#22c55e}
-  .divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#333;font-size:0.78rem}
-  .divider::before,.divider::after{content:'';flex:1;height:1px;background:#1a1a1a}
-  .info-note{background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.15);border-radius:8px;padding:12px 16px;font-size:0.82rem;color:#8B5CF6;line-height:1.55;margin-bottom:16px}
-  .info-note a{color:#F59E0B;text-decoration:none}
-  .info-note a:hover{text-decoration:underline}
+/* TAGS */
+.tag{display:inline-block;border-radius:5px;padding:3px 10px;font-size:0.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+.tag.purple{background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.25);color:#8B5CF6}
+.tag.gold{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);color:#F59E0B}
+.tag.cyan{background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.25);color:#06b6d4}
+.tag.green{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);color:#22c55e}
 
-  @media(max-width:600px){.chain-grid{grid-template-columns:1fr 1fr}.container{padding:20px 14px}h1{font-size:1.3rem}.api-row{flex-direction:column}.project-actions{flex-direction:column}}
+/* LOADER */
+.loader{display:none;text-align:center;padding:36px 20px}
+.spinner{width:34px;height:34px;border:3px solid #1a1a1a;border-top-color:#F59E0B;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{color:#aaa;font-size:0.9rem;margin-bottom:4px}
+.loader-sub{color:#444;font-size:0.78rem}
+
+/* RESULTS */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.results-title{font-size:0.75rem;color:#F59E0B;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.results-count{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:#F59E0B;border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700}
+.project-card{background:#080808;border:1px solid #1a1a1a;border-radius:11px;padding:18px;margin-bottom:12px;transition:.2s}
+.project-card:hover{border-color:#2a2a2a}
+.project-card:last-child{margin-bottom:0}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.pc-name{font-weight:700;font-size:0.95rem;color:#fff;margin-bottom:2px}
+.pc-handle{font-size:0.8rem;color:#8B5CF6;font-weight:600}
+.pc-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start;flex-shrink:0}
+.badge{border-radius:20px;padding:3px 10px;font-size:0.7rem;font-weight:700;white-space:nowrap}
+.badge.chain{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:#F59E0B}
+.badge.vol{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e}
+.badge.age{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);color:#8B5CF6}
+.badge.local{background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);color:#06b6d4}
+.pc-gap{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:7px;padding:10px 13px;font-size:0.82rem;color:#888;line-height:1.5;margin-bottom:12px}
+.pc-gap-label{font-size:0.68rem;color:#F59E0B;font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px}
+.pc-actions{display:flex;gap:8px}
+.dm-btn{flex:1;background:#F59E0B;color:#080808;border:none;border-radius:7px;padding:9px 12px;font-weight:700;font-size:0.82rem;cursor:pointer;transition:.2s}
+.dm-btn:hover{background:#d97706}
+.view-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:7px;padding:9px 13px;font-size:0.8rem;cursor:pointer;transition:.2s;text-decoration:none;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.view-btn:hover{border-color:#8B5CF6;color:#8B5CF6}
+
+/* ERROR */
+.error-box{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:16px;color:#ef4444;font-size:0.85rem;line-height:1.6;margin-top:14px}
+.error-box strong{display:block;margin-bottom:4px;font-size:0.82rem}
+
+/* X HUNT SEARCH LINKS */
+.search-links{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.search-link-item{display:flex;align-items:center;justify-content:space-between;background:#080808;border:1px solid #1a1a1a;border-radius:8px;padding:12px 14px;gap:10px}
+.sli-label{font-size:0.82rem;color:#aaa;flex:1}
+.sli-label strong{color:#fff;display:block;margin-bottom:2px;font-size:0.85rem}
+.open-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:6px 14px;font-size:0.78rem;cursor:pointer;transition:.2s;text-decoration:none;white-space:nowrap;font-weight:600}
+.open-btn:hover{border-color:#F59E0B;color:#F59E0B}
+
+/* PASTE AREA */
+.paste-area{background:#080808;border:2px dashed #1a1a1a;border-radius:10px;padding:18px;margin-top:4px;transition:.2s}
+.paste-area:focus-within{border-color:#F59E0B}
+.paste-area textarea{background:transparent;border:none;padding:0;font-size:0.85rem;color:#ccc;min-height:120px}
+.paste-area textarea:focus{box-shadow:none}
+
+/* LOCAL HUNT */
+.business-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:0}
+.btype-btn{background:#080808;border:1px solid #1a1a1a;color:#666;border-radius:8px;padding:10px 8px;text-align:center;cursor:pointer;transition:.2s;font-size:0.78rem;font-weight:600}
+.btype-btn:hover{border-color:#06b6d4;color:#06b6d4}
+.btype-btn.selected{border-color:#06b6d4;color:#06b6d4;background:rgba(6,182,212,0.07)}
+.btype-icon{font-size:1.2rem;display:block;margin-bottom:4px}
+
+/* HIT LIST */
+.hitlist-bar{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:12px;padding:16px 20px;margin-top:28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hitlist-info{display:flex;align-items:center;gap:10px}
+.hitlist-count{background:#F59E0B;color:#080808;border-radius:20px;padding:3px 12px;font-weight:800;font-size:0.85rem}
+.hitlist-label{color:#888;font-size:0.85rem}
+
+/* INFO NOTE */
+.info-note{background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.15);border-radius:8px;padding:11px 14px;font-size:0.8rem;color:#8B5CF6;line-height:1.55;margin-bottom:14px}
+.tip-note{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:8px;padding:11px 14px;font-size:0.8rem;color:#888;line-height:1.55;margin-bottom:14px}
+.tip-note strong{color:#F59E0B}
+
+/* MANUAL ENTRY */
+.manual-entry{background:#080808;border:1px solid #1a1a1a;border-radius:10px;padding:18px;margin-top:14px}
+.manual-entry-title{font-size:0.75rem;color:#555;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+
+@media(max-width:620px){
+  .form-row,.form-row-3{grid-template-columns:1fr}
+  .chain-grid{grid-template-columns:1fr 1fr}
+  .business-type-grid{grid-template-columns:repeat(2,1fr)}
+  .tabs{flex-direction:column}
+  .container{padding:20px 14px}
+  h1{font-size:1.3rem}
+  .pc-top{flex-direction:column}
+  .pc-actions{flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -115,359 +158,699 @@
   <a href="content-generator.html">✍️ Content</a>
   <a href="proposal-generator.html">📄 Proposal</a>
 </nav>
+
 <div class="container">
   <h1>Web3 <span>Hunter</span></h1>
-  <p class="subtitle">Select chain → AI hunts live projects → one-click into DM Generator.</p>
+  <p class="subtitle">Hunt real projects across chains, X/Twitter, and local businesses → one-click into DM Generator.</p>
 
-  <!-- FLOW INDICATOR -->
-  <div class="flow">
-    <div class="step"><div class="step-num active" id="s1">1</div><span class="step-label active">Setup API</span></div>
-    <div class="step-arrow">→</div>
-    <div class="step"><div class="step-num" id="s2">2</div><span class="step-label" id="sl2">Pick Chain</span></div>
-    <div class="step-arrow">→</div>
-    <div class="step"><div class="step-num" id="s3">3</div><span class="step-label" id="sl3">AI Hunts</span></div>
-    <div class="step-arrow">→</div>
-    <div class="step"><div class="step-num" id="s4">4</div><span class="step-label" id="sl4">Send DMs</span></div>
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('chain',this)">🔗 Chain Hunt</div>
+    <div class="tab" onclick="switchTab('x',this)">🐦 X Hunt</div>
+    <div class="tab" onclick="switchTab('local',this)">📍 Local Hunt</div>
   </div>
 
-  <!-- STEP 1: API KEY -->
-  <div class="card" id="apiCard">
-    <div class="tag">STEP 1 — AI ENGINE (ONE-TIME SETUP)</div>
-    <div class="info-note">
-      Your API key is saved only in your browser (localStorage). It never leaves your device. Get a free key at <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a> or <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>
-    </div>
-    <div class="provider-tabs">
-      <div class="ptab active" onclick="setProvider('openai',this)">OpenAI (ChatGPT)</div>
-      <div class="ptab" onclick="setProvider('anthropic',this)">Anthropic (Claude)</div>
-    </div>
-    <div class="api-row">
-      <div class="form-group">
-        <label id="keyLabel">OpenAI API Key</label>
-        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
+  <!-- ═══════════════════════════════════════════════════
+       TAB 1: CHAIN HUNT — Dexscreener + Pump.fun
+  ═══════════════════════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-chain">
+
+    <div class="card">
+      <div class="tag purple">STEP 1 — PICK CHAIN</div>
+      <div class="chain-grid">
+        <div class="chain-btn" onclick="selectChain('solana','Solana','◎',this)"><span class="chain-icon">◎</span>Solana</div>
+        <div class="chain-btn" onclick="selectChain('base','Base','🔵',this)"><span class="chain-icon">🔵</span>Base</div>
+        <div class="chain-btn" onclick="selectChain('bsc','BSC','🟡',this)"><span class="chain-icon">🟡</span>BSC</div>
       </div>
-      <button class="eye-btn" onclick="toggleKey()">👁</button>
-      <button class="btn sm purple" onclick="saveKey()" style="flex-shrink:0;height:44px">Save Key</button>
+      <div class="tag purple">STEP 2 — SOURCE</div>
+      <div class="form-row" style="margin-bottom:16px">
+        <div>
+          <label>Data Source</label>
+          <select id="chainSource">
+            <option value="dexscreener">Dexscreener (Trending tokens)</option>
+            <option value="pumpfun">Pump.fun (New Solana launches)</option>
+            <option value="boosted">Dexscreener Boosted (Paid attention)</option>
+          </select>
+        </div>
+        <div>
+          <label>Results to Show</label>
+          <select id="chainLimit">
+            <option value="5">5 projects</option>
+            <option value="10" selected>10 projects</option>
+            <option value="20">20 projects</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Min 24h Volume (USD)</label>
+          <input type="number" id="minVol" placeholder="e.g. 10000" value="5000">
+        </div>
+        <div>
+          <label>Max Age (hours)</label>
+          <input type="number" id="maxAge" placeholder="e.g. 48" value="72">
+        </div>
+      </div>
     </div>
-    <div class="key-status none" id="keyStatus">No key saved yet</div>
-  </div>
 
-  <!-- STEP 2: CHAIN + FOCUS -->
-  <div class="card">
-    <div class="tag">STEP 2 — SELECT CHAIN</div>
-    <div class="chain-grid">
-      <div class="chain-btn" onclick="selectChain('Solana','◎',this)"><span class="chain-icon">◎</span>Solana</div>
-      <div class="chain-btn" onclick="selectChain('Base','🔵',this)"><span class="chain-icon">🔵</span>Base</div>
-      <div class="chain-btn" onclick="selectChain('BSC','🟡',this)"><span class="chain-icon">🟡</span>BSC</div>
+    <button class="btn full" id="chainHuntBtn" onclick="runChainHunt()">🔗 Hunt Live Projects Now</button>
+
+    <div class="loader" id="chainLoader">
+      <div class="spinner"></div>
+      <div class="loader-text" id="chainLoaderText">Scanning Dexscreener...</div>
+      <div class="loader-sub">Fetching live token data with social links</div>
     </div>
-    <div style="height:18px"></div>
-    <div class="form-group" style="margin-bottom:0">
-      <label>Focus (optional)</label>
-      <input type="text" id="focus" placeholder="e.g. memecoins, DeFi, NFTs, launchpads under $5M mcap">
-    </div>
-  </div>
+    <div class="error-box" id="chainError" style="display:none"><strong>Error</strong><span id="chainErrorMsg"></span></div>
 
-  <!-- HUNT BUTTON -->
-  <button class="btn" id="huntBtn" onclick="runHunt()">🔍 Hunt Projects with AI</button>
-
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="spinner"></div>
-    <div class="loader-text" id="loaderText">AI is scanning the Web3 space...</div>
-    <div class="loader-sub" id="loaderSub">Identifying projects, analyzing gaps, building your hit list</div>
-  </div>
-
-  <!-- ERROR -->
-  <div class="error-box" id="errorBox" style="display:none">
-    <strong>❌ Error</strong>
-    <span id="errorMsg"></span>
-    <div style="margin-top:12px;color:#888;font-size:0.82rem">You can still use the manual prompt below ↓</div>
-  </div>
-
-  <!-- RESULTS -->
-  <div id="resultsSection" style="display:none;margin-top:24px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-      <div style="font-size:0.78rem;color:#F59E0B;font-weight:700;letter-spacing:.07em;text-transform:uppercase">🎯 Projects Found</div>
-      <button class="btn ghost sm" onclick="runHunt()">↻ Hunt Again</button>
-    </div>
-    <div class="results-grid" id="resultsGrid"></div>
-  </div>
-
-  <!-- MANUAL FALLBACK -->
-  <div id="manualSection" style="margin-top:28px">
-    <div class="divider">or use the manual prompt</div>
-    <div style="font-size:0.78rem;color:#555;margin-bottom:10px">No API key? Copy this prompt → paste into <a href="https://chat.openai.com" target="_blank" style="color:#F59E0B;text-decoration:none">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color:#F59E0B;text-decoration:none">Claude.ai</a> → paste results back here manually</div>
-    <div class="prompt-box" id="manualPromptBox" style="display:none">
-      <button class="copy-btn" id="manualCopyBtn" onclick="copyManual()">Copy</button>
-      <div class="prompt-text" id="manualPromptText"></div>
+    <div id="chainResults" style="display:none;margin-top:20px">
+      <div class="results-header">
+        <div class="results-title">🎯 Projects Found <span class="results-count" id="chainCount">0</span></div>
+        <button class="btn ghost sm" onclick="runChainHunt()">↻ Refresh</button>
+      </div>
+      <div id="chainResultsGrid"></div>
     </div>
   </div>
 
-</div>
+  <!-- ═══════════════════════════════════════════════════
+       TAB 2: X HUNT — Twitter/X search
+  ═══════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-x">
+
+    <div class="card">
+      <div class="tag gold">STEP 1 — DEFINE YOUR HUNT</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Niche / Keywords</label>
+          <input type="text" id="xNiche" placeholder="e.g. memecoin, DeFi, NFT, launchpad">
+        </div>
+        <div class="form-group">
+          <label>Chain Focus</label>
+          <select id="xChain">
+            <option value="Solana">Solana</option>
+            <option value="Base">Base</option>
+            <option value="BSC">BSC</option>
+            <option value="crypto">Any Chain</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Hunt Intent</label>
+        <select id="xIntent">
+          <option value="launch">Just launched projects (0-7 days)</option>
+          <option value="hiring">Projects looking for marketing / growth help</option>
+          <option value="kol">Projects reaching out to KOLs publicly</option>
+          <option value="struggling">Projects with low engagement despite posting</option>
+          <option value="stealth">Stealth launches building hype</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag gold">STEP 2 — OPEN SEARCH TABS ON X</div>
+      <div class="tip-note"><strong>How it works:</strong> Click each search button → X opens with a pre-built query → Find projects → paste their info below → auto-generates DMs.</div>
+      <div class="search-links" id="xSearchLinks">
+        <div style="color:#444;font-size:0.82rem;padding:10px 0">Fill in Step 1 and click Generate Searches ↓</div>
+      </div>
+      <div style="height:12px"></div>
+      <button class="btn full gold" style="background:#1DA1F2;color:#fff" onclick="generateXSearches()">🐦 Generate X Search Links</button>
+    </div>
+
+    <div class="card">
+      <div class="tag gold">STEP 3 — PASTE WHAT YOU FOUND</div>
+      <div class="tip-note"><strong>Paste anything:</strong> tweet text, bio, project description, or just the @handle and project name. The tool extracts what it needs.</div>
+      <div class="paste-area">
+        <textarea id="xPaste" placeholder="Paste tweet, bio, or project info here...&#10;&#10;Example:&#10;@HyperMoon — just launched on Solana, 500 holders, no landing page yet&#10;&#10;Or just paste the raw tweet text and we'll extract what we can."></textarea>
+      </div>
+      <div style="height:12px"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Project Name (if not in paste)</label>
+          <input type="text" id="xProjName" placeholder="e.g. HyperMoon">
+        </div>
+        <div class="form-group">
+          <label>Twitter Handle</label>
+          <input type="text" id="xProjHandle" placeholder="e.g. @HyperMoonXYZ">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Gap You Spotted</label>
+        <input type="text" id="xProjGap" placeholder="e.g. No landing page, weak CT engagement, no KOL strategy">
+      </div>
+    </div>
+
+    <button class="btn full purple" onclick="addXProject()">➕ Add to Hit List & Generate DMs</button>
+
+    <div class="error-box" id="xError" style="display:none"><strong>Error</strong><span id="xErrorMsg"></span></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       TAB 3: LOCAL HUNT — Google Maps + Local biz
+  ═══════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-local">
+
+    <div class="card">
+      <div class="tag cyan">STEP 1 — TARGET LOCATION & TYPE</div>
+      <div class="form-row" style="margin-bottom:16px">
+        <div class="form-group">
+          <label>City / Area</label>
+          <input type="text" id="localCity" placeholder="e.g. Lagos, London, Dubai, New York">
+        </div>
+        <div class="form-group">
+          <label>Service to Offer</label>
+          <select id="localService">
+            <option value="landing page">Landing Page</option>
+            <option value="AI video content">AI Video Content</option>
+            <option value="social media marketing">Social Media Marketing</option>
+            <option value="full digital presence">Full Digital Presence Package</option>
+          </select>
+        </div>
+      </div>
+      <div class="tag cyan">BUSINESS TYPE</div>
+      <div class="business-type-grid" id="btypeGrid">
+        <div class="btype-btn" onclick="selectBtype('Restaurant',this)"><span class="btype-icon">🍽️</span>Restaurant</div>
+        <div class="btype-btn" onclick="selectBtype('Gym & Fitness',this)"><span class="btype-icon">💪</span>Gym</div>
+        <div class="btype-btn" onclick="selectBtype('Beauty Salon',this)"><span class="btype-icon">💅</span>Salon</div>
+        <div class="btype-btn" onclick="selectBtype('Real Estate',this)"><span class="btype-icon">🏠</span>Real Estate</div>
+        <div class="btype-btn" onclick="selectBtype('Clothing Store',this)"><span class="btype-icon">👗</span>Fashion</div>
+        <div class="btype-btn" onclick="selectBtype('Law Firm',this)"><span class="btype-icon">⚖️</span>Law Firm</div>
+        <div class="btype-btn" onclick="selectBtype('Dental Clinic',this)"><span class="btype-icon">🦷</span>Dental</div>
+        <div class="btype-btn" onclick="selectBtype('Photography',this)"><span class="btype-icon">📸</span>Photography</div>
+        <div class="btype-btn" onclick="selectBtype('E-commerce Brand',this)"><span class="btype-icon">🛒</span>E-commerce</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag cyan">STEP 2 — OPEN GOOGLE MAPS SEARCH</div>
+      <div class="tip-note"><strong>How it works:</strong> Click to open Google Maps pre-filtered for your target → browse businesses → find ones with weak online presence → paste info below → auto-generates a professional (non-Web3) DM.</div>
+      <button class="btn full cyan" onclick="openMapsSearch()">📍 Open Google Maps Search</button>
+      <div style="margin-top:10px;font-size:0.78rem;color:#444;text-align:center">Also check: Instagram, Facebook, TikTok for businesses with low engagement</div>
+    </div>
+
+    <div class="card">
+      <div class="tag cyan">STEP 3 — ENTER BUSINESS DETAILS</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Business Name</label>
+          <input type="text" id="localBizName" placeholder="e.g. Lagos Glow Salon">
+        </div>
+        <div class="form-group">
+          <label>Owner / Contact Name (optional)</label>
+          <input type="text" id="localOwner" placeholder="e.g. Sarah">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Their Instagram / Twitter (if any)</label>
+          <input type="text" id="localHandle" placeholder="e.g. @lagosglow or none">
+        </div>
+        <div class="form-group">
+          <label>Platform to DM Them On</label>
+          <select id="localPlatform">
+            <option value="Instagram DM">Instagram DM</option>
+            <option value="WhatsApp">WhatsApp Message</option>
+            <option value="Facebook DM">Facebook DM</option>
+            <option value="Email">Email</option>
+            <option value="Twitter DM">Twitter DM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Weakness / Gap You Spotted</label>
+        <input type="text" id="localGap" placeholder="e.g. No website, posts are low quality, no online booking, less than 500 followers">
+      </div>
+    </div>
+
+    <button class="btn full cyan" onclick="addLocalProject()">➕ Add to Hit List & Generate DMs</button>
+    <div class="error-box" id="localError" style="display:none"><strong>Error</strong><span id="localErrorMsg"></span></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SHARED HIT LIST
+  ═══════════════════════════════════════════════════ -->
+  <div id="hitListSection" style="display:none;margin-top:28px">
+    <div class="results-header">
+      <div class="results-title">📋 Your Hit List <span class="results-count" id="hitListCount">0</span></div>
+      <button class="btn ghost sm" onclick="clearHitList()">🗑 Clear All</button>
+    </div>
+    <div id="hitListGrid"></div>
+  </div>
+
+</div><!-- /container -->
 
 <script>
-let selectedChain = '';
-let selectedIcon = '';
-let provider = 'openai';
+// ─── STATE ───────────────────────────────────────────
+let chainId = '';
+let chainName = '';
+let chainIcon = '';
+let selectedBtype = '';
+let hitList = JSON.parse(localStorage.getItem('funmzy_hitlist') || '[]');
 
-// ── Provider toggle ──
-function setProvider(p, el) {
-  provider = p;
-  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+// ─── TABS ────────────────────────────────────────────
+function switchTab(name, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
   el.classList.add('active');
-  document.getElementById('keyLabel').textContent = p === 'openai' ? 'OpenAI API Key' : 'Anthropic API Key';
-  document.getElementById('apiKey').placeholder = p === 'openai' ? 'sk-...' : 'sk-ant-...';
-  loadSavedKey();
 }
 
-// ── Key management ──
-function saveKey() {
-  const key = document.getElementById('apiKey').value.trim();
-  if (!key) { alert('Enter your API key first'); return; }
-  localStorage.setItem('funmzy_' + provider + '_key', key);
-  showKeyStatus(true);
-  updateSteps(1);
-}
-
-function loadSavedKey() {
-  const key = localStorage.getItem('funmzy_' + provider + '_key') || '';
-  document.getElementById('apiKey').value = key;
-  showKeyStatus(!!key);
-  if (key) updateSteps(1);
-}
-
-function showKeyStatus(has) {
-  const el = document.getElementById('keyStatus');
-  if (has) {
-    el.className = 'key-status ok';
-    el.textContent = '✓ Key saved — ready to hunt';
-  } else {
-    el.className = 'key-status none';
-    el.textContent = 'No key saved yet';
-  }
-}
-
-function toggleKey() {
-  const inp = document.getElementById('apiKey');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-}
-
-// ── Chain select ──
-function selectChain(chain, icon, el) {
-  selectedChain = chain;
-  selectedIcon = icon;
+// ─── CHAIN HUNT ──────────────────────────────────────
+function selectChain(id, name, icon, el) {
+  chainId = id; chainName = name; chainIcon = icon;
   document.querySelectorAll('.chain-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
-  updateManualPrompt();
-  updateSteps(2);
+  // Auto-switch source for Solana to show pump.fun option
+  if (id === 'solana') document.getElementById('chainSource').value = 'pumpfun';
+  else document.getElementById('chainSource').value = 'dexscreener';
 }
 
-// ── Step indicator ──
-function updateSteps(step) {
-  for (let i = 1; i <= 4; i++) {
-    const num = document.getElementById('s' + i);
-    if (!num) continue;
-    if (i < step) { num.className = 'step-num done'; num.textContent = '✓'; }
-    else if (i === step) { num.className = 'step-num active'; num.textContent = i; }
-    else { num.className = 'step-num'; num.textContent = i; }
-  }
-}
+async function runChainHunt() {
+  if (!chainId) { alert('Select a chain first.'); return; }
 
-// ── Manual prompt ──
-function buildPrompt() {
-  const focus = document.getElementById('focus').value.trim() || 'any high-potential early-stage project';
-  return `You are a Web3 alpha researcher. Hunt for REAL, currently active ${selectedChain} projects that match: "${focus}".
+  const source  = document.getElementById('chainSource').value;
+  const limit   = parseInt(document.getElementById('chainLimit').value);
+  const minVol  = parseFloat(document.getElementById('minVol').value) || 0;
+  const maxAgeH = parseFloat(document.getElementById('maxAge').value) || 9999;
 
-Return EXACTLY 5 projects in this JSON format (no other text, just valid JSON):
-[
-  {
-    "name": "Project Name",
-    "handle": "@TwitterHandle",
-    "chain": "${selectedChain}",
-    "stage": "pre-launch | just launched | early growth",
-    "mcap": "estimated market cap or 'not launched'",
-    "gap": "One specific growth gap or weakness you spotted — be specific and actionable",
-    "service": "landing page | AI video content | memecoin marketing | full growth strategy",
-    "why": "One sentence on why this project has potential"
-  }
-]
+  document.getElementById('chainError').style.display = 'none';
+  document.getElementById('chainResults').style.display = 'none';
+  document.getElementById('chainLoader').style.display = 'block';
+  document.getElementById('chainHuntBtn').disabled = true;
 
-Requirements:
-- Real projects actively building or just launched on ${selectedChain}
-- Focus: ${focus}
-- Gaps must be specific (e.g. "no landing page", "weak CT presence under 2K followers", "no KOL strategy")
-- Match service to the gap
-- Include a mix of stages`;
-}
-
-function updateManualPrompt() {
-  if (!selectedChain) return;
-  document.getElementById('manualPromptText').textContent = buildPrompt();
-  document.getElementById('manualPromptBox').style.display = 'block';
-}
-
-function copyManual() {
-  navigator.clipboard.writeText(document.getElementById('manualPromptText').textContent).then(() => {
-    const btn = document.getElementById('manualCopyBtn');
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
-}
-
-// ── Main hunt ──
-async function runHunt() {
-  if (!selectedChain) { alert('Select a chain first.'); return; }
-
-  const key = localStorage.getItem('funmzy_' + provider + '_key');
-  if (!key) {
-    document.getElementById('errorBox').style.display = 'block';
-    document.getElementById('errorMsg').textContent = 'No API key saved. Save your key in Step 1 above, or use the manual prompt.';
-    return;
-  }
-
-  document.getElementById('errorBox').style.display = 'none';
-  document.getElementById('resultsSection').style.display = 'none';
-  document.getElementById('loader').style.display = 'block';
-  document.getElementById('huntBtn').disabled = true;
-  updateSteps(3);
-
-  const loaderMessages = [
-    ['🔍 Scanning the Web3 space...', 'Looking for active projects on ' + selectedChain],
-    ['📊 Analyzing project metrics...', 'Checking community size, content, KOL coverage'],
-    ['🎯 Identifying growth gaps...', 'Finding the best outreach angles for you'],
-    ['✍️ Building your hit list...', 'Almost ready — packaging your targets']
-  ];
-  let msgIdx = 0;
-  const msgInterval = setInterval(() => {
-    msgIdx = (msgIdx + 1) % loaderMessages.length;
-    document.getElementById('loaderText').textContent = loaderMessages[msgIdx][0];
-    document.getElementById('loaderSub').textContent = loaderMessages[msgIdx][1];
-  }, 2500);
+  const msgs = ['Scanning live data...','Fetching token profiles...','Extracting social links...','Building your hit list...'];
+  let mi = 0;
+  const mt = setInterval(() => { document.getElementById('chainLoaderText').textContent = msgs[++mi % msgs.length]; }, 2000);
 
   try {
-    const prompt = buildPrompt();
-    let data;
+    let projects = [];
 
-    if (provider === 'openai') {
-      const res = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
-        body: JSON.stringify({
-          model: 'gpt-4o-mini',
-          messages: [{ role: 'user', content: prompt }],
-          temperature: 0.7,
-          max_tokens: 1500
-        })
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error?.message || 'OpenAI API error ' + res.status);
-      }
-      data = await res.json();
-      const text = data.choices[0].message.content.trim();
-      renderResults(text);
-
+    if (source === 'pumpfun') {
+      projects = await fetchPumpFun(limit, minVol);
+    } else if (source === 'boosted') {
+      projects = await fetchDexBoosted(limit);
     } else {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': key,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 1500,
-          messages: [{ role: 'user', content: prompt }]
-        })
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error?.message || 'Anthropic API error ' + res.status);
-      }
-      data = await res.json();
-      const text = data.content[0].text.trim();
-      renderResults(text);
+      projects = await fetchDexscreener(chainId, limit, minVol, maxAgeH);
     }
 
-  } catch (err) {
-    clearInterval(msgInterval);
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('huntBtn').disabled = false;
-    document.getElementById('errorBox').style.display = 'block';
-    document.getElementById('errorMsg').textContent = err.message;
-    updateSteps(2);
-  }
+    clearInterval(mt);
+    document.getElementById('chainLoader').style.display = 'none';
+    document.getElementById('chainHuntBtn').disabled = false;
 
-  clearInterval(msgInterval);
+    if (!projects.length) {
+      showChainError('No projects matched your filters. Try lowering the minimum volume or increasing max age.');
+      return;
+    }
+
+    renderChainResults(projects);
+  } catch (err) {
+    clearInterval(mt);
+    document.getElementById('chainLoader').style.display = 'none';
+    document.getElementById('chainHuntBtn').disabled = false;
+    showChainError(err.message + ' — Try a different source or check your connection.');
+  }
 }
 
-function renderResults(raw) {
-  document.getElementById('loader').style.display = 'none';
-  document.getElementById('huntBtn').disabled = false;
+async function fetchDexscreener(chain, limit, minVol, maxAgeH) {
+  // Use token-profiles endpoint for social links
+  const url = `https://api.dexscreener.com/token-profiles/latest/v1`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('Dexscreener API error ' + res.status);
+  const data = await res.json();
 
-  // Extract JSON from response
-  let projects;
-  try {
-    const match = raw.match(/\[[\s\S]*\]/);
-    if (!match) throw new Error('No JSON array found');
-    projects = JSON.parse(match[0]);
-  } catch (e) {
-    document.getElementById('errorBox').style.display = 'block';
-    document.getElementById('errorMsg').textContent = 'AI returned unexpected format. Try again or use the manual prompt.';
-    updateSteps(2);
+  const now = Date.now();
+  const results = [];
+
+  for (const t of data) {
+    if (t.chainId !== chain) continue;
+    if (!t.links || !t.links.length) continue;
+
+    const twitter = t.links.find(l => l.type === 'twitter' || (l.url && l.url.includes('twitter.com')) || (l.url && l.url.includes('x.com')));
+    const telegram = t.links.find(l => l.type === 'telegram' || (l.url && l.url.includes('t.me')));
+    const website = t.links.find(l => l.label === 'Website' || l.type === 'website');
+
+    const handle = twitter ? extractHandle(twitter.url) : null;
+
+    results.push({
+      name: t.description ? t.description.split('\n')[0].slice(0,40) : (t.tokenAddress ? t.tokenAddress.slice(0,8)+'...' : 'Unknown'),
+      handle: handle || '(no Twitter found)',
+      chain: chainName,
+      chainIcon,
+      source: 'Dexscreener',
+      dexUrl: t.url || '',
+      tgUrl: telegram ? telegram.url : '',
+      webUrl: website ? website.url : '',
+      gap: inferGap(handle, telegram, website, t),
+      service: 'memecoin marketing',
+      type: 'web3'
+    });
+
+    if (results.length >= limit) break;
+  }
+
+  return results;
+}
+
+async function fetchDexBoosted(limit) {
+  const url = `https://api.dexscreener.com/token-boosts/top/v1`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('Dexscreener API error ' + res.status);
+  const data = await res.json();
+
+  const results = [];
+  for (const t of data) {
+    if (chainId && t.chainId !== chainId) continue;
+    if (!t.links || !t.links.length) continue;
+
+    const twitter = t.links.find(l => l.type === 'twitter' || (l.url && (l.url.includes('twitter.com') || l.url.includes('x.com'))));
+    const telegram = t.links.find(l => l.type === 'telegram' || (l.url && l.url.includes('t.me')));
+    const website = t.links.find(l => l.label === 'Website' || l.type === 'website');
+    const handle = twitter ? extractHandle(twitter.url) : null;
+
+    const cName = t.chainId ? t.chainId.charAt(0).toUpperCase() + t.chainId.slice(1) : chainName;
+
+    results.push({
+      name: t.description ? t.description.split('\n')[0].slice(0,40) : 'Boosted Token',
+      handle: handle || '(no Twitter)',
+      chain: cName,
+      chainIcon: chainIcon || '🔗',
+      source: 'Dexscreener Boosted',
+      dexUrl: t.url || '',
+      tgUrl: telegram ? telegram.url : '',
+      webUrl: website ? website.url : '',
+      gap: 'Paid for Dexscreener boost — active marketing budget. ' + inferGap(handle, telegram, website, t),
+      service: inferService(handle, telegram, website),
+      type: 'web3'
+    });
+    if (results.length >= limit) break;
+  }
+  return results;
+}
+
+async function fetchPumpFun(limit, minVol) {
+  // Pump.fun public API
+  const url = `https://frontend-api.pump.fun/coins?offset=0&limit=${limit * 3}&sort=last_trade_timestamp&order=DESC&includeNsfw=false`;
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error('Pump.fun API returned ' + res.status + '. Try Dexscreener source instead.');
+  const data = await res.json();
+
+  const results = [];
+  for (const coin of data) {
+    if (coin.usd_market_cap && coin.usd_market_cap < 1000) continue; // skip dust
+
+    const handle = coin.twitter ? (coin.twitter.startsWith('@') ? coin.twitter : '@' + coin.twitter.split('/').pop()) : null;
+    const hasTg = !!coin.telegram;
+    const hasWeb = !!coin.website;
+
+    results.push({
+      name: coin.name || 'Unknown',
+      symbol: coin.symbol || '',
+      handle: handle || '(no Twitter)',
+      chain: 'Solana',
+      chainIcon: '◎',
+      source: 'Pump.fun',
+      dexUrl: `https://pump.fun/${coin.mint}`,
+      tgUrl: coin.telegram || '',
+      webUrl: coin.website || '',
+      mcap: coin.usd_market_cap ? '$' + formatNum(coin.usd_market_cap) : 'N/A',
+      gap: inferGap(handle, hasTg, hasWeb, null),
+      service: inferService(handle, hasTg, hasWeb),
+      type: 'web3',
+      description: coin.description ? coin.description.slice(0,100) : ''
+    });
+
+    if (results.length >= limit) break;
+  }
+
+  return results;
+}
+
+function extractHandle(url) {
+  if (!url) return null;
+  const clean = url.replace(/\/$/, '');
+  const parts = clean.split('/');
+  const h = parts[parts.length - 1];
+  return h && h !== 'twitter.com' && h !== 'x.com' ? '@' + h : null;
+}
+
+function inferGap(handle, telegram, website, extra) {
+  const gaps = [];
+  if (!handle) gaps.push('no Twitter/X presence');
+  if (!telegram) gaps.push('no Telegram community');
+  if (!website) gaps.push('no website or landing page');
+  if (gaps.length === 0) return 'Active on socials — may need KOL strategy or content lead to scale';
+  return 'Missing: ' + gaps.join(', ') + ' — clear growth opportunity';
+}
+
+function inferService(handle, telegram, website) {
+  if (!website) return 'landing page';
+  if (!handle) return 'social growth campaign';
+  return 'memecoin marketing';
+}
+
+function formatNum(n) {
+  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
+  return Math.round(n).toString();
+}
+
+function showChainError(msg) {
+  document.getElementById('chainError').style.display = 'block';
+  document.getElementById('chainErrorMsg').textContent = ' ' + msg;
+}
+
+function renderChainResults(projects) {
+  document.getElementById('chainCount').textContent = projects.length;
+  const grid = document.getElementById('chainResultsGrid');
+  grid.innerHTML = '';
+
+  projects.forEach(p => {
+    grid.appendChild(buildProjectCard(p));
+  });
+
+  document.getElementById('chainResults').style.display = 'block';
+  document.getElementById('chainResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─── X HUNT ──────────────────────────────────────────
+function generateXSearches() {
+  const niche  = document.getElementById('xNiche').value.trim() || 'crypto';
+  const chain  = document.getElementById('xChain').value;
+  const intent = document.getElementById('xIntent').value;
+
+  const queries = {
+    launch:     [`"just launched" "${chain}" "${niche}"`, `"stealth launch" "${chain}" site:twitter.com`, `"${chain}" "${niche}" "just deployed" -scam`],
+    hiring:     [`"looking for" "marketing" "${chain}"`, `"need a" "growth" "${niche}" "${chain}"`, `"hiring" "web3 marketing" OR "crypto growth"`],
+    kol:        [`"${chain}" "${niche}" "@" "DM" "collab"`, `"${niche}" "KOL" "partnership" -bot`, `"${chain}" "influencer" "reach out"`],
+    struggling: [`"${chain}" "${niche}" min_faves:1 max_faves:10`, `"${niche}" "${chain}" "help us grow"`, `"${chain}" "${niche}" community engagement`],
+    stealth:    [`"stealth" "${chain}" "${niche}"`, `"${niche}" "${chain}" "soon" "launching"`, `"${chain}" "presale" "${niche}" "whitelist"`]
+  };
+
+  const labels = {
+    launch:     ['Fresh launches (last 24h)', 'Stealth launches on ' + chain, 'Deployed this week'],
+    hiring:     ['Looking for marketing help', 'Need growth strategy', 'Hiring Web3 marketers'],
+    kol:        ['Seeking KOL collabs', 'Partnership DMs open', 'Influencer outreach'],
+    struggling: ['Low engagement projects', 'Need growth help', 'Small reach, active posting'],
+    stealth:    ['Stealth mode projects', 'Upcoming launches', 'Whitelist / Presale hunting']
+  };
+
+  const qs = queries[intent] || queries.launch;
+  const ls = labels[intent] || labels.launch;
+
+  const container = document.getElementById('xSearchLinks');
+  container.innerHTML = '';
+
+  qs.forEach((q, i) => {
+    const searchUrl = `https://twitter.com/search?q=${encodeURIComponent(q)}&f=live`;
+    const div = document.createElement('div');
+    div.className = 'search-link-item';
+    div.innerHTML = `
+      <div class="sli-label">
+        <strong>${ls[i]}</strong>
+        <code style="font-size:0.72rem;color:#555">${q}</code>
+      </div>
+      <a class="open-btn" href="${searchUrl}" target="_blank">Open on X →</a>`;
+    container.appendChild(div);
+  });
+
+  // Also add a Telegram search tip
+  const tgDiv = document.createElement('div');
+  tgDiv.className = 'search-link-item';
+  tgDiv.style.borderColor = 'rgba(6,182,212,0.3)';
+  tgDiv.innerHTML = `
+    <div class="sli-label">
+      <strong style="color:#06b6d4">✈️ Telegram — Search manually</strong>
+      <span style="font-size:0.75rem;color:#555">Search: "${niche} ${chain}" in Telegram groups/channels</span>
+    </div>
+    <a class="open-btn" href="https://t.me/s/gamefi" target="_blank" style="border-color:rgba(6,182,212,0.3);color:#06b6d4">Open Telegram →</a>`;
+  container.appendChild(tgDiv);
+}
+
+function addXProject() {
+  const paste  = document.getElementById('xPaste').value.trim();
+  const name   = document.getElementById('xProjName').value.trim();
+  const handle = document.getElementById('xProjHandle').value.trim();
+  const gap    = document.getElementById('xProjGap').value.trim();
+
+  // Try to extract from paste if fields empty
+  let finalName = name, finalHandle = handle, finalGap = gap;
+
+  if (paste && !finalHandle) {
+    const hMatch = paste.match(/@[\w]+/);
+    if (hMatch) finalHandle = hMatch[0];
+  }
+  if (paste && !finalName && finalHandle) {
+    finalName = finalHandle.replace('@','');
+  }
+  if (paste && !finalGap) {
+    finalGap = 'Spotted on X — review their profile for specific gap';
+  }
+
+  if (!finalName || !finalHandle) {
+    document.getElementById('xError').style.display = 'block';
+    document.getElementById('xErrorMsg').textContent = ' Enter at least the project name and Twitter handle.';
     return;
   }
 
-  const grid = document.getElementById('resultsGrid');
-  grid.innerHTML = '';
+  document.getElementById('xError').style.display = 'none';
 
-  projects.forEach((p, i) => {
-    const handle = p.handle || '@unknown';
-    const name = p.name || 'Unknown Project';
-    const gap = p.gap || 'Growth gap identified';
-    const service = p.service || 'full growth strategy';
-    const stage = p.stage || '';
-    const mcap = p.mcap || '';
-    const why = p.why || '';
+  const project = {
+    name: finalName,
+    handle: finalHandle,
+    chain: document.getElementById('xChain').value,
+    chainIcon: '🐦',
+    source: 'X Hunt',
+    gap: finalGap || 'Gap identified via X search',
+    service: 'social growth campaign',
+    type: 'web3',
+    dexUrl: `https://twitter.com/${finalHandle.replace('@','')}`
+  };
 
-    // Build DM generator URL with pre-filled params
-    const dmUrl = `dm-generator.html?project=${encodeURIComponent(name)}&handle=${encodeURIComponent(handle)}&gap=${encodeURIComponent(gap)}&service=${encodeURIComponent(service)}`;
-
-    grid.innerHTML += `
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-info">
-          <div class="project-name">${name}</div>
-          <div class="project-handle">${handle}</div>
-        </div>
-        <div class="project-chain-badge">${selectedIcon} ${p.chain || selectedChain}</div>
-      </div>
-      <div class="project-meta">
-        ${stage ? `<div class="meta-pill">Stage: <span>${stage}</span></div>` : ''}
-        ${mcap ? `<div class="meta-pill">MCap: <span>${mcap}</span></div>` : ''}
-        ${service ? `<div class="meta-pill">Lead with: <span>${service}</span></div>` : ''}
-      </div>
-      <div class="project-gap">
-        <strong>Gap spotted</strong>
-        ${gap}
-      </div>
-      ${why ? `<div style="font-size:0.8rem;color:#555;margin-bottom:14px;font-style:italic">"${why}"</div>` : ''}
-      <div class="project-actions">
-        <button class="hunt-btn" onclick="window.location.href='${dmUrl}'">💬 Generate DMs for This Project →</button>
-        <a class="view-btn" href="https://twitter.com/${handle.replace('@','')}" target="_blank">🐦 View</a>
-      </div>
-    </div>`;
-  });
-
-  document.getElementById('resultsSection').style.display = 'block';
-  document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});
-  updateSteps(4);
+  goToDMGenerator(project);
 }
 
-// ── Init ──
-loadSavedKey();
+// ─── LOCAL HUNT ───────────────────────────────────────
+function selectBtype(type, el) {
+  selectedBtype = type;
+  document.querySelectorAll('.btype-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function openMapsSearch() {
+  const city    = document.getElementById('localCity').value.trim();
+  const btype   = selectedBtype || 'small business';
+  if (!city) { alert('Enter a city first.'); return; }
+  const q = encodeURIComponent(btype + ' in ' + city);
+  window.open(`https://www.google.com/maps/search/${q}`, '_blank');
+}
+
+function addLocalProject() {
+  const bizName  = document.getElementById('localBizName').value.trim();
+  const owner    = document.getElementById('localOwner').value.trim();
+  const handle   = document.getElementById('localHandle').value.trim() || 'no social handle';
+  const platform = document.getElementById('localPlatform').value;
+  const gap      = document.getElementById('localGap').value.trim();
+  const service  = document.getElementById('localService').value;
+  const city     = document.getElementById('localCity').value.trim();
+
+  if (!bizName) {
+    document.getElementById('localError').style.display = 'block';
+    document.getElementById('localErrorMsg').textContent = ' Enter the business name.';
+    return;
+  }
+  document.getElementById('localError').style.display = 'none';
+
+  const project = {
+    name: bizName,
+    handle: handle,
+    chain: city || 'Local',
+    chainIcon: '📍',
+    source: 'Local Hunt',
+    gap: gap || 'Weak online presence',
+    service,
+    type: 'local',
+    platform,
+    owner,
+    dexUrl: `https://www.google.com/maps/search/${encodeURIComponent(bizName + ' ' + city)}`
+  };
+
+  goToDMGenerator(project);
+}
+
+// ─── SHARED: BUILD CARD ──────────────────────────────
+function buildProjectCard(p) {
+  const card = document.createElement('div');
+  card.className = 'project-card';
+
+  const dmUrl = buildDMUrl(p);
+
+  card.innerHTML = `
+    <div class="pc-top">
+      <div>
+        <div class="pc-name">${p.name}${p.symbol ? ' <span style="color:#555;font-size:0.8rem">$'+p.symbol+'</span>' : ''}</div>
+        <div class="pc-handle">${p.handle}</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge chain">${p.chainIcon} ${p.chain}</span>
+        ${p.mcap ? `<span class="badge vol">MCap: ${p.mcap}</span>` : ''}
+        ${p.source ? `<span class="badge age">${p.source}</span>` : ''}
+      </div>
+    </div>
+    ${p.description ? `<div style="font-size:0.78rem;color:#444;margin-bottom:10px;font-style:italic">${p.description}</div>` : ''}
+    <div class="pc-gap">
+      <span class="pc-gap-label">Gap spotted</span>
+      ${p.gap}
+    </div>
+    <div class="pc-actions">
+      <button class="dm-btn" onclick="window.location.href='${dmUrl}'">💬 Generate DMs for This Project →</button>
+      ${p.dexUrl ? `<a class="view-btn" href="${p.dexUrl}" target="_blank">🔗 View</a>` : ''}
+      ${p.tgUrl ? `<a class="view-btn" href="${p.tgUrl}" target="_blank">✈️ TG</a>` : ''}
+    </div>`;
+
+  return card;
+}
+
+function buildDMUrl(p) {
+  const params = new URLSearchParams({
+    project: p.name,
+    handle:  p.handle,
+    gap:     p.gap,
+    service: p.service || 'full growth strategy',
+    type:    p.type || 'web3',
+    platform: p.platform || ''
+  });
+  return `dm-generator.html?${params.toString()}`;
+}
+
+// ─── GO DIRECT TO DM GENERATOR ────────────────────────
+function goToDMGenerator(project) {
+  window.location.href = buildDMUrl(project);
+}
+
+// ─── HIT LIST (SAVED) ─────────────────────────────────
+function saveToHitList(project) {
+  hitList.unshift({ ...project, savedAt: Date.now() });
+  localStorage.setItem('funmzy_hitlist', JSON.stringify(hitList.slice(0, 50)));
+  renderHitList();
+}
+
+function renderHitList() {
+  if (!hitList.length) { document.getElementById('hitListSection').style.display = 'none'; return; }
+  document.getElementById('hitListSection').style.display = 'block';
+  document.getElementById('hitListCount').textContent = hitList.length;
+  const grid = document.getElementById('hitListGrid');
+  grid.innerHTML = '';
+  hitList.slice(0, 10).forEach(p => grid.appendChild(buildProjectCard(p)));
+}
+
+function clearHitList() {
+  if (confirm('Clear all saved projects?')) {
+    hitList = [];
+    localStorage.removeItem('funmzy_hitlist');
+    renderHitList();
+  }
+}
+
+// ─── INIT ──────────────────────────────────────────────
+renderHitList();
 </script>
 </body>
 </html>

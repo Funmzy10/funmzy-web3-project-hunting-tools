@@ -104,7 +104,7 @@
 
     <div class="output-card">
       <div class="output-header">
-        <div class="output-label">🐦 Twitter DM <span class="platform-badge">X / Twitter</span></div>
+        <div class="output-label" id="p1label">🐦 Twitter DM <span class="platform-badge">X / Twitter</span></div>
         <button class="copy-btn" id="copy1" onclick="copyText('dm1','copy1')">Copy</button>
       </div>
       <div class="output-text" id="dm1"></div>
@@ -113,7 +113,7 @@
 
     <div class="output-card">
       <div class="output-header">
-        <div class="output-label">✈️ Telegram DM <span class="platform-badge tg">Telegram</span></div>
+        <div class="output-label" id="p2label">✈️ Telegram DM <span class="platform-badge tg">Telegram</span></div>
         <button class="copy-btn" id="copy2" onclick="copyText('dm2','copy2')">Copy</button>
       </div>
       <div class="output-text" id="dm2"></div>
@@ -122,7 +122,7 @@
 
     <div class="output-card">
       <div class="output-header">
-        <div class="output-label">👥 Group Intro <span class="platform-badge group">Community Drop</span></div>
+        <div class="output-label" id="p3label">👥 Group Intro <span class="platform-badge group">Community Drop</span></div>
         <button class="copy-btn" id="copy3" onclick="copyText('dm3','copy3')">Copy</button>
       </div>
       <div class="output-text" id="dm3"></div>
@@ -136,6 +136,9 @@
 // Auto-fill from URL params (passed by Web3 Hunter)
 window.addEventListener('DOMContentLoaded', () => {
   const p = new URLSearchParams(window.location.search);
+  const type     = p.get('type') || 'web3';
+  const platform = p.get('platform') || '';
+
   if (p.get('project')) document.getElementById('project').value = p.get('project');
   if (p.get('handle'))  document.getElementById('handle').value  = p.get('handle');
   if (p.get('gap'))     document.getElementById('gap').value     = p.get('gap');
@@ -144,47 +147,99 @@ window.addEventListener('DOMContentLoaded', () => {
     const sel = document.getElementById('service');
     for (let o of sel.options) { if (o.value === svc || o.text.toLowerCase().includes(svc.toLowerCase())) { sel.value = o.value; break; } }
   }
+
   if (p.get('project') && p.get('handle')) {
-    document.querySelector('.tag').scrollIntoView({behavior:'smooth'});
-    generate();
+    // Show source badge
+    const src = p.get('source') || '';
+    if (src) {
+      const badge = document.createElement('div');
+      badge.style.cssText = 'background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:6px;padding:8px 14px;font-size:0.8rem;font-weight:600;margin-bottom:16px';
+      badge.textContent = '✓ Auto-filled from: ' + src + (platform ? ' · Platform: ' + platform : '');
+      document.querySelector('.card').prepend(badge);
+    }
+    generate(type, platform);
+    document.getElementById('output').scrollIntoView({behavior:'smooth', block:'start'});
   }
 });
 
 function wc(text){ return text.trim().split(/\s+/).filter(Boolean).length }
 
-function generate() {
-  const project = document.getElementById('project').value.trim() || 'your project';
-  const handle  = document.getElementById('handle').value.trim() || 'your team';
-  const gap     = document.getElementById('gap').value.trim() || 'your growth could be stronger';
-  const service = document.getElementById('service').value;
+function generate(type, platform) {
+  const project  = document.getElementById('project').value.trim() || 'your project';
+  const handle   = document.getElementById('handle').value.trim() || 'your team';
+  const gap      = document.getElementById('gap').value.trim() || 'your growth could be stronger';
+  const service  = document.getElementById('service').value;
+  const isLocal  = (type === 'local');
+  const via      = platform || 'DM';
 
-  const dm1 = `Yo ${handle} — noticed ${project} has good traction but ${gap}.
+  // Update output labels for local vs web3
+  if (isLocal) {
+    document.querySelector('.output-card.post1 .output-label, #output .output-card:nth-child(1) .output-label') && null;
+    document.getElementById('p1label').textContent = `📱 ${via} — Direct Outreach`;
+    document.getElementById('p2label').textContent = `📱 ${via} — Follow-up Angle`;
+    document.getElementById('p3label').textContent = `👥 Group / Community Intro`;
+  } else {
+    document.getElementById('p1label').textContent = '🐦 Twitter DM';
+    document.getElementById('p2label').textContent = '✈️ Telegram DM';
+    document.getElementById('p3label').textContent = '👥 Group Intro';
+  }
+
+  let dm1, dm2, dm3;
+
+  if (isLocal) {
+    // ── LOCAL BUSINESS TONE — professional, friendly, not Web3 ──
+    dm1 = `Hi${handle && handle !== 'no social handle' ? ' ' + handle : ''} — came across ${project} and genuinely liked what you're doing.
+
+One thing I noticed: ${gap}. That's usually leaving money on the table for businesses like yours.
+
+I'm Funmzy — I help local businesses get a stronger online presence through ${service}, AI video content, and digital marketing that actually brings in customers.
+
+Would you be open to a quick chat about what's possible?`;
+
+    dm2 = `Hey — I work with businesses in your space on their digital presence.
+
+Checked out ${project} — great potential, but ${gap} is holding you back from reaching more customers online.
+
+I do ${service} and AI-powered content specifically for businesses that want to grow without the guesswork.
+
+What does your current online setup look like — do you have a website?`;
+
+    dm3 = `Hi everyone — I'm Funmzy, a digital growth specialist helping local businesses build a real online presence.
+
+Services: ✦ Professional websites & landing pages ✦ AI video content ✦ Social media growth
+
+If your business has ${gap}, I can help fix that quickly and affordably.
+
+Feel free to reach out — happy to give a free quick audit of your current online presence. What type of business do you run?`;
+
+  } else {
+    // ── WEB3 TONE — peer-to-peer, direct, native ──
+    dm1 = `Yo ${handle} — noticed ${project} has solid foundation but ${gap}.
 
 I'm Funmzy, Web3 growth strategist. I help projects convert attention into holders — through ${service}, AI videos, and memecoin marketing that actually moves numbers.
 
-Seen too many solid projects lose momentum because the execution doesn't match the vision.
+Seen too many good projects lose momentum because execution doesn't match the vision.
 
-Worth a quick convo to see if I can add value — open to it?`;
+Open to a quick convo?`;
 
-  const dm2 = `Hey — saw ${project} building in the space.
+    dm2 = `Hey — saw ${project} building in the space.
 
 Quick observation: ${gap}. That's usually what kills momentum before it compounds.
 
-I'm Funmzy — I do Web3 growth: ${service}, AI-driven content, memecoin marketing. Worked with projects at different stages, always focused on what actually moves the needle.
+I'm Funmzy — Web3 growth: ${service}, AI content, memecoin marketing. Always focused on what actually moves the needle, not vanity metrics.
 
-Not pitching you. Just think there's a real opportunity here.
+Worth a 15-min call?`;
 
-Would it make sense to hop on a quick call?`;
+    dm3 = `👋 Yo — dropping in as Funmzy, Web3 growth strategist.
 
-  const dm3 = `👋 Yo everyone — dropping in as Funmzy, Web3 growth strategist.
+I do: ✦ Landing pages that convert ✦ AI video content ✦ Memecoin marketing
 
-I specialize in: ✦ Landing pages that convert ✦ AI video content ✦ Memecoin marketing
+Noticed projects here could use tighter execution — specifically around ${gap}.
 
-Noticed a few projects here could use tighter execution on the growth side — specifically ${gap}.
+Building something real? Hit me up. DMs open.
 
-If you're a founder or team working on something real and want to talk strategy or collab — hit me up. DMs open.
-
-What's the most underrated growth lever you've seen actually work in Web3?`;
+What's the biggest growth challenge you're facing right now?`;
+  }
 
   document.getElementById('dm1').textContent = dm1;
   document.getElementById('dm2').textContent = dm2;
