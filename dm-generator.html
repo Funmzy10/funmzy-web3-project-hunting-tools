@@ -133,6 +133,23 @@
 </div>
 
 <script>
+// Auto-fill from URL params (passed by Web3 Hunter)
+window.addEventListener('DOMContentLoaded', () => {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('project')) document.getElementById('project').value = p.get('project');
+  if (p.get('handle'))  document.getElementById('handle').value  = p.get('handle');
+  if (p.get('gap'))     document.getElementById('gap').value     = p.get('gap');
+  if (p.get('service')) {
+    const svc = p.get('service');
+    const sel = document.getElementById('service');
+    for (let o of sel.options) { if (o.value === svc || o.text.toLowerCase().includes(svc.toLowerCase())) { sel.value = o.value; break; } }
+  }
+  if (p.get('project') && p.get('handle')) {
+    document.querySelector('.tag').scrollIntoView({behavior:'smooth'});
+    generate();
+  }
+});
+
 function wc(text){ return text.trim().split(/\s+/).filter(Boolean).length }
 
 function generate() {

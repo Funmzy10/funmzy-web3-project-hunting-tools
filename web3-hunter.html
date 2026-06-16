@@ -11,38 +11,105 @@
   nav .logo{color:#F59E0B;font-weight:700;font-size:1rem;margin-right:10px;text-decoration:none}
   nav a{color:#888;font-size:0.78rem;text-decoration:none;padding:5px 10px;border-radius:6px;transition:.2s;border:1px solid #1a1a1a}
   nav a:hover,nav a.active{color:#F59E0B;border-color:#F59E0B;background:rgba(245,158,11,0.07)}
-  .container{max-width:760px;margin:0 auto;padding:40px 20px}
+  .container{max-width:800px;margin:0 auto;padding:40px 20px}
   h1{font-size:1.7rem;font-weight:700;margin-bottom:6px}
   h1 span{color:#F59E0B}
   .subtitle{color:#666;font-size:0.9rem;margin-bottom:36px}
-  .card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:28px;margin-bottom:24px}
+  .card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:28px;margin-bottom:20px}
   label{display:block;font-size:0.8rem;color:#F59E0B;font-weight:600;letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase}
   select,input,textarea{width:100%;background:#080808;border:1px solid #1a1a1a;color:#fff;border-radius:8px;padding:12px 14px;font-size:0.95rem;outline:none;transition:.2s;font-family:inherit}
   select:focus,input:focus,textarea:focus{border-color:#F59E0B;box-shadow:0 0 0 2px rgba(245,158,11,0.12)}
-  .chain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0}
+  select option{background:#0f0f0f}
+  .chain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .chain-btn{background:#080808;border:2px solid #1a1a1a;color:#888;border-radius:10px;padding:16px 10px;text-align:center;cursor:pointer;transition:.2s;font-size:0.9rem;font-weight:600}
   .chain-btn:hover{border-color:#8B5CF6;color:#8B5CF6}
   .chain-btn.selected{border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,0.07)}
   .chain-icon{font-size:1.6rem;display:block;margin-bottom:6px}
-  .btn{display:inline-flex;align-items:center;gap:8px;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:13px 26px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:.2s;width:100%;justify-content:center;margin-top:8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:13px 26px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:.2s;width:100%}
   .btn:hover{background:#d97706}
+  .btn:disabled{background:#333;color:#666;cursor:not-allowed}
   .btn.purple{background:#8B5CF6;color:#fff}
   .btn.purple:hover{background:#7c3aed}
-  .output-card{background:#080808;border:1px solid #1a1a1a;border-radius:10px;padding:20px;position:relative;margin-top:20px}
-  .output-label{font-size:0.75rem;color:#F59E0B;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px}
-  .output-text{color:#e0e0e0;font-size:0.92rem;line-height:1.7;white-space:pre-wrap;font-family:'Segoe UI',sans-serif}
-  .copy-btn{position:absolute;top:16px;right:16px;background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:6px 14px;font-size:0.78rem;cursor:pointer;transition:.2s;font-weight:600}
+  .btn.ghost{background:#1a1a1a;color:#fff;border:1px solid #333}
+  .btn.ghost:hover{background:#222;border-color:#555}
+  .btn.sm{padding:9px 18px;font-size:0.83rem;width:auto}
+  .form-group{margin-bottom:18px}
+  .form-group:last-child{margin-bottom:0}
+  .tag{display:inline-block;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6;border-radius:5px;padding:3px 10px;font-size:0.75rem;font-weight:600;margin-bottom:16px}
+  .tag.gold{background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:#F59E0B}
+  .tag.green{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#22c55e}
+
+  /* API KEY SECTION */
+  .api-row{display:flex;gap:10px;align-items:flex-end}
+  .api-row .form-group{flex:1;margin-bottom:0}
+  .key-status{font-size:0.75rem;margin-top:8px;display:flex;align-items:center;gap:6px}
+  .key-status.ok{color:#22c55e}
+  .key-status.none{color:#555}
+  .eye-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:0.85rem;flex-shrink:0;height:44px}
+  .eye-btn:hover{color:#F59E0B;border-color:#F59E0B}
+  .provider-tabs{display:flex;gap:8px;margin-bottom:16px}
+  .ptab{background:#080808;border:1px solid #1a1a1a;color:#666;border-radius:7px;padding:7px 16px;cursor:pointer;font-size:0.8rem;font-weight:600;transition:.2s}
+  .ptab.active{border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,0.07)}
+
+  /* FLOW STEPS */
+  .flow{display:flex;align-items:center;gap:0;margin-bottom:28px;overflow-x:auto;padding-bottom:4px}
+  .step{display:flex;align-items:center;gap:8px;font-size:0.78rem;white-space:nowrap}
+  .step-num{width:24px;height:24px;border-radius:50%;background:#1a1a1a;border:1px solid #333;color:#555;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.72rem;flex-shrink:0}
+  .step-num.active{background:#F59E0B;color:#080808;border-color:#F59E0B}
+  .step-num.done{background:#22c55e;color:#fff;border-color:#22c55e}
+  .step-label{color:#555}
+  .step-label.active{color:#fff}
+  .step-label.done{color:#22c55e}
+  .step-arrow{color:#333;margin:0 8px;font-size:0.8rem}
+
+  /* LOADER */
+  .loader{display:none;text-align:center;padding:40px}
+  .spinner{width:36px;height:36px;border:3px solid #1a1a1a;border-top-color:#F59E0B;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loader-text{color:#666;font-size:0.9rem}
+  .loader-sub{color:#444;font-size:0.8rem;margin-top:6px}
+
+  /* RESULTS */
+  .results-grid{display:flex;flex-direction:column;gap:16px;margin-top:4px}
+  .project-card{background:#080808;border:1px solid #1a1a1a;border-radius:12px;padding:20px;transition:.2s}
+  .project-card:hover{border-color:#333}
+  .project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .project-info{}
+  .project-name{font-weight:700;font-size:1rem;color:#fff;margin-bottom:3px}
+  .project-handle{font-size:0.82rem;color:#8B5CF6;font-weight:600}
+  .project-chain-badge{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:#F59E0B;border-radius:20px;padding:3px 12px;font-size:0.72rem;font-weight:700;white-space:nowrap}
+  .project-gap{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:8px;padding:12px 14px;font-size:0.85rem;color:#999;line-height:1.55;margin-bottom:14px}
+  .project-gap strong{color:#F59E0B;font-size:0.72rem;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:4px}
+  .project-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .meta-pill{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:20px;padding:3px 10px;font-size:0.72rem;color:#666}
+  .meta-pill span{color:#fff;font-weight:600}
+  .project-actions{display:flex;gap:8px}
+  .hunt-btn{flex:1;background:#F59E0B;color:#080808;border:none;border-radius:8px;padding:10px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:.2s}
+  .hunt-btn:hover{background:#d97706}
+  .view-btn{background:#1a1a1a;border:1px solid #333;color:#888;border-radius:8px;padding:10px 14px;font-weight:600;font-size:0.82rem;cursor:pointer;transition:.2s;text-decoration:none;display:flex;align-items:center;gap:5px}
+  .view-btn:hover{border-color:#8B5CF6;color:#8B5CF6}
+  .error-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:18px;color:#ef4444;font-size:0.88rem;line-height:1.6;margin-top:16px}
+  .error-box strong{display:block;margin-bottom:6px}
+
+  /* MANUAL FALLBACK */
+  .prompt-box{background:#080808;border:1px solid #1a1a1a;border-radius:10px;padding:18px;margin-top:16px;position:relative}
+  .prompt-text{color:#ccc;font-size:0.85rem;line-height:1.7;white-space:pre-wrap;font-family:'Segoe UI',sans-serif}
+  .copy-btn{position:absolute;top:12px;right:12px;background:#1a1a1a;border:1px solid #333;color:#888;border-radius:6px;padding:5px 12px;font-size:0.75rem;cursor:pointer;transition:.2s;font-weight:600}
   .copy-btn:hover{background:#F59E0B;color:#080808;border-color:#F59E0B}
   .copy-btn.copied{background:#22c55e;color:#fff;border-color:#22c55e}
-  .form-group{margin-bottom:20px}
-  .tag{display:inline-block;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6;border-radius:5px;padding:3px 10px;font-size:0.75rem;font-weight:600;margin-bottom:14px}
-  @media(max-width:600px){.chain-grid{grid-template-columns:1fr 1fr}.container{padding:20px 14px}h1{font-size:1.3rem}}
+  .divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#333;font-size:0.78rem}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:#1a1a1a}
+  .info-note{background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.15);border-radius:8px;padding:12px 16px;font-size:0.82rem;color:#8B5CF6;line-height:1.55;margin-bottom:16px}
+  .info-note a{color:#F59E0B;text-decoration:none}
+  .info-note a:hover{text-decoration:underline}
+
+  @media(max-width:600px){.chain-grid{grid-template-columns:1fr 1fr}.container{padding:20px 14px}h1{font-size:1.3rem}.api-row{flex-direction:column}.project-actions{flex-direction:column}}
 </style>
 </head>
 <body>
 <nav>
-  <a href="web3-hunter.html" class="logo">⚡ Funmzy Tools</a>
-  <a href="web3-hunter.html" class="active">🔍 Web3 Hunter</a>
+  <a href="index.html" class="logo">⚡ Funmzy</a>
+  <a href="web3-hunter.html" class="active">🔍 Hunter</a>
   <a href="dm-generator.html">💬 DM Gen</a>
   <a href="kols3-diagnostic.html">📊 KOLS3</a>
   <a href="content-generator.html">✍️ Content</a>
@@ -50,152 +117,357 @@
 </nav>
 <div class="container">
   <h1>Web3 <span>Hunter</span></h1>
-  <p class="subtitle">Generate your morning alpha hunt prompt in seconds.</p>
+  <p class="subtitle">Select chain → AI hunts live projects → one-click into DM Generator.</p>
 
+  <!-- FLOW INDICATOR -->
+  <div class="flow">
+    <div class="step"><div class="step-num active" id="s1">1</div><span class="step-label active">Setup API</span></div>
+    <div class="step-arrow">→</div>
+    <div class="step"><div class="step-num" id="s2">2</div><span class="step-label" id="sl2">Pick Chain</span></div>
+    <div class="step-arrow">→</div>
+    <div class="step"><div class="step-num" id="s3">3</div><span class="step-label" id="sl3">AI Hunts</span></div>
+    <div class="step-arrow">→</div>
+    <div class="step"><div class="step-num" id="s4">4</div><span class="step-label" id="sl4">Send DMs</span></div>
+  </div>
+
+  <!-- STEP 1: API KEY -->
+  <div class="card" id="apiCard">
+    <div class="tag">STEP 1 — AI ENGINE (ONE-TIME SETUP)</div>
+    <div class="info-note">
+      Your API key is saved only in your browser (localStorage). It never leaves your device. Get a free key at <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a> or <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>
+    </div>
+    <div class="provider-tabs">
+      <div class="ptab active" onclick="setProvider('openai',this)">OpenAI (ChatGPT)</div>
+      <div class="ptab" onclick="setProvider('anthropic',this)">Anthropic (Claude)</div>
+    </div>
+    <div class="api-row">
+      <div class="form-group">
+        <label id="keyLabel">OpenAI API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
+      </div>
+      <button class="eye-btn" onclick="toggleKey()">👁</button>
+      <button class="btn sm purple" onclick="saveKey()" style="flex-shrink:0;height:44px">Save Key</button>
+    </div>
+    <div class="key-status none" id="keyStatus">No key saved yet</div>
+  </div>
+
+  <!-- STEP 2: CHAIN + FOCUS -->
   <div class="card">
-    <div class="tag">STEP 1 — SELECT CHAIN</div>
+    <div class="tag">STEP 2 — SELECT CHAIN</div>
     <div class="chain-grid">
-      <div class="chain-btn" onclick="selectChain('Solana','◎')">
-        <span class="chain-icon">◎</span>Solana
-      </div>
-      <div class="chain-btn" onclick="selectChain('Base','🔵')">
-        <span class="chain-icon">🔵</span>Base
-      </div>
-      <div class="chain-btn" onclick="selectChain('BSC','🟡')">
-        <span class="chain-icon">🟡</span>BSC
-      </div>
+      <div class="chain-btn" onclick="selectChain('Solana','◎',this)"><span class="chain-icon">◎</span>Solana</div>
+      <div class="chain-btn" onclick="selectChain('Base','🔵',this)"><span class="chain-icon">🔵</span>Base</div>
+      <div class="chain-btn" onclick="selectChain('BSC','🟡',this)"><span class="chain-icon">🟡</span>BSC</div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="tag">STEP 2 — CUSTOMIZE (OPTIONAL)</div>
-    <div class="form-group">
-      <label>Focus (e.g. memecoins, DeFi, NFTs, launchpads)</label>
-      <input type="text" id="focus" placeholder="e.g. memecoins with real community traction">
-    </div>
+    <div style="height:18px"></div>
     <div class="form-group" style="margin-bottom:0">
-      <label>Budget / Capital Context</label>
-      <input type="text" id="budget" placeholder="e.g. small cap under $5M mcap">
+      <label>Focus (optional)</label>
+      <input type="text" id="focus" placeholder="e.g. memecoins, DeFi, NFTs, launchpads under $5M mcap">
     </div>
   </div>
 
-  <button class="btn" onclick="generate()">⚡ Generate Morning Hunt Prompt</button>
+  <!-- HUNT BUTTON -->
+  <button class="btn" id="huntBtn" onclick="runHunt()">🔍 Hunt Projects with AI</button>
 
-  <div id="output" style="display:none">
-    <div class="output-card">
-      <div class="output-label">🔍 Morning Hunt Prompt</div>
-      <button class="copy-btn" id="copyBtn" onclick="copyOutput()">Copy</button>
-      <div class="output-text" id="outputText"></div>
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <div class="loader-text" id="loaderText">AI is scanning the Web3 space...</div>
+    <div class="loader-sub" id="loaderSub">Identifying projects, analyzing gaps, building your hit list</div>
+  </div>
+
+  <!-- ERROR -->
+  <div class="error-box" id="errorBox" style="display:none">
+    <strong>❌ Error</strong>
+    <span id="errorMsg"></span>
+    <div style="margin-top:12px;color:#888;font-size:0.82rem">You can still use the manual prompt below ↓</div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="resultsSection" style="display:none;margin-top:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <div style="font-size:0.78rem;color:#F59E0B;font-weight:700;letter-spacing:.07em;text-transform:uppercase">🎯 Projects Found</div>
+      <button class="btn ghost sm" onclick="runHunt()">↻ Hunt Again</button>
+    </div>
+    <div class="results-grid" id="resultsGrid"></div>
+  </div>
+
+  <!-- MANUAL FALLBACK -->
+  <div id="manualSection" style="margin-top:28px">
+    <div class="divider">or use the manual prompt</div>
+    <div style="font-size:0.78rem;color:#555;margin-bottom:10px">No API key? Copy this prompt → paste into <a href="https://chat.openai.com" target="_blank" style="color:#F59E0B;text-decoration:none">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color:#F59E0B;text-decoration:none">Claude.ai</a> → paste results back here manually</div>
+    <div class="prompt-box" id="manualPromptBox" style="display:none">
+      <button class="copy-btn" id="manualCopyBtn" onclick="copyManual()">Copy</button>
+      <div class="prompt-text" id="manualPromptText"></div>
     </div>
   </div>
+
 </div>
 
 <script>
 let selectedChain = '';
 let selectedIcon = '';
+let provider = 'openai';
 
-function selectChain(chain, icon) {
+// ── Provider toggle ──
+function setProvider(p, el) {
+  provider = p;
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('keyLabel').textContent = p === 'openai' ? 'OpenAI API Key' : 'Anthropic API Key';
+  document.getElementById('apiKey').placeholder = p === 'openai' ? 'sk-...' : 'sk-ant-...';
+  loadSavedKey();
+}
+
+// ── Key management ──
+function saveKey() {
+  const key = document.getElementById('apiKey').value.trim();
+  if (!key) { alert('Enter your API key first'); return; }
+  localStorage.setItem('funmzy_' + provider + '_key', key);
+  showKeyStatus(true);
+  updateSteps(1);
+}
+
+function loadSavedKey() {
+  const key = localStorage.getItem('funmzy_' + provider + '_key') || '';
+  document.getElementById('apiKey').value = key;
+  showKeyStatus(!!key);
+  if (key) updateSteps(1);
+}
+
+function showKeyStatus(has) {
+  const el = document.getElementById('keyStatus');
+  if (has) {
+    el.className = 'key-status ok';
+    el.textContent = '✓ Key saved — ready to hunt';
+  } else {
+    el.className = 'key-status none';
+    el.textContent = 'No key saved yet';
+  }
+}
+
+function toggleKey() {
+  const inp = document.getElementById('apiKey');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+// ── Chain select ──
+function selectChain(chain, icon, el) {
   selectedChain = chain;
   selectedIcon = icon;
   document.querySelectorAll('.chain-btn').forEach(b => b.classList.remove('selected'));
-  event.currentTarget.classList.add('selected');
+  el.classList.add('selected');
+  updateManualPrompt();
+  updateSteps(2);
 }
 
-function generate() {
-  if (!selectedChain) {
-    alert('Please select a chain first.');
-    return;
+// ── Step indicator ──
+function updateSteps(step) {
+  for (let i = 1; i <= 4; i++) {
+    const num = document.getElementById('s' + i);
+    if (!num) continue;
+    if (i < step) { num.className = 'step-num done'; num.textContent = '✓'; }
+    else if (i === step) { num.className = 'step-num active'; num.textContent = i; }
+    else { num.className = 'step-num'; num.textContent = i; }
   }
-  const focus = document.getElementById('focus').value.trim() || 'high-potential gems with early traction';
-  const budget = document.getElementById('budget').value.trim() || 'small to mid cap opportunities';
-
-  const prompts = {
-    Solana: `🌅 SOLANA MORNING HUNT — ${new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'})}
-
-Chain: Solana (SOL) ${selectedIcon}
-Focus: ${focus}
-Scope: ${budget}
-
-▸ Scan Birdeye / Dexscreener for top Solana gainers (last 4h)
-▸ Filter: volume > $200K | liquidity > $50K | age < 48h
-▸ Check Pump.fun trending — flag any with 1000+ holders & active dev
-▸ Review @SolanaFloor & @solanafm for new project launches
-▸ Search CT: "Solana" + "gem" + "just launched" (last 12h)
-▸ Check Solana Discord servers for alpha drops
-▸ Scan Jupiter new pools — look for LP depth vs volume ratio
-▸ Flag any projects with KOL engagement + no VC backing
-
-Hunt Criteria:
-✓ Real community (not bots)
-✓ Active dev wallet (check recent txns)
-✓ Growing holder count (not flat/declining)
-✓ Organic CT mentions (not paid shills)
-
-Output: List top 3 finds with contract, mcap, volume, and one-line thesis.`,
-
-    Base: `🌅 BASE MORNING HUNT — ${new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'})}
-
-Chain: Base (Coinbase L2) ${selectedIcon}
-Focus: ${focus}
-Scope: ${budget}
-
-▸ Scan Dexscreener Base trending (last 4h gainers)
-▸ Filter: volume > $150K | liquidity > $30K | holders growing
-▸ Check BaseScan for new contract deploys (last 24h)
-▸ Search X/CT: "Base" + "gem" + "new" (last 12h)
-▸ Review @base_ecosystem announcements for new integrations
-▸ Check Aerodrome/Uniswap V3 Base for new pools with activity
-▸ Look for Coinbase ecosystem plays (CB Wallet trending tokens)
-▸ Monitor Base Discord alpha channels for early calls
-
-Hunt Criteria:
-✓ Coinbase ecosystem tie-in = bonus
-✓ LP locked or burned
-✓ Growing social presence (not ghost accounts)
-✓ Simple, clear narrative (degens want fast thesis)
-
-Output: List top 3 finds with contract, mcap, volume, and one-line thesis.`,
-
-    BSC: `🌅 BSC MORNING HUNT — ${new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'})}
-
-Chain: BNB Smart Chain (BSC) ${selectedIcon}
-Focus: ${focus}
-Scope: ${budget}
-
-▸ Scan PancakeSwap trending + Dexscreener BSC (last 4h)
-▸ Filter: volume > $300K | liquidity > $75K | buy/sell ratio > 1.5
-▸ Check BscScan for hot new contract deploys (last 24h)
-▸ Search X/CT: "BSC" OR "BNB" + "gem" + "just launched" (12h)
-▸ Review @BNBCHAIN & @PancakeSwap for ecosystem news
-▸ Check Pinksale / DXSALE for upcoming BSC launches
-▸ Flag projects with Binance Labs or BNB Grant narrative
-▸ Monitor BSC alpha Telegram groups for early calls
-
-Hunt Criteria:
-✓ No honeypot (verify on honeypot.is)
-✓ Taxes ≤ 5% buy/sell
-✓ Dev not dumping (check wallet activity)
-✓ Real community engagement (Telegram activity)
-
-Output: List top 3 finds with contract, mcap, volume, and one-line thesis.`
-  };
-
-  document.getElementById('outputText').textContent = prompts[selectedChain];
-  document.getElementById('output').style.display = 'block';
-  document.getElementById('copyBtn').textContent = 'Copy';
-  document.getElementById('copyBtn').classList.remove('copied');
-  document.getElementById('output').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-function copyOutput() {
-  const text = document.getElementById('outputText').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copyBtn');
+// ── Manual prompt ──
+function buildPrompt() {
+  const focus = document.getElementById('focus').value.trim() || 'any high-potential early-stage project';
+  return `You are a Web3 alpha researcher. Hunt for REAL, currently active ${selectedChain} projects that match: "${focus}".
+
+Return EXACTLY 5 projects in this JSON format (no other text, just valid JSON):
+[
+  {
+    "name": "Project Name",
+    "handle": "@TwitterHandle",
+    "chain": "${selectedChain}",
+    "stage": "pre-launch | just launched | early growth",
+    "mcap": "estimated market cap or 'not launched'",
+    "gap": "One specific growth gap or weakness you spotted — be specific and actionable",
+    "service": "landing page | AI video content | memecoin marketing | full growth strategy",
+    "why": "One sentence on why this project has potential"
+  }
+]
+
+Requirements:
+- Real projects actively building or just launched on ${selectedChain}
+- Focus: ${focus}
+- Gaps must be specific (e.g. "no landing page", "weak CT presence under 2K followers", "no KOL strategy")
+- Match service to the gap
+- Include a mix of stages`;
+}
+
+function updateManualPrompt() {
+  if (!selectedChain) return;
+  document.getElementById('manualPromptText').textContent = buildPrompt();
+  document.getElementById('manualPromptBox').style.display = 'block';
+}
+
+function copyManual() {
+  navigator.clipboard.writeText(document.getElementById('manualPromptText').textContent).then(() => {
+    const btn = document.getElementById('manualCopyBtn');
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
   });
 }
+
+// ── Main hunt ──
+async function runHunt() {
+  if (!selectedChain) { alert('Select a chain first.'); return; }
+
+  const key = localStorage.getItem('funmzy_' + provider + '_key');
+  if (!key) {
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorMsg').textContent = 'No API key saved. Save your key in Step 1 above, or use the manual prompt.';
+    return;
+  }
+
+  document.getElementById('errorBox').style.display = 'none';
+  document.getElementById('resultsSection').style.display = 'none';
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('huntBtn').disabled = true;
+  updateSteps(3);
+
+  const loaderMessages = [
+    ['🔍 Scanning the Web3 space...', 'Looking for active projects on ' + selectedChain],
+    ['📊 Analyzing project metrics...', 'Checking community size, content, KOL coverage'],
+    ['🎯 Identifying growth gaps...', 'Finding the best outreach angles for you'],
+    ['✍️ Building your hit list...', 'Almost ready — packaging your targets']
+  ];
+  let msgIdx = 0;
+  const msgInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % loaderMessages.length;
+    document.getElementById('loaderText').textContent = loaderMessages[msgIdx][0];
+    document.getElementById('loaderSub').textContent = loaderMessages[msgIdx][1];
+  }, 2500);
+
+  try {
+    const prompt = buildPrompt();
+    let data;
+
+    if (provider === 'openai') {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [{ role: 'user', content: prompt }],
+          temperature: 0.7,
+          max_tokens: 1500
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error?.message || 'OpenAI API error ' + res.status);
+      }
+      data = await res.json();
+      const text = data.choices[0].message.content.trim();
+      renderResults(text);
+
+    } else {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': key,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 1500,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error?.message || 'Anthropic API error ' + res.status);
+      }
+      data = await res.json();
+      const text = data.content[0].text.trim();
+      renderResults(text);
+    }
+
+  } catch (err) {
+    clearInterval(msgInterval);
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('huntBtn').disabled = false;
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorMsg').textContent = err.message;
+    updateSteps(2);
+  }
+
+  clearInterval(msgInterval);
+}
+
+function renderResults(raw) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('huntBtn').disabled = false;
+
+  // Extract JSON from response
+  let projects;
+  try {
+    const match = raw.match(/\[[\s\S]*\]/);
+    if (!match) throw new Error('No JSON array found');
+    projects = JSON.parse(match[0]);
+  } catch (e) {
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorMsg').textContent = 'AI returned unexpected format. Try again or use the manual prompt.';
+    updateSteps(2);
+    return;
+  }
+
+  const grid = document.getElementById('resultsGrid');
+  grid.innerHTML = '';
+
+  projects.forEach((p, i) => {
+    const handle = p.handle || '@unknown';
+    const name = p.name || 'Unknown Project';
+    const gap = p.gap || 'Growth gap identified';
+    const service = p.service || 'full growth strategy';
+    const stage = p.stage || '';
+    const mcap = p.mcap || '';
+    const why = p.why || '';
+
+    // Build DM generator URL with pre-filled params
+    const dmUrl = `dm-generator.html?project=${encodeURIComponent(name)}&handle=${encodeURIComponent(handle)}&gap=${encodeURIComponent(gap)}&service=${encodeURIComponent(service)}`;
+
+    grid.innerHTML += `
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-info">
+          <div class="project-name">${name}</div>
+          <div class="project-handle">${handle}</div>
+        </div>
+        <div class="project-chain-badge">${selectedIcon} ${p.chain || selectedChain}</div>
+      </div>
+      <div class="project-meta">
+        ${stage ? `<div class="meta-pill">Stage: <span>${stage}</span></div>` : ''}
+        ${mcap ? `<div class="meta-pill">MCap: <span>${mcap}</span></div>` : ''}
+        ${service ? `<div class="meta-pill">Lead with: <span>${service}</span></div>` : ''}
+      </div>
+      <div class="project-gap">
+        <strong>Gap spotted</strong>
+        ${gap}
+      </div>
+      ${why ? `<div style="font-size:0.8rem;color:#555;margin-bottom:14px;font-style:italic">"${why}"</div>` : ''}
+      <div class="project-actions">
+        <button class="hunt-btn" onclick="window.location.href='${dmUrl}'">💬 Generate DMs for This Project →</button>
+        <a class="view-btn" href="https://twitter.com/${handle.replace('@','')}" target="_blank">🐦 View</a>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('resultsSection').style.display = 'block';
+  document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});
+  updateSteps(4);
+}
+
+// ── Init ──
+loadSavedKey();
 </script>
 </body>
 </html>
