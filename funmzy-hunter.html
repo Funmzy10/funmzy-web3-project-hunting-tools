@@ -8,7 +8,6 @@
 :root{--bg:#080808;--sf:#0f0f0f;--sf2:#111;--bd:#1a1a1a;--gold:#F59E0B;--pur:#8B5CF6;--wh:#fff;--mu:#6B7280;--gr:#10B981;--rd:#EF4444;--cy:#06b6d4;--nh:52px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--wh);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;padding-top:var(--nh)}
-/* NAV */
 #nav{position:fixed;top:0;left:0;right:0;height:var(--nh);background:var(--sf);border-bottom:1px solid var(--bd);display:flex;align-items:center;padding:0 14px;gap:8px;z-index:1000;overflow-x:auto}
 .nav-logo{font-weight:900;font-size:0.88rem;color:var(--gold);white-space:nowrap;letter-spacing:.02em;flex-shrink:0;margin-right:6px}
 .nav-tabs{display:flex;gap:2px;overflow-x:auto;flex:1}
@@ -20,18 +19,14 @@ body{background:var(--bg);color:var(--wh);font-family:'Segoe UI',system-ui,-appl
 .nav-links{display:flex;gap:4px;flex-shrink:0;margin-left:4px}
 .nlink{background:#1a1a1a;border:1px solid var(--bd);color:var(--mu);font-size:0.68rem;font-weight:600;padding:4px 8px;border-radius:5px;cursor:pointer;transition:.15s;white-space:nowrap;font-family:inherit}
 .nlink:hover{border-color:var(--gold);color:var(--gold)}
-/* LAYOUT */
 .layout{display:flex;min-height:calc(100vh - var(--nh))}
 .main{flex:1;min-width:0;padding:22px 20px}
 #sidebar{width:290px;flex-shrink:0;background:var(--sf);border-left:1px solid var(--bd);padding:18px 16px;position:sticky;top:var(--nh);height:calc(100vh - var(--nh));overflow-y:auto}
-/* PANELS */
 .panel{display:none}.panel.active{display:block}
-/* CARDS */
 .card{background:var(--sf);border:1px solid var(--bd);border-radius:11px;padding:18px 20px;margin-bottom:14px}
-/* LABELS */
 .fl{display:block;font-size:0.7rem;color:var(--gold);font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
 .stag{display:inline-block;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:var(--gold);border-radius:4px;padding:2px 8px;font-size:0.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-/* INPUTS */
+.stag-red{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.2);color:var(--rd)}
 input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--bd);color:var(--wh);border-radius:7px;padding:9px 12px;font-size:0.88rem;outline:none;transition:.18s;font-family:inherit}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(245,158,11,.1)}
 input::placeholder,textarea::placeholder{color:#383838}
@@ -39,26 +34,21 @@ select option{background:#111}
 textarea{resize:vertical;min-height:65px}
 .fg{margin-bottom:13px}.fg:last-child{margin-bottom:0}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-/* CHIPS */
 .chip-group{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
 .chip{background:var(--bg);border:1px solid var(--bd);color:var(--mu);border-radius:20px;padding:4px 11px;font-size:0.72rem;font-weight:600;cursor:pointer;transition:.14s;user-select:none}
 .chip:hover{border-color:#333;color:#aaa}
 .chip.on{background:rgba(245,158,11,.1);border-color:var(--gold);color:var(--gold)}
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:7px;padding:11px 18px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:.18s;font-family:inherit;text-decoration:none}
 .btn:hover{opacity:.88}
 .bg{background:var(--gold);color:#080808}
 .bp{background:var(--pur);color:#fff}
 .bgh{background:#1a1a1a;color:#aaa;border:1px solid var(--bd)}
 .bfu{width:100%}
-/* COPY BUTTON */
 .cb{background:var(--pur);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:0.72rem;font-weight:700;cursor:pointer;transition:.14s;white-space:nowrap;font-family:inherit}
 .cb:hover{background:#7c3aed}
-/* PROMPT BOX */
 .pbox{background:#0a0a0a;border:1px solid var(--bd);border-radius:9px;padding:16px;font-family:'Consolas','Courier New',monospace;font-size:0.78rem;color:#bbb;line-height:1.68;white-space:pre-wrap;word-break:break-word;min-height:100px}
 .pbox-ph{color:#2a2a2a;font-style:italic}
 .pbox-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px}
-/* TERMINAL / DM CONSOLE */
 .term{background:#0a0a0a;border:1px solid var(--bd);border-radius:10px;overflow:hidden;font-family:'Consolas','Courier New',monospace;font-size:0.8rem}
 .term-sec{padding:13px 15px;border-bottom:1px solid #0f0f0f}
 .term-sec:last-child{border-bottom:none}
@@ -67,23 +57,27 @@ textarea{resize:vertical;min-height:65px}
 .tg{color:var(--gr)}
 .tw{color:#ddd;line-height:1.75;white-space:pre-wrap;word-break:break-word;margin-top:8px;padding-top:8px;border-top:1px solid #131313}
 .tm-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
-/* WORD COUNT */
 .wc{display:inline-block;border-radius:4px;padding:2px 7px;font-size:0.66rem;font-weight:700}
 .wc-ok{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.25);color:var(--gr)}
 .wc-ov{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:var(--rd)}
-/* ACTION LINKS */
 .al-grid{display:flex;flex-direction:column;gap:5px;margin-bottom:4px}
 .al{display:flex;align-items:center;gap:7px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.13);border-radius:6px;padding:7px 11px;text-decoration:none;color:var(--gr);font-size:0.76rem;font-weight:600;transition:.14s;font-family:monospace}
 .al:hover{background:rgba(16,185,129,.13);border-color:rgba(16,185,129,.28)}
-/* DM ENGINE */
+.al-tw{background:rgba(29,161,242,.07);border-color:rgba(29,161,242,.15);color:#1da1f2}
+.al-tw:hover{background:rgba(29,161,242,.13);border-color:rgba(29,161,242,.3)}
+.al-tg{background:rgba(36,161,222,.07);border-color:rgba(36,161,222,.15);color:#24a1de}
+.al-tg:hover{background:rgba(36,161,222,.13);border-color:rgba(36,161,222,.3)}
+.al-gm{background:rgba(234,67,53,.07);border-color:rgba(234,67,53,.15);color:#ea4335}
+.al-gm:hover{background:rgba(234,67,53,.13);border-color:rgba(234,67,53,.3)}
+.al-rep{background:rgba(139,92,246,.07);border-color:rgba(139,92,246,.15);color:#8B5CF6}
+.al-rep:hover{background:rgba(139,92,246,.13);border-color:rgba(139,92,246,.3)}
 .eng-title{font-size:0.95rem;font-weight:800;color:var(--gold);letter-spacing:.03em;margin-bottom:18px;padding-bottom:10px;border-top:2px solid var(--bd);padding-top:22px;margin-top:28px}
 .eng-cols{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
-/* CHECKBOXES */
 .ck-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:3px}
 .ck-item{display:flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:5px 11px;cursor:pointer;transition:.14s;font-size:0.76rem;color:var(--mu);user-select:none}
 .ck-item:hover{border-color:#333;color:#aaa}
 .ck-item.on{border-color:var(--gold);color:var(--gold);background:rgba(245,158,11,.06)}
-/* SIDEBAR */
+#sidebar{width:290px;flex-shrink:0;background:var(--sf);border-left:1px solid var(--bd);padding:18px 16px;position:sticky;top:var(--nh);height:calc(100vh - var(--nh));overflow-y:auto}
 .sb-t{font-size:0.65rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--bd)}
 .sb-sec{margin-bottom:18px}
 .sb-link{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:7px 10px;margin-bottom:5px}
@@ -97,10 +91,9 @@ textarea{resize:vertical;min-height:65px}
 .price-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #0f0f0f;font-size:0.74rem}
 .price-row:last-child{border-bottom:none}
 .pr-name{color:#888}.pr-val{color:var(--gold);font-weight:700}.pr-time{color:#444;font-size:0.65rem}
-/* NOTE */
 .inote{background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.15);border-radius:7px;padding:10px 13px;font-size:0.76rem;color:#8B5CF6;line-height:1.55;margin-top:10px}
 .inote strong{color:var(--pur)}
-/* INTEL */
+.inote-red{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.15);color:#f87171}
 .ir-section{margin-bottom:18px}
 .ir-sec-title{font-size:0.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pur);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid rgba(139,92,246,.18)}
 .ir-row{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #0f0f0f;font-size:0.82rem}
@@ -114,9 +107,8 @@ textarea{resize:vertical;min-height:65px}
 .ir-b-bad{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);color:var(--rd)}
 .ir-b-pur{background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.22);color:var(--pur)}
 .ir-gap-item{display:flex;align-items:center;gap:7px;padding:6px 9px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12);border-radius:6px;margin-bottom:5px;font-size:0.78rem;color:#ddd}
-.ir-keyword{display:inline-block;background:#111;border:1px solid #1e1e1e;color:#888;border-radius:4px;padding:2px 8px;font-size:0.68rem;margin:2px 2px 0 0}
 #sb-toggle{display:none}
-/* MOBILE */
+.must-tw-badge{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);color:var(--rd);border-radius:5px;padding:3px 10px;font-size:0.65rem;font-weight:800;letter-spacing:.06em;display:inline-block;margin-bottom:10px}
 @media(max-width:820px){
   .layout{flex-direction:column}
   #sidebar{width:100%;position:static;height:auto;border-left:none;border-top:1px solid var(--bd);display:none}
@@ -132,20 +124,19 @@ textarea{resize:vertical;min-height:65px}
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">FUNMZY HUNTER 🦁</div>
   <div class="nav-tabs">
-    <button class="ntab active" data-tab="new"    onclick="switchTab('new',this)">NEW</button>
-    <button class="ntab"        data-tab="mid"    onclick="switchTab('mid',this)">MID-STAGE</button>
-    <button class="ntab"        data-tab="long"   onclick="switchTab('long',this)">LONG TERM</button>
-    <button class="ntab"        data-tab="local"  onclick="switchTab('local',this)">LOCAL BIZ</button>
-    <button class="ntab"        data-tab="collab" onclick="switchTab('collab',this)">COLLABS</button>
+    <button class="ntab active" data-tab="new"    onclick="switchTab('new',this)">🔥 NEW</button>
+    <button class="ntab"        data-tab="mid"    onclick="switchTab('mid',this)">📈 MID-STAGE</button>
+    <button class="ntab"        data-tab="long"   onclick="switchTab('long',this)">🏗 LONG TERM</button>
+    <button class="ntab"        data-tab="local"  onclick="switchTab('local',this)">📍 LOCAL BIZ</button>
+    <button class="ntab"        data-tab="collab" onclick="switchTab('collab',this)">🤝 COLLABS</button>
     <button class="ntab intel-tab" data-tab="intel" onclick="switchTab('intel',this)">🔬 INTEL</button>
   </div>
   <div class="nav-links">
-    <button class="nlink" id="nl-site" onclick="qCopy('https://funmzy-site.vercel.app/','nl-site')">🌐 Site</button>
-    <button class="nlink" id="nl-tg"   onclick="qCopy('@Funmzydasilva','nl-tg')">💬 TG</button>
+    <button class="nlink" id="nl-site" onclick="qCopy('https://funmzy-site.vercel.app/','nl-site')">🌐 My Site</button>
+    <button class="nlink" id="nl-tg"   onclick="qCopy('https://t.me/Funmzydasilva','nl-tg')">💬 TG</button>
     <button class="nlink" id="nl-x"    onclick="qCopy('@Lionrage10','nl-x')">🐦 X</button>
   </div>
 </nav>
@@ -157,11 +148,12 @@ textarea{resize:vertical;min-height:65px}
 <div class="panel active" id="p-new">
   <div class="card">
     <div class="stag">NEW PROJECTS — 0 to 24 Hours</div>
+    <div class="must-tw-badge">⚡ MANDATORY: Twitter/X Required — Projects without Twitter are excluded</div>
     <div class="fg"><span class="fl">Chains</span><div class="chip-group" id="chips-chains-new"></div></div>
     <div class="fg"><span class="fl">Niches</span><div class="chip-group" id="chips-niches-new"></div></div>
     <div class="fr">
       <div class="fg"><span class="fl">Min Followers</span><input type="number" id="minf-new" value="100" oninput="ls('minf-new')"></div>
-      <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-new" value="500" oninput="ls('maxf-new')"></div>
+      <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-new" value="2000" oninput="ls('maxf-new')"></div>
     </div>
     <button class="btn bg bfu" onclick="genPrompt('new')">⚡ Generate Hunt Prompt</button>
   </div>
@@ -170,20 +162,21 @@ textarea{resize:vertical;min-height:65px}
       <span class="fl" style="margin-bottom:0">Hunt Prompt Output</span>
       <button class="cb" id="cb-new" onclick="copyBox('out-new','cb-new')">Copy Prompt</button>
     </div>
-    <div class="pbox" id="out-new"><span class="pbox-ph">Select filters above then click Generate Hunt Prompt.</span></div>
-    <div class="inote" style="margin-top:10px"><strong>Next:</strong> Copy → paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → paste results into DM Engine below ↓</div>
+    <div class="pbox" id="out-new"><span class="pbox-ph">Select filters then click Generate Hunt Prompt → paste into Claude / Grok / ChatGPT.</span></div>
+    <div class="inote"><strong>How to use:</strong> Copy prompt → paste into <strong>Grok (X)</strong> or <strong>Claude.ai</strong> → paste results into DM Engine below ↓</div>
   </div>
 </div>
 
 <!-- TAB: MID -->
 <div class="panel" id="p-mid">
   <div class="card">
-    <div class="stag">MID-STAGE — 1 Day to 3 Months</div>
+    <div class="stag">MID-STAGE PROJECTS — 1 Day to 3 Months</div>
+    <div class="must-tw-badge">⚡ MANDATORY: Twitter/X Required — active post in last 7 days</div>
     <div class="fg"><span class="fl">Chains</span><div class="chip-group" id="chips-chains-mid"></div></div>
     <div class="fg"><span class="fl">Niches</span><div class="chip-group" id="chips-niches-mid"></div></div>
     <div class="fr">
       <div class="fg"><span class="fl">Min Followers</span><input type="number" id="minf-mid" value="500" oninput="ls('minf-mid')"></div>
-      <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-mid" value="5000" oninput="ls('maxf-mid')"></div>
+      <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-mid" value="10000" oninput="ls('maxf-mid')"></div>
     </div>
     <button class="btn bg bfu" onclick="genPrompt('mid')">⚡ Generate Hunt Prompt</button>
   </div>
@@ -192,20 +185,21 @@ textarea{resize:vertical;min-height:65px}
       <span class="fl" style="margin-bottom:0">Hunt Prompt Output</span>
       <button class="cb" id="cb-mid" onclick="copyBox('out-mid','cb-mid')">Copy Prompt</button>
     </div>
-    <div class="pbox" id="out-mid"><span class="pbox-ph">Select filters above then click Generate Hunt Prompt.</span></div>
-    <div class="inote" style="margin-top:10px"><strong>Next:</strong> Copy → paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → paste results into DM Engine below ↓</div>
+    <div class="pbox" id="out-mid"><span class="pbox-ph">Select filters then click Generate Hunt Prompt.</span></div>
+    <div class="inote"><strong>How to use:</strong> Copy → paste into <strong>Grok</strong> or <strong>Claude.ai</strong> → paste results into DM Engine ↓</div>
   </div>
 </div>
 
 <!-- TAB: LONG -->
 <div class="panel" id="p-long">
   <div class="card">
-    <div class="stag">LONG TERM — 3 Months to 2 Years</div>
+    <div class="stag">LONG TERM PROJECTS — 3 Months to 2+ Years</div>
+    <div class="must-tw-badge">⚡ MANDATORY: Twitter/X Required — active post in last 14 days</div>
     <div class="fg"><span class="fl">Chains</span><div class="chip-group" id="chips-chains-long"></div></div>
     <div class="fg"><span class="fl">Niches</span><div class="chip-group" id="chips-niches-long"></div></div>
     <div class="fr">
-      <div class="fg"><span class="fl">Min Followers</span><input type="number" id="minf-long" value="500" oninput="ls('minf-long')"></div>
-      <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-long" value="50000" oninput="ls('maxf-long')"></div>
+      <div class="fg"><span class="fl">Min Followers</span><input type="number" id="minf-long" value="1000" oninput="ls('minf-long')"></div>
+      <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-long" value="100000" oninput="ls('maxf-long')"></div>
     </div>
     <button class="btn bg bfu" onclick="genPrompt('long')">⚡ Generate Hunt Prompt</button>
   </div>
@@ -214,8 +208,8 @@ textarea{resize:vertical;min-height:65px}
       <span class="fl" style="margin-bottom:0">Hunt Prompt Output</span>
       <button class="cb" id="cb-long" onclick="copyBox('out-long','cb-long')">Copy Prompt</button>
     </div>
-    <div class="pbox" id="out-long"><span class="pbox-ph">Select filters above then click Generate Hunt Prompt.</span></div>
-    <div class="inote" style="margin-top:10px"><strong>Next:</strong> Copy → paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → paste results into DM Engine below ↓</div>
+    <div class="pbox" id="out-long"><span class="pbox-ph">Select filters then click Generate Hunt Prompt.</span></div>
+    <div class="inote"><strong>How to use:</strong> Copy → paste into <strong>Grok</strong> or <strong>Claude.ai</strong> → paste results into DM Engine ↓</div>
   </div>
 </div>
 
@@ -242,7 +236,7 @@ textarea{resize:vertical;min-height:65px}
       <button class="cb" id="cb-local" onclick="copyBox('out-local','cb-local')">Copy Prompt</button>
     </div>
     <div class="pbox" id="out-local"><span class="pbox-ph">Fill in location then click Generate Hunt Prompt.</span></div>
-    <div class="inote" style="margin-top:10px"><strong>Next:</strong> Copy → paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → paste results into DM Engine below ↓</div>
+    <div class="inote"><strong>How to use:</strong> Copy → paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → paste results into DM Engine ↓</div>
   </div>
 </div>
 
@@ -250,8 +244,9 @@ textarea{resize:vertical;min-height:65px}
 <div class="panel" id="p-collab">
   <div class="card">
     <div class="stag">COLLAB HUNTERS</div>
+    <div class="must-tw-badge">⚡ MANDATORY: Active Twitter/X accounts only</div>
     <div class="fr">
-      <div class="fg"><span class="fl">Min Followers</span><input type="number" id="minf-collab" value="100" oninput="ls('minf-collab')"></div>
+      <div class="fg"><span class="fl">Min Followers</span><input type="number" id="minf-collab" value="500" oninput="ls('minf-collab')"></div>
       <div class="fg"><span class="fl">Max Followers</span><input type="number" id="maxf-collab" value="50000" oninput="ls('maxf-collab')"></div>
     </div>
     <div class="fg">
@@ -270,7 +265,7 @@ textarea{resize:vertical;min-height:65px}
       <button class="cb" id="cb-collab" onclick="copyBox('out-collab','cb-collab')">Copy Prompt</button>
     </div>
     <div class="pbox" id="out-collab"><span class="pbox-ph">Click Generate Hunt Prompt to build your collab search.</span></div>
-    <div class="inote" style="margin-top:10px"><strong>Next:</strong> Copy → paste into <strong>Claude.ai</strong> or <strong>Grok</strong> → paste results into DM Engine below ↓</div>
+    <div class="inote"><strong>How to use:</strong> Copy → paste into <strong>Grok</strong> → paste results into DM Engine ↓</div>
   </div>
 </div>
 
@@ -285,7 +280,7 @@ textarea{resize:vertical;min-height:65px}
         <button class="btn bp" id="intel-btn" onclick="runIntel()" style="white-space:nowrap;padding:9px 18px;flex-shrink:0">🔬 Scan Site</button>
       </div>
     </div>
-    <div class="inote">Drop any website URL — pulls all social links, emails, team info, token details, marketing gaps automatically.</div>
+    <div class="inote">Drop any website URL — auto-pulls social links, emails, team info, token details, marketing gaps, then one-click fills DM Engine.</div>
   </div>
   <div id="intel-loading" style="display:none" class="card">
     <div style="text-align:center;padding:28px 0;color:var(--mu);font-size:0.85rem">
@@ -301,13 +296,13 @@ textarea{resize:vertical;min-height:65px}
       <div class="pbox-hdr" style="margin-bottom:14px">
         <span class="fl" style="margin-bottom:0;color:var(--pur)">🔬 SITE INTEL REPORT</span>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button class="cb" id="cb-intel" onclick="copyIntelTxt()">Copy Report</button>
+          <button class="cb" id="cb-intel" onclick="copyIntelTxt()">📋 Copy Report</button>
           <button class="cb" id="intel-autofill" onclick="fillDMEngine()" style="background:var(--gold);color:#080808">⚡ Auto-Fill DM Engine</button>
         </div>
       </div>
       <div id="intel-report-html"></div>
     </div>
-    <div class="inote"><strong>Next:</strong> Click <strong>⚡ Auto-Fill DM Engine</strong> to push findings into the outreach engine below ↓</div>
+    <div class="inote"><strong>Next:</strong> Click <strong>⚡ Auto-Fill DM Engine</strong> to push all intel into outreach engine below ↓</div>
   </div>
   <div id="intel-error" style="display:none" class="card">
     <div id="intel-error-msg" style="color:var(--rd);font-size:0.85rem"></div>
@@ -321,25 +316,26 @@ textarea{resize:vertical;min-height:65px}
     <div class="card">
       <div class="stag">Target Info</div>
       <div class="fg"><span class="fl">Project / Business Name</span><input type="text" id="dm-proj" placeholder="e.g. HyperMoon" oninput="ls('dm-proj')"></div>
-      <div class="fg"><span class="fl">Twitter Handle</span><input type="text" id="dm-handle" placeholder="@Handle" oninput="ls('dm-handle')"></div>
-      <div class="fg"><span class="fl">Their Last Tweet (paste it)</span><textarea id="dm-tweet" placeholder="Paste their most recent tweet here..." oninput="ls('dm-tweet')"></textarea></div>
+      <div class="fg"><span class="fl">Twitter Handle (without @)</span><input type="text" id="dm-handle" placeholder="HandleWithout@" oninput="ls('dm-handle')"></div>
+      <div class="fg"><span class="fl">Their Last Tweet (paste it)</span><textarea id="dm-tweet" placeholder="Paste their most recent tweet here — DMs will reference it naturally." oninput="ls('dm-tweet')"></textarea></div>
       <div class="fg"><span class="fl">Last Tweet URL</span><input type="text" id="dm-tweeturl" placeholder="https://x.com/.../status/..." oninput="ls('dm-tweeturl')"></div>
     </div>
     <div class="card">
       <div class="stag">Strategy</div>
       <div class="fg">
-        <span class="fl">Biggest Gap</span>
+        <span class="fl">Biggest Gap You Spotted</span>
         <select id="dm-gap" onchange="onGapChange()">
           <option value="novid">No video content</option>
-          <option value="weaksocial">Weak social presence</option>
+          <option value="weaksocial">Weak social reach</option>
           <option value="nolp">No landing page</option>
           <option value="nomeme">No memecoin marketing</option>
-          <option value="deadcomm">Dead community</option>
-          <option value="badweb">Bad / outdated website</option>
+          <option value="deadcomm">Dead / inactive community</option>
+          <option value="badweb">Outdated or bad website</option>
           <option value="noweb3">No Web3 marketing strategy</option>
-          <option value="nokol">No KOL strategy</option>
+          <option value="nokol">No KOL coverage</option>
           <option value="lowvol">Low trading volume</option>
-          <option value="custom">Custom (type below)</option>
+          <option value="notwitter">No Twitter presence</option>
+          <option value="custom">Custom gap (type below)</option>
         </select>
       </div>
       <div class="fg" id="custom-gap-wrap" style="display:none">
@@ -352,38 +348,39 @@ textarea{resize:vertical;min-height:65px}
           <option value="lp">Landing Page ($100+ · 24hrs)</option>
           <option value="vid">AI Video Content ($100+ · 3 days)</option>
           <option value="meme">Memecoin Marketing ($2000+ · 3 days)</option>
-          <option value="web3">Web3 Solutions (Custom)</option>
+          <option value="web3">Web3 Growth Solutions (Custom)</option>
+          <option value="kol">KOL + Community Campaign</option>
+          <option value="full">Full Marketing Package</option>
         </select>
       </div>
     </div>
     <div class="card">
       <div class="stag">Contact Details</div>
-      <div class="fg"><span class="fl">Their Telegram Link</span><input type="text" id="dm-tg" placeholder="https://t.me/..." oninput="ls('dm-tg')"></div>
+      <div class="fg"><span class="fl">Their Telegram</span><input type="text" id="dm-tg" placeholder="https://t.me/... or @username" oninput="ls('dm-tg')"></div>
       <div class="fg"><span class="fl">Their Email (optional)</span><input type="text" id="dm-email" placeholder="hello@project.com" oninput="ls('dm-email')"></div>
     </div>
     <div class="card">
-      <div class="stag">Platforms to Generate</div>
+      <div class="stag">Channels to Generate</div>
       <div class="ck-group">
         <div class="ck-item on" id="chk-tw"  onclick="this.classList.toggle('on')">🐦 Twitter DM</div>
         <div class="ck-item on" id="chk-rep" onclick="this.classList.toggle('on')">💬 Tweet Reply</div>
         <div class="ck-item on" id="chk-tg"  onclick="this.classList.toggle('on')">✈️ Telegram DM</div>
-        <div class="ck-item on" id="chk-em"  onclick="this.classList.toggle('on')">📧 Email</div>
+        <div class="ck-item on" id="chk-em"  onclick="this.classList.toggle('on')">📧 Gmail Outreach</div>
       </div>
     </div>
-    <button class="btn bg bfu" style="margin-top:4px" onclick="genDMs()">⚡ Generate All DMs</button>
+    <button class="btn bg bfu" style="margin-top:4px" onclick="genDMs()">⚡ Generate All DMs + Action Links</button>
   </div>
   <div>
     <div class="term" id="dm-console">
-      <div class="term-ph">Fill in the target info on the left and click Generate All DMs.</div>
+      <div class="term-ph">Fill target info on the left → click Generate All DMs.<br><br>You get direct action links for every channel + ready-to-send DMs.</div>
     </div>
   </div>
 </div>
 
 <button class="btn bgh bfu" id="sb-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Quick Reference Panel</button>
 
-</div><!-- /main -->
+</div>
 
-<!-- SIDEBAR -->
 <aside id="sidebar">
   <div class="sb-sec">
     <div class="sb-t">My Links</div>
@@ -409,19 +406,20 @@ textarea{resize:vertical;min-height:65px}
     <div class="price-row"><span class="pr-name">Landing Page</span><span><span class="pr-val">$100+</span> <span class="pr-time">· 24hrs</span></span></div>
     <div class="price-row"><span class="pr-name">AI Video Content</span><span><span class="pr-val">$100+</span> <span class="pr-time">· 3 days</span></span></div>
     <div class="price-row"><span class="pr-name">Memecoin Marketing</span><span><span class="pr-val">$2000+</span> <span class="pr-time">· 3 days</span></span></div>
-    <div class="price-row"><span class="pr-name">Web3 Solutions</span><span><span class="pr-val">Custom</span> <span class="pr-time">· 12hr reply</span></span></div>
+    <div class="price-row"><span class="pr-name">KOL Campaign</span><span><span class="pr-val">Custom</span> <span class="pr-time">· 72hrs</span></span></div>
+    <div class="price-row"><span class="pr-name">Full Package</span><span><span class="pr-val">Custom</span> <span class="pr-time">· 5 days</span></span></div>
   </div>
   <div class="sb-sec">
     <div class="sb-t">KOLS3 Cheat Sheet</div>
     <div id="kols3-list"></div>
   </div>
 </aside>
-</div><!-- /layout -->
+</div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-//  CLIPBOARD — works on file:// AND https://
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
+//  CLIPBOARD
+// ═══════════════════════════════════════════════════
 function copyText(str) {
   if (!str) return Promise.resolve();
   if (navigator.clipboard && window.isSecureContext) {
@@ -466,30 +464,39 @@ function qCopy(txt, btnId) {
   copyText(txt).then(function() { flashBtn(btnId); });
 }
 
-// ═══════════════════════════════════════════════════════
+function copyDMBlock(elId, btnId) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  copyText(el.textContent).then(function() { flashBtn(btnId); });
+}
+
+// ═══════════════════════════════════════════════════
 //  DATA
-// ═══════════════════════════════════════════════════════
-var CHAINS = ['Solana','Base','ETH','BSC','All Chains'];
-var NICHES = ['DeFi','RWA','GameFi','GambleFi','NFT','AI+Crypto','DAO','L2/L3','SocialFi','Web3 Tools','DEX','Yield','Infrastructure'];
+// ═══════════════════════════════════════════════════
+var CHAINS = ['Solana','Base','ETH','BSC','TON','Sui','Aptos','Arbitrum','Polygon','All Chains'];
+var NICHES = ['DeFi','RWA','GameFi','GambleFi','NFT','AI+Crypto','DAO','L2/L3','SocialFi','Web3 Tools','DEX','Yield','Infrastructure','PayFi','Privacy'];
 var BTYPES = ['Restaurant','Fashion','Real Estate','Beauty/Salon','Gym','Photography','Law Firm','Dental','E-commerce','Entertainment','Logistics','Tech Startup'];
 
 var GAP_MAP = {
-  novid:'no video content at all',
-  weaksocial:'weak social reach and engagement',
-  nolp:'no proper landing page',
-  nomeme:'zero memecoin marketing',
-  deadcomm:'a dead or inactive community',
-  badweb:'an outdated or non-converting website',
-  noweb3:'no Web3 marketing strategy',
-  nokol:'no KOL strategy or coverage',
-  lowvol:'critically low trading volume'
+  novid:      'no video content at all',
+  weaksocial: 'weak social reach and engagement',
+  nolp:       'no real landing page or website',
+  nomeme:     'zero memecoin marketing angle',
+  deadcomm:   'a dead or barely active community',
+  badweb:     'an outdated site that doesn\'t convert',
+  noweb3:     'no Web3 marketing strategy',
+  nokol:      'no KOL coverage or strategy',
+  lowvol:     'critically low trading volume',
+  notwitter:  'almost zero Twitter presence'
 };
 
 var SVC_MAP = {
-  lp:   {name:'Landing pages',         q:'What does your current site convert at right now?'},
-  vid:  {name:'AI video content',       q:'Do you have any short-form video presence right now?'},
-  meme: {name:'Memecoin marketing',     q:"What's the current holder count looking like?"},
-  web3: {name:'Web3 growth solutions',  q:"What's the biggest growth blocker you're hitting right now?"}
+  lp:   { name:'landing pages',              q:'What does your current site convert at?' },
+  vid:  { name:'AI video content',            q:'You running any short-form video right now?' },
+  meme: { name:'memecoin marketing',          q:'What\'s the current holder count looking like?' },
+  web3: { name:'Web3 growth solutions',       q:'What\'s the biggest growth blocker you\'re hitting?' },
+  kol:  { name:'KOL + community campaigns',   q:'Any KOL coverage running right now?' },
+  full: { name:'full growth package',         q:'What stage are you at right now?' }
 };
 
 var KOLS3 = [
@@ -511,11 +518,14 @@ var KOLS3 = [
   {code:'016',name:'Technical Niche',gap:'No dev community',line:'"No tech content = can\'t attract builders."'}
 ];
 
-var RESULT_FORMAT = 'FOR EVERY PROJECT FOUND RETURN THIS EXACT FORMAT:\n\n====================================================================\n⚡ ALPHA TARGET // [PROJECT NAME]\n====================================================================\nChain: [Chain] | Sector: [Category] | Age: [hours/days old]\nTwitter: @[Handle] | URL: https://x.com/[Handle]\nFollowers: [Number] | First Tweet: [Date]\nTelegram: [Link or None] | Website: [URL or None]\nLast Tweet: "[Exact raw text of their most recent tweet]"\nLast Tweet URL: [Direct URL to that specific tweet]\nGap Spotted: [One sentence on their biggest missing piece]\n--------------------------------------------------------------------\nDIRECT ACTION LINKS:\n➔ Twitter DM: https://x.com/messages/compose?recipient_id=[Handle]\n➔ Telegram: [Telegram link or None]\n➔ Reply to last tweet: [Last Tweet URL]\n➔ Email: mailto:[email if found, else None]\n====================================================================';
+// ═══════════════════════════════════════════════════
+//  RESULT FORMAT — used in all hunt prompts
+// ═══════════════════════════════════════════════════
+var RF = '====================================================================\n⚡ TARGET // [PROJECT NAME]\n====================================================================\nChain: [Chain] | Sector: [Niche] | Age: [how old]\nTwitter: @[handle] | URL: https://x.com/[handle]\nFollowers: [number] | Account Created: [date]\nTelegram: [link or NONE] | Website: [URL or NONE]\nDiscord: [link or NONE] | GitHub: [link or NONE]\n\n📌 LAST TWEET:\n"[Copy the EXACT full text of their most recent tweet]"\nLast Tweet URL: https://x.com/[handle]/status/[tweet-id]\nPosted: [how long ago — e.g. 2 hours ago]\n\nGap Spotted: [1 sentence on their biggest missing piece]\n\nDIRECT ACTION LINKS:\n➔ Twitter DM:   https://x.com/messages/compose?recipient_id=[handle]\n➔ Tweet Reply:  [Last Tweet URL from above]\n➔ Telegram:     [link or NONE]\n➔ Email:        [email or NONE]\n====================================================================';
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  TABS
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function switchTab(tab, el) {
   document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.ntab').forEach(function(t){ t.classList.remove('active'); });
@@ -525,9 +535,9 @@ function switchTab(tab, el) {
   try { localStorage.setItem('fh_tab', tab); } catch(e){}
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  CHIPS
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function buildChips(containerId, items, defaults) {
   var el = document.getElementById(containerId);
   if (!el) return;
@@ -558,9 +568,9 @@ function chipStr(cid, fallback) {
   return v.length ? v.join(', ') : fallback;
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  LOCALSTORAGE
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function ls(id) {
   var el = document.getElementById(id);
   if (el) try { localStorage.setItem('fh_' + id, el.value); } catch(e){}
@@ -569,25 +579,21 @@ function ls(id) {
 function loadInput(id, def) {
   var el = document.getElementById(id);
   if (!el) return;
-  var v = '';
+  var v = null;
   try { v = localStorage.getItem('fh_' + id); } catch(e){}
-  if (v !== null && v !== undefined && v !== '') el.value = v;
+  if (v !== null && v !== '') el.value = v;
   else if (def !== undefined) el.value = def;
 }
 
 function loadAll() {
-  var ids = ['dm-proj','dm-handle','dm-tweet','dm-tweeturl','dm-tg','dm-email',
-             'dm-custom-gap','dm-gap','dm-service','collab-time','location','local-svc','intel-url'];
-  ids.forEach(function(id){ loadInput(id); });
-  loadInput('minf-new','100'); loadInput('maxf-new','500');
-  loadInput('minf-mid','500'); loadInput('maxf-mid','5000');
-  loadInput('minf-long','500'); loadInput('maxf-long','50000');
-  loadInput('minf-collab','100'); loadInput('maxf-collab','50000');
-
-  // Restore gap UI
+  ['dm-proj','dm-handle','dm-tweet','dm-tweeturl','dm-tg','dm-email',
+   'dm-custom-gap','dm-gap','dm-service','collab-time','location','local-svc','intel-url']
+  .forEach(function(id){ loadInput(id); });
+  loadInput('minf-new','100');    loadInput('maxf-new','2000');
+  loadInput('minf-mid','500');    loadInput('maxf-mid','10000');
+  loadInput('minf-long','1000');  loadInput('maxf-long','100000');
+  loadInput('minf-collab','500'); loadInput('maxf-collab','50000');
   onGapChange(true);
-
-  // Restore tab
   var savedTab = '';
   try { savedTab = localStorage.getItem('fh_tab') || ''; } catch(e){}
   if (savedTab) {
@@ -596,19 +602,20 @@ function loadAll() {
   }
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  GAP SELECT
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function onGapChange(silent) {
   var el = document.getElementById('dm-gap');
   if (!el) return;
-  document.getElementById('custom-gap-wrap').style.display = el.value === 'custom' ? 'block' : 'none';
+  var wrap = document.getElementById('custom-gap-wrap');
+  if (wrap) wrap.style.display = el.value === 'custom' ? 'block' : 'none';
   if (!silent) ls('dm-gap');
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  PROMPT BUILDERS
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function genPrompt(tab) {
   var txt = '';
   if (tab === 'new')    txt = buildNew();
@@ -621,46 +628,238 @@ function genPrompt(tab) {
 }
 
 function buildNew() {
-  var chains = chipStr('chips-chains-new','All Chains');
-  var niches = chipStr('chips-niches-new','All Niches');
-  var minF = document.getElementById('minf-new').value || '100';
-  var maxF = document.getElementById('maxf-new').value || '500';
-  return 'Search the web RIGHT NOW for Web3 and crypto projects launched in the last 0-24 hours.\n\nMANDATORY FILTER — DISCARD INSTANTLY IF:\n✗ No Twitter/X account found\n✗ Twitter account has zero posts\n✗ No Telegram AND no Website AND no Discord\n✗ Pure political/celebrity meme with no team\n✗ Bot volume only (1000+ txns under $1 each)\n\nCHAINS TO SCAN: ' + chains + '\nNICHES TO COVER: ' + niches + '\nTWITTER FOLLOWERS: ' + minF + ' to ' + maxF + '\n\nSEARCH THESE SOURCES SIMULTANEOUSLY:\n- Twitter/X: new crypto accounts, first tweet in last 24h\n- DexScreener: new pairs, sort by age ascending\n- CoinGecko: new listings today\n- CoinHunt (coinhunt.cc): newly listed today\n- CoinScope (coinscope.co): new today\n- GeckoTerminal: new pools today\n- Telegram: newly created Web3 community groups\n- Reddit: r/CryptoCurrency r/CryptoMoonShots last 24h\n- ICODrops: upcoming launches going live today\n- CryptoRank: new projects added this week\n\n' + RESULT_FORMAT + '\n\nReturn 20 results. Rank by follower growth speed.\nOnly include projects where Twitter is confirmed active.';
+  var chains = chipStr('chips-chains-new', 'All Chains');
+  var niches = chipStr('chips-niches-new', 'All Niches');
+  var minF   = document.getElementById('minf-new').value || '100';
+  var maxF   = document.getElementById('maxf-new').value || '2000';
+  return [
+    'You are a Web3 project scout. Find me NEW Web3 / crypto projects launched in the last 0–24 hours.',
+    '',
+    '⚠ HARD FILTER — DISCARD IMMEDIATELY IF:',
+    '✗ No Twitter/X account (this is non-negotiable)',
+    '✗ Twitter account exists but has ZERO tweets posted',
+    '✗ Account looks like a bot (no avatar, no bio, 0 engagement)',
+    '✗ Pure rug-pull signals: anonymous team + no contract audit + no website',
+    '✗ No social presence at all (no TG AND no website AND no Discord)',
+    '',
+    'CHAINS TO SCAN: ' + chains,
+    'NICHES: ' + niches + ' — include DeFi, RWA, GameFi, AI+Crypto, Infrastructure, DAO, SocialFi, DEX. NOT memecoins only.',
+    'TWITTER FOLLOWERS: ' + minF + ' to ' + maxF,
+    '',
+    'WHERE TO FIND THEM (search all simultaneously):',
+    '• Twitter/X — accounts created in last 24h in crypto/Web3 space',
+    '• DexScreener.com — new pairs tab, sort by newest, check Twitter linked',
+    '• GeckoTerminal.com — new pools today, filter by chain',
+    '• CoinGecko.com — new listings today section',
+    '• CoinHunt.cc — newly listed projects today',
+    '• CoinScope.co — new today tab',
+    '• CryptoRank.io — new projects added this week',
+    '• ICODrops.com — launches going live today',
+    '• DeFiLlama.com — new protocols added recently',
+    '• Twitter search: "just launched" OR "stealth launch" OR "fair launch" OR "we are live" (last 24h, crypto accounts)',
+    '• Twitter search: "just deployed" OR "mainnet live" OR "token live" (last 24h)',
+    '',
+    'FOR EVERY PROJECT RETURN THIS EXACT FORMAT:',
+    '',
+    RF,
+    '',
+    'IMPORTANT: For "Last Tweet" — copy the actual full tweet text. I need to use it for outreach.',
+    'Return 15 results minimum. Rank by: how active their Twitter is (most active first).',
+    'ONLY include projects with a confirmed, active Twitter/X account.'
+  ].join('\n');
 }
 
 function buildMid() {
-  var chains = chipStr('chips-chains-mid','All Chains');
-  var niches = chipStr('chips-niches-mid','All Niches');
-  var minF = document.getElementById('minf-mid').value || '500';
-  var maxF = document.getElementById('maxf-mid').value || '5000';
-  return 'Search the web RIGHT NOW for Web3 projects that launched between 1 day and 3 months ago.\n\nNOT memecoins only. Include:\nDeFi protocols, RWA platforms, GameFi studios, AI+Crypto tools,\nInfrastructure, DEXes, Yield protocols, Web3 SaaS, Consumer crypto apps\n\nMANDATORY: Must have active Twitter/X (last post under 14 days)\n\nCHAINS: ' + chains + '\nNICHES: ' + niches + '\nFOLLOWERS: ' + minF + ' to ' + maxF + '\n\nSOURCES:\n- Twitter/X accounts 1-90 days old in crypto\n- DexScreener pairs 1 day to 3 months old\n- CoinGecko listings from last 90 days\n- ICODrops active projects\n- CryptoRank mid-stage projects\n- LinkedIn new Web3 company pages\n\n' + RESULT_FORMAT + '\n\nTWO TYPES TO FLAG:\n🔴 COOLING: Price dropping, volume slowing = Revival pitch\n🟢 GROWING: Price up, volume steady = Scale pitch\n\nReturn 20 results.';
+  var chains = chipStr('chips-chains-mid', 'All Chains');
+  var niches = chipStr('chips-niches-mid', 'All Niches');
+  var minF   = document.getElementById('minf-mid').value || '500';
+  var maxF   = document.getElementById('maxf-mid').value || '10000';
+  return [
+    'You are a Web3 growth scout. Find me Web3 projects that launched 1 day to 3 months ago.',
+    '',
+    '⚠ HARD REQUIREMENTS:',
+    '✓ MUST have active Twitter/X — last tweet within 7 days (no Twitter = skip immediately)',
+    '✓ Real project with actual product or protocol (not pure meme/rug)',
+    '✓ Has some community (Telegram OR Discord OR >200 Twitter followers)',
+    '',
+    'CHAINS: ' + chains,
+    'NICHES: ' + niches,
+    'FOCUS ON: DeFi protocols, RWA platforms, GameFi studios, AI+Crypto tools, Web3 infrastructure, DEXes, Yield protocols, DAO tooling, SocialFi, Web3 SaaS — NOT only memecoins.',
+    'FOLLOWERS: ' + minF + ' to ' + maxF,
+    '',
+    'WHERE TO FIND THEM:',
+    '• Twitter/X — accounts 1-90 days old, actively posting in crypto/Web3',
+    '• DexScreener — pairs launched 1d to 3mo ago with active Twitter',
+    '• CoinGecko — listings from last 90 days with social links',
+    '• CryptoRank.io — mid-stage projects, filter by launch date',
+    '• RootData.com — projects with recent funding rounds',
+    '• ICODrops.com — recently launched projects post-TGE',
+    '• DeFiLlama.com — protocols with rising TVL under $10M',
+    '• GitHub — Web3 repos with commits in last 30 days + linked Twitter',
+    '• LinkedIn — new Web3 company pages (1-3 months old)',
+    '• Twitter search: "just launched" OR "TGE completed" OR "v2 launch" (last 30 days)',
+    '',
+    'FLAG EACH AS:',
+    '🔴 COOLING — price/volume dropping = Revival pitch opportunity',
+    '🟢 GROWING — momentum building = Scale pitch opportunity',
+    '',
+    'FOR EVERY PROJECT RETURN THIS EXACT FORMAT:',
+    '',
+    RF,
+    '',
+    'Also add: Status: 🔴 COOLING or 🟢 GROWING (based on recent price/volume trend)',
+    'Return 15 results. Rank by marketing gap size — biggest gap first.',
+    'CRITICAL: Every result MUST have a confirmed Twitter/X handle.'
+  ].join('\n');
 }
 
 function buildLong() {
-  var chains = chipStr('chips-chains-long','All Chains');
-  var niches = chipStr('chips-niches-long','All Niches');
-  var minF = document.getElementById('minf-long').value || '500';
-  var maxF = document.getElementById('maxf-long').value || '50000';
-  return 'Search the web RIGHT NOW for established Web3 projects running 3 months to 2 years.\n\nFOCUS: Real products. Not memecoins.\nDeFi protocols with TVL, GameFi with players, RWA with real asset backing,\nAI+Crypto with users, Infrastructure with developer adoption,\nDAOs with active governance, L2/L3 with transaction volume\n\nMANDATORY: Active Twitter (last post under 7 days)\nFOLLOWERS: ' + minF + ' to ' + maxF + '\nCHAINS: ' + chains + '\nNICHES: ' + niches + '\n\nSOURCES:\n- DeFiLlama protocols sorted by TVL growth\n- CryptoRank VC-funded projects\n- RootData angel and seed funded Web3 startups\n- GitHub: Web3 repos with commits in last 30 days\n- LinkedIn: Web3 companies 10-200 employees\n- CoinGecko established tokens with volume\n\n' + RESULT_FORMAT + '\n\nFOR EVERY PROJECT ALSO FLAG:\n- Whether they have video content or not\n- Whether their website looks professional or basic\n- Their biggest marketing gap\n\nReturn 15 results. Rank by marketing gap size (biggest gap first).';
+  var chains = chipStr('chips-chains-long', 'All Chains');
+  var niches = chipStr('chips-niches-long', 'All Niches');
+  var minF   = document.getElementById('minf-long').value || '1000';
+  var maxF   = document.getElementById('maxf-long').value || '100000';
+  return [
+    'You are a Web3 business development scout. Find me established Web3 projects running 3 months to 2+ years.',
+    '',
+    '⚠ HARD REQUIREMENTS:',
+    '✓ MUST have active Twitter/X — last tweet within 14 days (no Twitter = skip)',
+    '✓ Real product with actual users, TVL, or transaction volume',
+    '✓ Not a memecoin — I want real protocols and products',
+    '',
+    'CHAINS: ' + chains,
+    'NICHES: ' + niches,
+    'FOCUS ON: DeFi protocols with TVL, GameFi with real players, RWA with asset backing, AI+Crypto with users, Infrastructure with developer adoption, DAOs with active governance, L2/L3 with tx volume, PayFi, Privacy tech.',
+    'FOLLOWERS: ' + minF + ' to ' + maxF,
+    '',
+    'WHERE TO FIND THEM:',
+    '• DeFiLlama.com — protocols sorted by TVL growth (find ones with flat/declining marketing despite good TVL)',
+    '• CryptoRank.io — VC-backed projects with funding history',
+    '• RootData.com — angel and seed funded Web3 startups, filter by date',
+    '• GitHub — Web3 repos 100+ stars, commits in last 30 days',
+    '• LinkedIn — Web3 companies 10-200 employees, 3mo-2yr old',
+    '• CoinGecko — tokens with consistent 30d+ volume but weak social',
+    '• Dune Analytics — protocols with real on-chain activity',
+    '• Twitter search: "building in Web3" OR "new feature" OR "protocol update" (last 14 days, 1k-100k followers)',
+    '• AngelList — Web3 startups actively hiring (means they have funding)',
+    '• CrunchBase — crypto companies with Series A/seed in last 18 months',
+    '',
+    'FOR EVERY PROJECT RETURN THIS EXACT FORMAT:',
+    '',
+    RF,
+    '',
+    'Also add:',
+    'Has Video Content: YES or NO',
+    'Website Quality: PROFESSIONAL / BASIC / OUTDATED',
+    'Biggest Marketing Gap: [one line]',
+    'Funding: [known funding round or UNKNOWN]',
+    '',
+    'Return 12 results. Rank: biggest marketing gap first.',
+    'CRITICAL: Every result must have confirmed active Twitter/X.'
+  ].join('\n');
 }
 
 function buildLocal() {
-  var loc = document.getElementById('location').value || 'Lagos, Nigeria';
-  var types = chipStr('chips-btypes','Restaurants, Fashion, Real Estate, Professional Services, Retail');
-  var svc = document.getElementById('local-svc').value || 'Landing Page';
-  return 'Search the web RIGHT NOW for local businesses in ' + loc + ' that need digital marketing services.\n\nTARGET TYPES: ' + types + '\n\nSERVICE TO PITCH: ' + svc + '\n\nMANDATORY FILTERS:\n✓ Has website (even bad one) OR social media presence\n✓ No professional video content visible online\n✓ Last social post shows low engagement (under 50 likes)\n✓ Website is outdated OR they have no website\n\nSOURCES:\n- Google Maps: ' + loc + ' businesses\n- Instagram: ' + loc + ' small business accounts\n- Twitter/X: ' + loc + ' businesses with low engagement\n- Yelp / TripAdvisor: businesses with weak web presence\n- Facebook: local business pages with few followers\n- LinkedIn: small businesses in ' + loc + '\n\nFOR EACH BUSINESS RETURN:\n\n====================================================================\n📍 LOCAL TARGET // [BUSINESS NAME]\n====================================================================\nType: [Business Type] | Location: ' + loc + '\nWebsite: [URL or None] | Instagram: [@handle or None]\nTwitter: [@handle or None] | Facebook: [link or None]\nFollowers: [Number] | Last Post Date: [Date]\nLast Post Engagement: [likes/comments]\nGap: [Specific weakness]\nService to Pitch: ' + svc + '\nContact Method: [Best way to reach them]\nDirect Link: [Google Maps link or website]\n====================================================================\n\nReturn 15 results. Rank by gap size (easiest win first).';
+  var loc   = document.getElementById('location').value || 'Lagos, Nigeria';
+  var types = chipStr('chips-btypes', 'Restaurants, Fashion, Real Estate, Professional Services');
+  var svc   = document.getElementById('local-svc').value || 'Landing Page';
+  return [
+    'Find local businesses in ' + loc + ' that are a perfect fit for digital marketing services.',
+    '',
+    'TARGET TYPES: ' + types,
+    'SERVICE TO PITCH: ' + svc,
+    '',
+    'MANDATORY FILTERS:',
+    '✓ Has at least one online presence (Instagram, Twitter, Facebook, or website — even a bad one)',
+    '✓ No professional video content visible anywhere online',
+    '✓ Social media posts get under 100 likes consistently',
+    '✓ Website looks outdated (pre-2020 design) OR they have no website at all',
+    '✓ Clearly running the business but not investing in digital growth',
+    '',
+    'WHERE TO FIND THEM:',
+    '• Google Maps: "' + types + ' ' + loc + '" — look at their Google listing quality',
+    '• Instagram: ' + loc + ' small business accounts with <500 followers',
+    '• Twitter/X: ' + loc + ' business accounts with low engagement',
+    '• Facebook: local business pages with few interactions',
+    '• LinkedIn: small businesses in ' + loc,
+    '• Yelp / TripAdvisor: businesses with weak web presence',
+    '',
+    'FOR EACH BUSINESS RETURN:',
+    '',
+    '====================================================================',
+    '📍 LOCAL TARGET // [BUSINESS NAME]',
+    '====================================================================',
+    'Type: [Business Type] | Location: ' + loc,
+    'Website: [URL or NONE] | Instagram: [@handle or NONE]',
+    'Twitter: [@handle or NONE] | Facebook: [link or NONE]',
+    'Followers: [number] | Last Post: [date] | Engagement: [avg likes]',
+    '',
+    '📌 LAST POST:',
+    '"[Copy their most recent social media post text]"',
+    'Last Post URL: [direct link to that post]',
+    '',
+    'Gap: [specific weakness in 1 sentence]',
+    'Service to Pitch: ' + svc,
+    'Contact: [best way to reach them — DM link, email, or phone if public]',
+    '====================================================================',
+    '',
+    'Return 15 results. Rank by gap size (easiest win first — the ones most obviously missing digital presence).'
+  ].join('\n');
 }
 
 function buildCollab() {
-  var minF = document.getElementById('minf-collab').value || '100';
+  var minF = document.getElementById('minf-collab').value || '500';
   var maxF = document.getElementById('maxf-collab').value || '50000';
-  var tw = document.getElementById('collab-time').value || 'last 48 hours';
-  return 'Search Twitter/X RIGHT NOW for accounts actively seeking collaborations in Web3 and crypto.\n\nTIME WINDOW: ' + tw + '\n\nSEARCH EXACT PHRASES (' + tw + '):\n"LET\'S COLLAB" OR "LET\'S COLLABORATE" OR\n"DM FOR COLLABS" OR "DM FOR PARTNERSHIP" OR\n"LOOKING FOR COLLAB" OR "CHECK INBOX" OR\n"ARE YOU UP FOR A COLLAB" OR "OPEN TO COLLAB" OR\n"SEEKING PARTNERS" OR "COLLAB OPEN"\n\nFILTERS:\n✓ Web3 or crypto related account\n✓ ' + minF + ' to ' + maxF + ' followers\n✓ Real account (not bot)\n✓ Posted in ' + tw + '\n\nFOR EACH RETURN:\n\n====================================================================\n🤝 COLLAB TARGET // [@Handle]\n====================================================================\nAccount: [Name] | Handle: @[Handle] | URL: https://x.com/[Handle]\nFollowers: [Number] | Niche: [Web3 niche]\nPost Date: [Date] | Post Text: "[Exact collab post text]"\nPost Link: [Direct URL to that tweet]\nBest Pitch: [What service to lead with]\nDirect DM Link: https://x.com/messages/compose?recipient_id=[Handle]\n====================================================================\n\nALSO SEARCH FOR:\n- New Web3 projects tweeting "we are live"\n- Projects tweeting "stealth launch" or "fair launch today"\n- Accounts tweeting "next 100x" with ' + minF + '-500 followers\n\nReturn 25 results. Flag urgency level (24h window = HIGH).';
+  var tw   = document.getElementById('collab-time').value || 'last 48 hours';
+  return [
+    'Search Twitter/X RIGHT NOW for accounts actively seeking collaborations in Web3 and crypto.',
+    '',
+    'TIME WINDOW: ' + tw,
+    '',
+    'SEARCH THESE EXACT PHRASES ON TWITTER/X (posted in ' + tw + '):',
+    '"LET\'S COLLAB" OR "LET\'S COLLABORATE" OR "DM FOR COLLABS" OR',
+    '"DM FOR PARTNERSHIP" OR "LOOKING FOR COLLAB" OR "OPEN TO COLLAB" OR',
+    '"SEEKING PARTNERS" OR "COLLAB OPEN" OR "ARE YOU UP FOR A COLLAB" OR',
+    '"PARTNER WITH US" OR "PARTNERSHIP OPPORTUNITIES" OR "CHECK INBOX"',
+    '',
+    'ALSO SEARCH FOR THESE SIGNALS (' + tw + '):',
+    '• New Web3 projects tweeting "we are live" OR "just launched"',
+    '• Accounts tweeting "stealth launch" OR "fair launch today"',
+    '• Projects asking "who wants to grow together" OR "builder looking for"',
+    '• Accounts with "WEB3" or "CRYPTO" in bio tweeting "DM me"',
+    '',
+    'FILTERS:',
+    '✓ Web3 or crypto related account (check bio and recent tweets)',
+    '✓ ' + minF + ' to ' + maxF + ' followers',
+    '✓ Real human account (has profile pic, bio, consistent posting history)',
+    '✓ Posted in ' + tw,
+    '✗ Skip bots, inactive accounts, pure shillers',
+    '',
+    'FOR EVERY RESULT RETURN THIS EXACT FORMAT:',
+    '',
+    '====================================================================',
+    '🤝 COLLAB TARGET // [@Handle]',
+    '====================================================================',
+    'Name: [display name] | Handle: @[handle] | URL: https://x.com/[handle]',
+    'Followers: [number] | Niche: [their Web3 niche]',
+    '',
+    '📌 THE COLLAB POST:',
+    '"[Copy the exact collab tweet text]"',
+    'Posted: [how long ago]',
+    'Post URL: [direct link to that tweet]',
+    '',
+    'Why they fit: [1 sentence on why this is a good collab]',
+    'Best Pitch: [what service to lead with]',
+    'DM Link: https://x.com/messages/compose?recipient_id=[handle]',
+    '====================================================================',
+    '',
+    'Return 20 results. Flag URGENCY: HIGH (24h window) or MEDIUM (48h+).',
+    'MANDATORY: Every result must have an active Twitter/X account.'
+  ].join('\n');
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  DM ENGINE
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function escH(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -668,7 +867,7 @@ function wc(t) { return t.trim().split(/\s+/).filter(Boolean).length; }
 
 function genDMs() {
   var proj     = document.getElementById('dm-proj').value.trim() || '[Project]';
-  var handle   = document.getElementById('dm-handle').value.trim().replace('@','') || 'handle';
+  var handle   = document.getElementById('dm-handle').value.trim().replace(/^@/,'') || 'handle';
   var tweet    = document.getElementById('dm-tweet').value.trim();
   var tweetUrl = document.getElementById('dm-tweeturl').value.trim();
   var gapVal   = document.getElementById('dm-gap').value;
@@ -677,7 +876,7 @@ function genDMs() {
   var tgLink   = document.getElementById('dm-tg').value.trim();
   var email    = document.getElementById('dm-email').value.trim();
 
-  var gapTxt = gapVal === 'custom' ? (custGap || 'a growth gap') : (GAP_MAP[gapVal] || 'a growth gap');
+  var gapTxt = gapVal === 'custom' ? (custGap || 'a clear growth gap') : (GAP_MAP[gapVal] || 'a growth gap');
   var svc    = SVC_MAP[svcVal] || SVC_MAP.web3;
 
   var wantTw  = document.getElementById('chk-tw').classList.contains('on');
@@ -685,38 +884,54 @@ function genDMs() {
   var wantTg  = document.getElementById('chk-tg').classList.contains('on');
   var wantEm  = document.getElementById('chk-em').classList.contains('on');
 
-  var tRef = tweet.length > 10
-    ? '"' + tweet.slice(0,70) + (tweet.length > 70 ? '...' : '') + '" — that\'s ' + gapTxt + '.'
-    : proj + ' has ' + gapTxt + ' right now.';
+  // Shorten tweet for reference
+  var tShort = tweet.length > 65 ? tweet.slice(0,65).trim() + '…' : tweet;
+  var hasTweet = tweet.length > 5;
 
-  var twDM = tRef + '\nLeaving reach + revenue on the table every day that stays unfixed.\n\n' + svc.name + ' + AI videos + memecoin marketing that actually moves charts. Fast.\n\n→ funmzy-site.vercel.app\n\n' + svc.q + '\n\n— Funmzy';
+  // ── TWITTER DM — punchy, human, under 120 words ──
+  var twDM = hasTweet
+    ? 'yo — saw that tweet about "' + tShort + '"\n\n' + proj + ' has ' + gapTxt + ' and that\'s the exact thing bleeding growth right now.\n\nbeen building ' + svc.name + ' for Web3 projects that actually move — fast delivery, real results.\n\nwhat i\'ve built: funmzy-site.vercel.app\n\n' + svc.q + '\n\n— Funmzy'
+    : 'yo — checked out ' + proj + '.\n\nthe gap i spotted: ' + gapTxt + '. that\'s costing you reach every single day.\n\nbeen doing ' + svc.name + ' for Web3 projects — fast, no fluff.\n\nwork here: funmzy-site.vercel.app\n\n' + svc.q + '\n\n— Funmzy';
 
-  var tgDM = proj + ' — spotted ' + gapTxt + '.\n\nBuild ' + svc.name + ', AI vids + meme marketing for projects that move fast.\n\nfunmzy-site.vercel.app — see the work\n\n' + svc.q + '\n\n— Funmzy | @Funmzydasilva';
+  // ── TWEET REPLY — short, hooks on their content ──
+  var repDM = hasTweet
+    ? 'this + ' + gapTxt + ' fixed = next level for ' + proj + ' 👀\n\nbeen building exactly this for Web3 projects → funmzy-site.vercel.app'
+    : proj + ' — ' + gapTxt + ' is the gap between where you\'re at and where this should be.\n\nfixed this for a few projects → funmzy-site.vercel.app';
 
-  var repDM = tweet.length > 10
-    ? '"' + tweet.slice(0,60) + (tweet.length > 60 ? '...' : '') + '" — ' + gapTxt + ' is what\'s holding the next leg back.\n\nWorth fixing before the next push → funmzy-site.vercel.app'
-    : proj + ' — ' + gapTxt + ' is the gap between where you are and where this should be.\n\nBuilt something that solves exactly this → funmzy-site.vercel.app';
+  // ── TELEGRAM DM — slightly more detailed ──
+  var tgDM = 'hey — i checked out ' + proj + '.\n\nspotted ' + gapTxt + ' — it\'s the main thing slowing down growth right now.\n\ni build ' + svc.name + ' for Web3 projects. quick turnaround, real results.\n\nwhat i\'ve done: funmzy-site.vercel.app\n\n' + svc.q + '\n\n— Funmzy | @Funmzydasilva';
 
-  var firstName = proj.split(' ')[0];
-  var emailSubj = 'Growth gap / ' + proj;
-  var emailBody = firstName + ',\n\nChecked out ' + proj + ' — ' + gapTxt + ' is the gap that\'s bleeding growth right now.\n\nBuild landing pages, AI videos + memecoin marketing.\nFast turnaround. Real results.\n\nfunmzy-site.vercel.app\n\nWorth 5 mins?\n\nFunmzy\nX: @Lionrage10 | TG: @Funmzydasilva';
+  // ── GMAIL — professional but not stiff ──
+  var firstName = proj.split(/[\s_-]/)[0];
+  var emailSubj = 'quick idea for ' + proj;
+  var emailBody = 'hey ' + firstName + ',\n\nlooked at ' + proj + ' — ' + gapTxt + ' stood out straight away.\n\nthat\'s a gap that\'s actively costing reach and revenue every day it stays unfixed.\n\ni build ' + svc.name + ' for Web3 projects. fast delivery, no bloat.\n\nmy work: funmzy-site.vercel.app\n\nworth 5 minutes?\n\nFunmzy\n@Lionrage10 | @Funmzydasilva';
 
-  var twDMUrl = 'https://x.com/messages/compose?recipient_id=' + handle;
-  var mailLink = email ? 'mailto:' + email + '?subject=' + encodeURIComponent(emailSubj) + '&body=' + encodeURIComponent(emailBody) : '';
+  // ── BUILD LINKS ──
+  var twDMUrl    = 'https://x.com/messages/compose?recipient_id=' + handle;
+  var tgUrl      = tgLink ? (tgLink.startsWith('http') ? tgLink : 'https://t.me/' + tgLink.replace(/^@/,'')) : '';
+  var mailLink   = email ? 'mailto:' + email + '?subject=' + encodeURIComponent(emailSubj) + '&body=' + encodeURIComponent(emailBody) : '';
+  var replyUrl   = tweetUrl || ('https://x.com/' + handle);
 
-  var html = '<div class="term-sec"><div class="tdiv">══════════════════════════════════════════</div><div class="tdiv" style="margin:4px 0">⚡ OUTREACH PACKAGE // ' + escH(proj.toUpperCase()) + '</div><div class="tdiv">══════════════════════════════════════════</div></div>';
+  // ── BUILD HTML ──
+  var html = '<div class="term-sec"><div class="tdiv">══════════════════════════════════════════</div><div class="tdiv" style="margin:5px 0;font-size:0.8rem">⚡ OUTREACH PACKAGE // ' + escH(proj.toUpperCase()) + ' | @' + escH(handle) + '</div><div class="tdiv">══════════════════════════════════════════</div></div>';
 
-  html += '<div class="term-sec"><div class="tdiv" style="margin-bottom:8px">DIRECT ACTION LINKS</div><div class="al-grid">';
-  html += '<a class="al" href="' + twDMUrl + '" target="_blank">➔ OPEN TWITTER DM → ' + escH(twDMUrl) + '</a>';
-  if (tgLink) html += '<a class="al" href="' + escH(tgLink) + '" target="_blank">➔ OPEN TELEGRAM → ' + escH(tgLink) + '</a>';
-  if (tweetUrl) html += '<a class="al" href="' + escH(tweetUrl) + '" target="_blank">➔ REPLY TO LAST TWEET → ' + escH(tweetUrl) + '</a>';
-  if (mailLink) html += '<a class="al" href="' + escH(mailLink) + '" target="_blank">➔ OPEN GMAIL → ' + escH(email) + '</a>';
+  // Action links section
+  html += '<div class="term-sec"><div class="tdiv" style="margin-bottom:10px">🚀 ONE-CLICK ACTION LINKS</div><div class="al-grid">';
+  html += '<a class="al al-tw" href="' + escH(twDMUrl) + '" target="_blank">🐦 OPEN TWITTER DM → @' + escH(handle) + '</a>';
+  if (tweetUrl) {
+    html += '<a class="al al-rep" href="' + escH(tweetUrl) + '" target="_blank">💬 REPLY TO LAST TWEET → ' + escH(tweetUrl.length > 55 ? tweetUrl.slice(0,55)+'…' : tweetUrl) + '</a>';
+  } else {
+    html += '<a class="al al-rep" href="' + escH(replyUrl) + '" target="_blank">💬 VIEW TWITTER → ' + escH(replyUrl) + '</a>';
+  }
+  if (tgUrl) html += '<a class="al al-tg" href="' + escH(tgUrl) + '" target="_blank">✈️ OPEN TELEGRAM → ' + escH(tgUrl) + '</a>';
+  if (mailLink) html += '<a class="al al-gm" href="' + escH(mailLink) + '" target="_blank">📧 OPEN GMAIL → ' + escH(email) + '</a>';
   html += '</div></div>';
 
-  if (wantTw)  html += dmBlock('TWITTER_DM', twDM, 'out-tw');
-  if (wantTg)  html += dmBlock('TELEGRAM_DM', tgDM, 'out-tg');
-  if (wantRep) html += dmBlock('TWEET_REPLY', repDM, 'out-rep');
-  if (wantEm)  html += dmBlock('GMAIL_OUTREACH', emailBody, 'out-em', emailSubj);
+  // DM blocks
+  if (wantTw)  html += dmBlock('🐦 TWITTER DM', twDM, 'out-tw');
+  if (wantRep) html += dmBlock('💬 TWEET REPLY (comment on last post)', repDM, 'out-rep');
+  if (wantTg)  html += dmBlock('✈️ TELEGRAM DM', tgDM, 'out-tg');
+  if (wantEm)  html += dmBlock('📧 GMAIL OUTREACH', emailBody, 'out-em', emailSubj);
 
   html += '<div class="term-sec"><div class="tdiv">══════════════════════════════════════════</div></div>';
 
@@ -725,21 +940,15 @@ function genDMs() {
 }
 
 function dmBlock(title, body, id, subj) {
-  var count = wc(body);
-  var wcCls = count > 120 ? 'wc wc-ov' : 'wc wc-ok';
-  var subjLine = subj ? '<div style="color:var(--mu);font-size:0.72rem;margin-bottom:4px">Subject: <span style="color:var(--wh)">' + escH(subj) + '</span></div>' : '';
+  var count  = wc(body);
+  var wcCls  = count > 120 ? 'wc wc-ov' : 'wc wc-ok';
+  var subjLine = subj ? '<div style="color:var(--mu);font-size:0.71rem;margin-bottom:5px">Subject: <span style="color:var(--gold);font-weight:700">' + escH(subj) + '</span></div>' : '';
   return '<div class="term-sec"><div class="tm-hdr"><span class="tdiv">[' + title + ']</span><span style="display:flex;align-items:center;gap:6px"><span class="' + wcCls + '">' + count + '/120 words</span><button class="cb" id="cbdm-' + id + '" onclick="copyDMBlock(\'' + id + '\',\'cbdm-' + id + '\')">Copy</button></span></div>' + subjLine + '<div class="tw" id="' + id + '">' + escH(body) + '</div></div>';
 }
 
-function copyDMBlock(elId, btnId) {
-  var el = document.getElementById(elId);
-  if (!el) return;
-  copyText(el.textContent).then(function(){ flashBtn(btnId); });
-}
-
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  INTEL SCANNER
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 var _intel = {};
 
 function runIntel() {
@@ -748,8 +957,8 @@ function runIntel() {
   var url = /^https?:\/\//i.test(raw) ? raw : 'https://' + raw;
 
   document.getElementById('intel-loading').style.display = 'block';
-  document.getElementById('intel-result').style.display = 'none';
-  document.getElementById('intel-error').style.display = 'none';
+  document.getElementById('intel-result').style.display  = 'none';
+  document.getElementById('intel-error').style.display   = 'none';
   var btn = document.getElementById('intel-btn');
   btn.disabled = true; btn.textContent = '⏳ Scanning...';
   _intel = {};
@@ -757,7 +966,7 @@ function runIntel() {
   setBar(10); setStatus('Connecting to site...');
 
   var controller = new AbortController();
-  var timer = setTimeout(function(){ controller.abort(); }, 18000);
+  var timer = setTimeout(function(){ controller.abort(); }, 20000);
 
   fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(url), {signal: controller.signal})
     .then(function(r) {
@@ -768,7 +977,7 @@ function runIntel() {
     .then(function(data) {
       var html = data.contents || '';
       if (!html) throw new Error('Empty response — site may block scrapers.');
-      setBar(50); setStatus('Parsing content...');
+      setBar(55); setStatus('Parsing content...');
       var parsed = parseHTML(html, url);
       setBar(80); setStatus('Detecting gaps...');
       parsed.gaps = detectGaps(parsed);
@@ -779,7 +988,9 @@ function runIntel() {
     .catch(function(e) {
       clearTimeout(timer);
       document.getElementById('intel-error').style.display = 'block';
-      document.getElementById('intel-error-msg').innerHTML = '<strong style="color:var(--rd)">Scan failed:</strong> ' + escH(e.message) + '<br><br><span style="color:#555;font-size:0.76rem">Try another URL or check your internet connection. Some sites block external requests.</span>';
+      document.getElementById('intel-error-msg').innerHTML =
+        '<strong style="color:var(--rd)">Scan failed:</strong> ' + escH(e.message) +
+        '<br><br><span style="color:#555;font-size:0.76rem">Some sites block external requests. Try a different URL or check your connection.</span>';
     })
     .finally(function() {
       document.getElementById('intel-loading').style.display = 'none';
@@ -787,43 +998,42 @@ function runIntel() {
     });
 }
 
-function setBar(p) { var b = document.getElementById('intel-bar'); if(b) b.style.width = p + '%'; }
-function setStatus(m) { var s = document.getElementById('intel-status'); if(s) s.textContent = m; }
+function setBar(p)  { var b = document.getElementById('intel-bar');    if(b) b.style.width = p + '%'; }
+function setStatus(m){ var s = document.getElementById('intel-status'); if(s) s.textContent = m; }
 
 function parseHTML(html, siteUrl) {
   var p = {};
   var clean = html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'');
-  var text = clean.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
-
+  var text  = clean.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
   var m;
+
   m = html.match(/<title[^>]*>([^<]{1,200})<\/title>/i);
   p.title = m ? dec(m[1]) : '';
   m = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']{1,400})/i) ||
       html.match(/<meta[^>]+content=["']([^"']{1,400})[^>]+name=["']description/i);
   p.desc = m ? dec(m[1]) : '';
-  if (!p.title) { m = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{1,200})/i); p.title = m ? dec(m[1]) : ''; }
-  if (!p.desc)  { m = html.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']{1,400})/i); p.desc = m ? dec(m[1]) : ''; }
+  if (!p.title){ m = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{1,200})/i); p.title = m ? dec(m[1]) : ''; }
+  if (!p.desc) { m = html.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']{1,400})/i); p.desc = m ? dec(m[1]) : ''; }
   try { p.domain = new URL(siteUrl).hostname.replace(/^www\./,''); } catch(e){ p.domain = siteUrl; }
   p.name = (p.title || p.domain).replace(/[-–|·:].*$/,'').trim().slice(0,60);
 
-  var hrefs = [];
-  var hm; var hrx = /href=["']([^"']{4,}?)["']/gi;
+  var hrefs = []; var hm; var hrx = /href=["']([^"']{4,}?)["']/gi;
   while ((hm = hrx.exec(html)) !== null) hrefs.push(hm[1]);
 
-  p.twitter  = findSocial(hrefs, /(?:twitter\.com|x\.com)\/([A-Za-z0-9_]{1,50})\/?(?:[?#"'\s>]|$)/i);
-  p.telegram = findHref(hrefs, /t\.me\/[A-Za-z0-9_]{2,50}/i);
-  p.discord  = findHref(hrefs, /discord(?:\.gg|\.com\/invite)\/[A-Za-z0-9_-]{2,50}/i);
-  p.github   = findHref(hrefs, /github\.com\/[A-Za-z0-9_-]{1,100}(?:\/[A-Za-z0-9_-]+)?/i);
-  p.linkedin = findHref(hrefs, /linkedin\.com\/(?:company|in)\/[A-Za-z0-9_-]{1,100}/i);
-  p.medium   = findHref(hrefs, /medium\.com\/@?[A-Za-z0-9_-]{1,80}/i);
-  p.youtube  = findHref(hrefs, /youtube\.com\/(?:c\/|channel\/|@)[A-Za-z0-9_-]{1,100}/i);
-  p.instagram= findHref(hrefs, /instagram\.com\/[A-Za-z0-9_.]{1,60}/i);
+  p.twitter   = findSocial(hrefs, /(?:twitter\.com|x\.com)\/([A-Za-z0-9_]{1,50})\/?(?:[?#"'\s>]|$)/i);
+  p.telegram  = findHref(hrefs, /t\.me\/[A-Za-z0-9_]{2,50}/i);
+  p.discord   = findHref(hrefs, /discord(?:\.gg|\.com\/invite)\/[A-Za-z0-9_-]{2,50}/i);
+  p.github    = findHref(hrefs, /github\.com\/[A-Za-z0-9_-]{1,100}(?:\/[A-Za-z0-9_-]+)?/i);
+  p.linkedin  = findHref(hrefs, /linkedin\.com\/(?:company|in)\/[A-Za-z0-9_-]{1,100}/i);
+  p.medium    = findHref(hrefs, /medium\.com\/@?[A-Za-z0-9_-]{1,80}/i);
+  p.youtube   = findHref(hrefs, /youtube\.com\/(?:c\/|channel\/|@)[A-Za-z0-9_-]{1,100}/i);
+  p.instagram = findHref(hrefs, /instagram\.com\/[A-Za-z0-9_.]{1,60}/i);
 
   var emailRx = /\b([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})\b/g;
   var emails = []; var em;
   while ((em = emailRx.exec(html)) !== null) {
-    var e = em[1];
-    if (!/example|domain|\.png|\.jpg|\.gif/i.test(e)) emails.push(e);
+    var e2 = em[1];
+    if (!/example|domain|\.png|\.jpg|\.gif/i.test(e2)) emails.push(e2);
   }
   p.emails = emails.filter(function(v,i,a){ return a.indexOf(v)===i; }).slice(0,5);
 
@@ -831,25 +1041,24 @@ function parseHTML(html, siteUrl) {
   p.docs       = findHref(hrefs, /docs\.|gitbook/i);
   p.audit      = findHref(hrefs, /audit/i);
 
-  var chains = ['Solana','Ethereum','Base','BSC','Binance','Polygon','Arbitrum','Avalanche','Optimism','Sui','Aptos','TON'];
+  var chains = ['Solana','Ethereum','Base','BSC','Binance','Polygon','Arbitrum','Avalanche','Optimism','Sui','Aptos','TON','Cosmos'];
   p.chain = '';
   for (var i=0; i<chains.length; i++) { if (new RegExp('\\b'+chains[i]+'\\b','i').test(text)){ p.chain=chains[i]; break; } }
 
   var tok = text.match(/(?:token|ticker|symbol)[^:]*:?\s*["']?\$?([A-Z]{2,10})\b/);
   p.token = tok ? tok[1] : '';
 
-  p.hasVideo   = /youtube|youtu\.be|vimeo|video|watch\?v=/i.test(html);
-  p.hasDocs    = /docs\.|gitbook|whitepaper|documentation/i.test(html);
-  p.hasRoadmap = /roadmap/i.test(html);
-  p.hasTeam    = /team|founder|about us|our team/i.test(html);
-  p.hasBlog    = /blog|medium\.com|substack/i.test(html);
-  p.hasAudit   = /audit/i.test(html);
-  p.hasPricing = /pricing|price|plan|subscribe|payment/i.test(html);
-  p.hasPartners= /partner|backed by|investor|supported by/i.test(html);
+  p.hasVideo    = /youtube|youtu\.be|vimeo|\.mp4|video|watch\?v=/i.test(html);
+  p.hasDocs     = /docs\.|gitbook|whitepaper|documentation/i.test(html);
+  p.hasRoadmap  = /roadmap/i.test(html);
+  p.hasTeam     = /team|founder|about us|our team/i.test(html);
+  p.hasBlog     = /blog|medium\.com|substack/i.test(html);
+  p.hasAudit    = /audit/i.test(html);
+  p.hasPricing  = /pricing|price plan|subscribe|payment plan/i.test(html);
+  p.hasPartners = /partner|backed by|investor|supported by/i.test(html);
 
   var fundM = text.match(/\$[\d,.]+\s*(?:M|B|K|million|billion|thousand)?(?:\s+(?:raised|seed|round|funding))?/gi);
   p.funding = fundM ? fundM.slice(0,3).join(', ') : '';
-
   return p;
 }
 
@@ -865,7 +1074,7 @@ function findSocial(hrefs, rx) {
       try {
         var u = new URL(h.startsWith('http') ? h : 'https:' + h);
         var path = u.pathname.replace(/^\/+/,'').split('/')[0];
-        if (!path || /^(home|explore|search|intent|share|hashtag|i)$/i.test(path)) continue;
+        if (!path || /^(home|explore|search|intent|share|hashtag|i|login|signup)$/i.test(path)) continue;
         var host = u.hostname.replace('twitter.com','x.com');
         return 'https://' + host + '/' + path;
       } catch(e){ return h.slice(0,100); }
@@ -878,9 +1087,9 @@ function findHref(hrefs, rx) {
   for (var i=0; i<hrefs.length; i++) {
     var h = hrefs[i];
     if (rx.test(h)) {
-      var m = h.match(rx);
-      if (!m) return h;
-      return h.startsWith('http') ? h.split('?')[0] : 'https://' + m[0];
+      var m2 = h.match(rx);
+      if (!m2) return h;
+      return h.startsWith('http') ? h.split('?')[0] : 'https://' + m2[0];
     }
   }
   return '';
@@ -888,31 +1097,30 @@ function findHref(hrefs, rx) {
 
 function detectGaps(p) {
   var g = [];
-  if (!p.hasVideo && !p.youtube)   g.push({label:'No video content',gap:'novid'});
-  if (!p.twitter)                   g.push({label:'No Twitter/X presence found',gap:'weaksocial'});
-  if (!p.telegram && !p.discord)   g.push({label:'No community hub (Telegram/Discord)',gap:'deadcomm'});
-  if (!p.hasDocs && !p.whitepaper) g.push({label:'No whitepaper or documentation',gap:'noweb3'});
-  if (!p.hasTeam)                   g.push({label:'No visible team page',gap:'nolp'});
-  if (!p.hasRoadmap)                g.push({label:'No roadmap found',gap:'nolp'});
-  if (!p.hasBlog)                   g.push({label:'No blog or content marketing',gap:'novid'});
-  if (!p.hasAudit && p.chain)       g.push({label:'No visible security audit',gap:'noweb3'});
-  if (!p.hasPartners)               g.push({label:'No partners or backers highlighted',gap:'nokol'});
-  if ((p.desc||'').length < 40)     g.push({label:'Weak or missing meta description (bad SEO)',gap:'badweb'});
+  if (!p.hasVideo && !p.youtube)    g.push({label:'No video content anywhere',      gap:'novid'});
+  if (!p.twitter)                    g.push({label:'No Twitter/X presence found',    gap:'weaksocial'});
+  if (!p.telegram && !p.discord)    g.push({label:'No community hub (TG/Discord)',   gap:'deadcomm'});
+  if (!p.hasDocs && !p.whitepaper)  g.push({label:'No whitepaper or documentation', gap:'noweb3'});
+  if (!p.hasTeam)                    g.push({label:'No visible team / founder page', gap:'nolp'});
+  if (!p.hasRoadmap)                 g.push({label:'No roadmap found on site',       gap:'nolp'});
+  if (!p.hasBlog)                    g.push({label:'No blog or content marketing',   gap:'novid'});
+  if (!p.hasAudit && p.chain)        g.push({label:'No visible security audit',      gap:'noweb3'});
+  if (!p.hasPartners)                g.push({label:'No partners/backers highlighted',gap:'nokol'});
+  if ((p.desc||'').length < 40)      g.push({label:'Weak meta description (bad SEO)',gap:'badweb'});
   return g.slice(0,6);
 }
 
 function showIntelReport(p, siteUrl) {
   window._intelText = buildIntelText(p, siteUrl);
-
   var html = '';
 
   html += '<div class="ir-section"><div class="ir-sec-title">Project Overview</div>';
   html += row('Name', '<strong>' + escH(p.name || p.title) + '</strong>');
   html += row('Domain', '<a href="' + escH(siteUrl) + '" target="_blank">' + escH(p.domain) + '</a>');
-  if (p.title) html += row('Page Title', escH(p.title));
-  if (p.desc)  html += row('Description', escH(p.desc));
-  if (p.chain) html += row('Chain', badge(p.chain, 'pur'));
-  if (p.token) html += row('Token', badge('$' + p.token, 'ok'));
+  if (p.title)   html += row('Page Title', escH(p.title));
+  if (p.desc)    html += row('Description', escH(p.desc));
+  if (p.chain)   html += row('Chain', badge(p.chain, 'pur'));
+  if (p.token)   html += row('Token', badge('$' + p.token, 'ok'));
   if (p.funding) html += row('Funding', badge(p.funding, 'ok'));
   html += '</div>';
 
@@ -936,7 +1144,7 @@ function showIntelReport(p, siteUrl) {
 
   if (p.emails.length || p.whitepaper || p.docs || p.audit) {
     html += '<div class="ir-section"><div class="ir-sec-title">Contact & Docs</div>';
-    p.emails.forEach(function(e){ html += row('📧 Email', '<a href="mailto:' + escH(e) + '">' + escH(e) + '</a>'); });
+    p.emails.forEach(function(e3){ html += row('📧 Email', '<a href="mailto:' + escH(e3) + '">' + escH(e3) + '</a>'); });
     if (p.whitepaper) html += row('📄 Whitepaper', '<a href="' + escH(p.whitepaper) + '" target="_blank">' + escH(p.whitepaper.slice(0,70)) + '</a>');
     if (p.docs)       html += row('📚 Docs', '<a href="' + escH(p.docs) + '" target="_blank">' + escH(p.docs.slice(0,70)) + '</a>');
     if (p.audit)      html += row('🔒 Audit', '<a href="' + escH(p.audit) + '" target="_blank">' + escH(p.audit.slice(0,70)) + '</a>');
@@ -953,12 +1161,12 @@ function showIntelReport(p, siteUrl) {
     {l:'Pricing/Plans',  ok:p.hasPricing},
     {l:'Partners',       ok:p.hasPartners}
   ];
-  html += '<div class="ir-section"><div class="ir-sec-title">Site Health Checklist</div><div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">';
+  html += '<div class="ir-section"><div class="ir-sec-title">Site Health</div><div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">';
   checks.forEach(function(c){ html += badge((c.ok?'✓ ':'✗ ') + c.l, c.ok ? 'ok' : 'bad'); });
   html += '</div></div>';
 
   if (p.gaps && p.gaps.length) {
-    html += '<div class="ir-section"><div class="ir-sec-title" style="color:var(--rd)">⚠ Marketing Gaps Detected (' + p.gaps.length + ')</div>';
+    html += '<div class="ir-section"><div class="ir-sec-title" style="color:var(--rd)">⚠ Marketing Gaps (' + p.gaps.length + ')</div>';
     p.gaps.forEach(function(g){ html += '<div class="ir-gap-item">⚠ ' + escH(g.label) + '</div>'; });
     html += '</div>';
   }
@@ -976,11 +1184,11 @@ function badge(txt, type) {
 }
 
 function buildIntelText(p, url) {
-  var nl = '\n', div = '====================================================================';
-  var t = div+nl+'SITE INTEL // '+(p.name||p.title)+nl+div+nl;
+  var nl = '\n', d = '====================================================================';
+  var t = d+nl+'SITE INTEL // '+(p.name||p.title)+nl+d+nl;
   t += 'URL: '+url+nl+'Title: '+p.title+nl+'Description: '+p.desc+nl;
-  if (p.chain) t += 'Chain: '+p.chain+nl;
-  if (p.token) t += 'Token: $'+p.token+nl;
+  if (p.chain)   t += 'Chain: '+p.chain+nl;
+  if (p.token)   t += 'Token: $'+p.token+nl;
   if (p.funding) t += 'Funding: '+p.funding+nl;
   t += nl+'SOCIAL LINKS:'+nl;
   if (p.twitter)   t += '→ Twitter/X: '+p.twitter+nl;
@@ -991,8 +1199,8 @@ function buildIntelText(p, url) {
   if (p.emails.length) t += nl+'EMAILS: '+p.emails.join(', ')+nl;
   if (p.whitepaper) t += 'Whitepaper: '+p.whitepaper+nl;
   if (p.audit)      t += 'Audit: '+p.audit+nl;
-  if (p.gaps && p.gaps.length) { t += nl+'GAPS DETECTED:'+nl; p.gaps.forEach(function(g){ t += '⚠ '+g.label+nl; }); }
-  t += nl+div;
+  if (p.gaps && p.gaps.length){ t += nl+'GAPS DETECTED:'+nl; p.gaps.forEach(function(g){ t += '⚠ '+g.label+nl; }); }
+  t += nl+d;
   return t;
 }
 
@@ -1007,8 +1215,8 @@ function fillDMEngine() {
   function set(id, val) { if (!val) return; var el=document.getElementById(id); if(el){ el.value=val; ls(id); } }
   set('dm-proj', p.name || p.title);
   if (p.twitter) {
-    var hm = p.twitter.match(/(?:x|twitter)\.com\/([A-Za-z0-9_]+)/i);
-    if (hm) set('dm-handle', '@' + hm[1]);
+    var hm2 = p.twitter.match(/(?:x|twitter)\.com\/([A-Za-z0-9_]+)/i);
+    if (hm2) set('dm-handle', hm2[1]);
   }
   if (p.telegram) set('dm-tg', p.telegram);
   if (p.emails && p.emails.length) set('dm-email', p.emails[0]);
@@ -1021,9 +1229,9 @@ function fillDMEngine() {
   document.querySelector('.eng-title').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 //  SIDEBAR KOLS3
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function buildKOLS3() {
   var el = document.getElementById('kols3-list');
   if (!el) return;
@@ -1032,16 +1240,16 @@ function buildKOLS3() {
   }).join('');
 }
 
-// ═══════════════════════════════════════════════════════
-//  INIT — runs after DOM is ready
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
   buildChips('chips-chains-new',  CHAINS, ['All Chains']);
   buildChips('chips-niches-new',  NICHES, ['DeFi','NFT','AI+Crypto']);
   buildChips('chips-chains-mid',  CHAINS, ['All Chains']);
-  buildChips('chips-niches-mid',  NICHES, ['DeFi','RWA','GameFi']);
+  buildChips('chips-niches-mid',  NICHES, ['DeFi','RWA','GameFi','AI+Crypto']);
   buildChips('chips-chains-long', CHAINS, ['ETH','Solana','Base']);
-  buildChips('chips-niches-long', NICHES, ['DeFi','Infrastructure','L2/L3']);
+  buildChips('chips-niches-long', NICHES, ['DeFi','Infrastructure','L2/L3','RWA']);
   buildChips('chips-btypes',      BTYPES, ['Restaurant','Fashion','Real Estate']);
   buildKOLS3();
   loadAll();
