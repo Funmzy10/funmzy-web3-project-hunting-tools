@@ -163,12 +163,12 @@ textarea{resize:vertical;min-height:65px}
 <nav id="nav">
   <div class="nav-logo">FUNMZY HUNTER 🦁</div>
   <div class="nav-tabs">
-    <button class="ntab active" onclick="switchTab('new',this)">NEW</button>
-    <button class="ntab" onclick="switchTab('mid',this)">MID-STAGE</button>
-    <button class="ntab" onclick="switchTab('long',this)">LONG TERM</button>
-    <button class="ntab" onclick="switchTab('local',this)">LOCAL BIZ</button>
-    <button class="ntab" onclick="switchTab('collab',this)">COLLABS</button>
-    <button class="ntab" onclick="switchTab('intel',this)" style="border:1px solid rgba(139,92,246,.4);color:#8B5CF6">🔬 INTEL</button>
+    <button class="ntab active" data-tab="new"    onclick="switchTab('new',this)">NEW</button>
+    <button class="ntab"        data-tab="mid"    onclick="switchTab('mid',this)">MID-STAGE</button>
+    <button class="ntab"        data-tab="long"   onclick="switchTab('long',this)">LONG TERM</button>
+    <button class="ntab"        data-tab="local"  onclick="switchTab('local',this)">LOCAL BIZ</button>
+    <button class="ntab"        data-tab="collab" onclick="switchTab('collab',this)">COLLABS</button>
+    <button class="ntab"        data-tab="intel"  onclick="switchTab('intel',this)" style="border:1px solid rgba(139,92,246,.4);color:#8B5CF6">🔬 INTEL</button>
   </div>
   <div class="nav-links">
     <button class="nlink" id="nl-site" onclick="flashCopy('https://funmzy-site.vercel.app/','nl-site')">🌐 Site</button>
@@ -506,6 +506,68 @@ textarea{resize:vertical;min-height:65px}
 </div><!-- /layout -->
 
 <script>
+// ══ CLIPBOARD HELPER (works on file:// AND https://) ══
+function copyText(text, btnEl) {
+  function doFlash() {
+    if (!btnEl) return;
+    const orig = btnEl.textContent;
+    const origBg = btnEl.style.background;
+    btnEl.textContent = '✓ Copied!';
+    btnEl.style.background = '#10B981';
+    setTimeout(() => {
+      btnEl.textContent = orig;
+      btnEl.style.background = origBg;
+    }, 2000);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(doFlash).catch(() => fallbackCopy(text, doFlash));
+  } else {
+    fallbackCopy(text, doFlash);
+  }
+}
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); if (cb) cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+// flash by btnId (used for nav quick-copy links)
+function flash(btnId) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  const orig = btn.textContent;
+  const origBg = btn.style.background;
+  btn.textContent = '✓ Copied!';
+  btn.style.background = '#10B981';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = origBg; }, 2000);
+}
+
+function copyEl(elId, btnId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const txt = el.textContent.trim();
+  if (txt.length < 2) return;
+  copyText(txt, document.getElementById(btnId));
+}
+
+function copyElTxt(elId, btnId) {
+  copyEl(elId, btnId);
+}
+
+function flashCopy(txt, btnId) {
+  copyText(txt, document.getElementById(btnId));
+}
+
+function copyIntelReport() {
+  if (!window._intelReportText) return;
+  copyText(window._intelReportText, document.getElementById('cb-intel'));
+}
+
 // ══ CONSTANTS ══════════════════════════════════════════
 const CHAINS = ['Solana','Base','ETH','BSC','All Chains'];
 const NICHES = ['DeFi','RWA','GameFi','GambleFi','NFT','AI+Crypto','DAO','L2/L3','SocialFi','Web3 Tools','DEX','Yield','Infrastructure'];
@@ -934,38 +996,15 @@ function dmBlock(title, body, id, subj) {
 function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
 function countWords(t){ return t.trim().split(/\s+/).filter(Boolean).length }
 
-// ══ COPY HELPERS ══════════════════════════════════════
-function copyEl(elId, btnId) {
-  const txt = document.getElementById(elId).textContent;
-  if (!txt || txt.trim().length < 5) return;
-  navigator.clipboard.writeText(txt).then(() => flash(btnId));
-}
-
-function copyElTxt(elId, btnId) {
-  const el = document.getElementById(elId);
-  if (!el) return;
-  navigator.clipboard.writeText(el.textContent).then(() => flash(btnId));
-}
-
-function flashCopy(txt, btnId) {
-  navigator.clipboard.writeText(txt).then(() => flash(btnId));
-}
-
-function flash(btnId) {
-  const btn = document.getElementById(btnId);
-  if (!btn) return;
-  const orig = btn.textContent;
-  btn.textContent = '✓ Copied!';
-  btn.classList.add('ok', 'flashed');
-  setTimeout(() => { btn.textContent = orig; btn.classList.remove('ok','flashed'); }, 2000);
-}
+// (copy helpers defined at top of script)
 
 // ══ MISC TOGGLES ══════════════════════════════════════
 function toggleCk(el) { el.classList.toggle('on'); }
 
 function toggleCustomGap() {
-  const v = document.getElementById('dm-gap').value;
-  document.getElementById('custom-gap-wrap').style.display = v === 'custom' ? 'block' : 'none';
+  const el = document.getElementById('dm-gap');
+  if (!el) return;
+  document.getElementById('custom-gap-wrap').style.display = el.value === 'custom' ? 'block' : 'none';
   save('dm-gap');
 }
 
@@ -995,25 +1034,24 @@ function saveState() {
 
 function loadState() {
   ['dm-proj','dm-handle','dm-tweet','dm-tweeturl','dm-tg','dm-email','dm-custom-gap',
-   'dm-gap','dm-service','collab-time','location','local-service'].forEach(id => loadInput(id));
+   'dm-gap','dm-service','collab-time','location','local-service','intel-url'].forEach(id => loadInput(id));
 
   loadInput('minf-new','100'); loadInput('maxf-new','500');
   loadInput('minf-mid','500'); loadInput('maxf-mid','5000');
   loadInput('minf-long','500'); loadInput('maxf-long','50000');
   loadInput('minf-collab','100'); loadInput('maxf-collab','50000');
 
-  // Restore tab
+  // Restore active tab — match by data-tab attribute set on each ntab
   const savedTab = localStorage.getItem('fh_tab');
   if (savedTab) {
-    const btn = [...document.querySelectorAll('.ntab')].find(b => {
-      const tabMap = {new:'NEW',mid:'MID-STAGE',long:'LONG TERM',local:'LOCAL BIZ',collab:'COLLABS'};
-      return b.textContent.trim() === tabMap[savedTab];
-    });
-    if (btn) switchTab(savedTab, btn);
+    const btn = document.querySelector(`.ntab[data-tab="${savedTab}"]`);
+    const panel = document.getElementById('p-' + savedTab);
+    if (btn && panel) switchTab(savedTab, btn);
   }
 
   // Restore custom gap visibility
-  toggleCustomGap();
+  const gapEl = document.getElementById('dm-gap');
+  if (gapEl) document.getElementById('custom-gap-wrap').style.display = gapEl.value === 'custom' ? 'block' : 'none';
 }
 
 // ══ KOLS3 SIDEBAR ═════════════════════════════════════
@@ -1051,7 +1089,10 @@ async function runIntel() {
   try {
     // Use allorigins CORS proxy
     const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-    const resp = await fetch(proxyUrl, {signal: AbortSignal.timeout(18000)});
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 18000);
+    const resp = await fetch(proxyUrl, {signal: controller.signal});
+    clearTimeout(timer);
     if (!resp.ok) throw new Error('Proxy error: ' + resp.status);
     const data = await resp.json();
     const html = data.contents || '';
